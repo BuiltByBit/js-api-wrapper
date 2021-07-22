@@ -2,6 +2,7 @@
 // MIT License (https://github.com/Majored/mcm-js-api-wrapper/blob/main/LICENSE)
 
 const axios = require('axios');
+const debug = require('debug')('mcm-js-api-wrapper');
 
 const BASE_URL = "https://api.mc-market.org/v1";
 
@@ -22,6 +23,13 @@ object.init = async function(token) {
     headers: {"Authorization": token.type + " " + token.value}
   });
 
+  this.rate_limits = {
+    read_last_retry: 0,
+    read_last_request: Date.now(),
+    write_last_retry: 0,
+    write_last_request: Date.now()
+  };
+
   let health_check = await this.health();
   if (health_check.result === "error") {
     return health_check;
@@ -33,18 +41,40 @@ object.init = async function(token) {
 /* functions */
 object.get = async function(endpoint) {
   try {
+    let stall = true;
+
+    // If we've previously hit a rate limit, no other request has been completed with a non-429 response since, and
+    // we're still within the Retry-After delay period, we should stall this request. The exact amount of time we stall
+    // for derives from the amount of time that has passed since the last request, minus the Retry-After value.
+    while(stall) {
+      let time = Date.now();
+      let limits = this.rate_limits;
+
+      if (limits.read_last_retry > 0 && (time - limits.read_last_request) < limits.read_last_retry) {
+        let stall_for = limits.read_last_retry - (time - limits.read_last_request);
+        debug(`Stalling request for ${stall_for}ms.`);
+        await new Promise(resolve => setTimeout(resolve, stall_for));
+      } else {
+        stall = false;
+      }
+    }
+
     let response = await this.client.get(endpoint);
+    this.rate_limits.read_last_request = Date.now();
+    this.rate_limits.read_last_retry = 0;
+
     return response.data;
   } catch (error) {
-    let response = {
-      result: "error",
-      error: {
-        code: "LocalWrapperError",
-        message: error.message
-      }
-    };
+    if (error.response && error.response.status === 429) {
+      this.rate_limits.read_last_retry = error.response.headers["retry-after"];
+      this.rate_limits.read_last_request = Date.now();
 
-    return response;
+      return await this.get(endpoint);
+    } else if (error.response) {
+      return error.response.data;
+    } else {
+      return {result: "error", error: {code: "LocalWrapperError", message: error.message}};
+    }
   }
 };
 

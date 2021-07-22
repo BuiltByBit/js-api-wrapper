@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Majored/mcm-js-api-wrapper#readme",
   "dependencies": {
-    "axios": "^0.21.1"
+    "axios": "^0.21.1",
+    "debug": "^4.3.2"
   }
 }
