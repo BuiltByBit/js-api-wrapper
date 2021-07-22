@@ -1,0 +1,22 @@
+{
+  "name": "mcm-js-api-wrapper",
+  "version": "1.0.0",
+  "description": "A JavaScript (Node.js) wrapper for MC-Market's HTTP API.",
+  "main": "lib.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Majored/mcm-js-api-wrapper.git"
+  },
+  "author": "Harry <36297990+Majored@users.noreply.github.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Majored/mcm-js-api-wrapper/issues"
+  },
+  "homepage": "https://github.com/Majored/mcm-js-api-wrapper#readme",
+  "dependencies": {
+    "axios": "^0.21.1"
+  }
+}
