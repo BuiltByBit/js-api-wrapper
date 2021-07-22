@@ -1,3 +1,6 @@
+// Copyright (c) 2021 Harry [Majored] [hello@majored.pw]
+// MIT License (https://github.com/Majored/mcm-js-api-wrapper/blob/main/LICENSE)
+
 const axios = require('axios');
 
 const BASE_URL = "https://api.mc-market.org/v1";
@@ -7,11 +10,11 @@ let object = {};
 
 /* initialise */
 object.init = async function(token) {
-  if (typeof token === "undefined") {
-    return {};
+  if (typeof token === "undefined" || token.constructor !== Object) {
+    return {result: "error", error: {code: "LocalWrapperError", message: "Parameter is undefined or not an object."}};
   }
   if (typeof token.type === "undefined" || typeof token.value === "undefined") {
-    return {};
+    return {result: "error", error: {code: "LocalWrapperError", message: "Parameter object token fields missing."}};
   }
 
   this.client = axios.create({
@@ -21,7 +24,7 @@ object.init = async function(token) {
 
   let health_check = await this.health();
   if (health_check.result === "error") {
-    return {};
+    return health_check;
   }
 
   return this;
@@ -48,6 +51,24 @@ object.get = async function(endpoint) {
 // Schedule a plain request which we expect to always succeed under nominal conditions.
 object.health = async function() {
   return await this.get(`/health`);
+};
+
+// Schedule a plain request and measure how long the API took to respond.
+//
+// Note:
+// This duration may not be representative of the raw request latency due to the fact that requests may be stalled
+// locally within this wrapper to ensure compliance with rate limiting rules. Whilst this is a trade-off, it can
+// be argued that the returned duration will be more representative of the true latencies experienced.
+object.ping = async function() {
+  let start = Date.now();
+  let response = await this.health();
+  let stop = Date.now();
+
+  if (response.result === "success") {
+    response.data = stop - start;
+  }
+
+  return response;
 };
 
 // Fetch detailed information about yourself.
@@ -79,6 +100,8 @@ object.fetch_resource = async function(resource_id) {
  object.fetch_alerts = async function() {
    return await this.get(`/alerts`);
  };
+
+ object.helpers = require('./helpers/mod.js');
 
 /* exports */
 module.exports = object;
