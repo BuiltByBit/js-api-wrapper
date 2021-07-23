@@ -21,13 +21,13 @@ object.init = function(wrapper) {
 
 /* functions */
 // List public resources.
-object.list = async function() {
-  return await this.wrapper.get(`/resources`);
+object.list = async function(sort_options) {
+  return await this.wrapper.get(`/resources`, sort_options);
 };
 
 // List owned resources.
-object.list_owned = async function() {
-  return await this.wrapper.get(`/resources/owned`);
+object.list_owned = async function(sort_options) {
+  return await this.wrapper.get(`/resources/owned`, sort_options);
 };
 
 // Fetch detailed information about a resource.

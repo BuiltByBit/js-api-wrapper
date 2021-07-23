@@ -12,8 +12,8 @@ object.init = function(wrapper) {
 
 /* functions */
 // List updates for a given resource.
-object.list = async function(resource_id) {
-  return await this.wrapper.get(`/resources/${resource_id}/updates`);
+object.list = async function(resource_id, sort_options) {
+  return await this.wrapper.get(`/resources/${resource_id}/updates`, sort_options);
 };
 
 // Fetch the latest update for a given resource.

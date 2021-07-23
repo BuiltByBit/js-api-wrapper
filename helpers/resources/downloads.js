@@ -12,18 +12,18 @@ object.init = function(wrapper) {
 
 /* functions */
 // List downloads for a given resource.
-object.list = async function(resource_id) {
-  return await this.wrapper.get(`/resources/${resource_id}/downloads`);
+object.list = async function(resource_id, sort_options) {
+  return await this.wrapper.get(`/resources/${resource_id}/downloads`, sort_options);
 };
 
 // List downloads by member for a given resource.
-object.list = async function(resource_id, member_id) {
-  return await this.wrapper.get(`/resources/${resource_id}/downloads/members/${member_id}`);
+object.list = async function(resource_id, member_id, sort_options) {
+  return await this.wrapper.get(`/resources/${resource_id}/downloads/members/${member_id}`, sort_options);
 };
 
 // List downloads by version for a given resource.
-object.list = async function(resource_id, version_id) {
-  return await this.wrapper.get(`/resources/${resource_id}/downloads/versions/${version_id}`);
+object.list = async function(resource_id, version_id, sort_options) {
+  return await this.wrapper.get(`/resources/${resource_id}/downloads/versions/${version_id}`, sort_options);
 };
 
 /* exports */

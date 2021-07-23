@@ -12,8 +12,8 @@ object.init = function(wrapper) {
 
 /* functions */
 // List purchases for a given resource.
-object.list = async function(resource_id) {
-  return await this.wrapper.get(`/resources/${resource_id}/purchases`);
+object.list = async function(resource_id, sort_options) {
+  return await this.wrapper.get(`/resources/${resource_id}/purchases`, sort_options);
 };
 
 // Fetch a purchase for a given resource.

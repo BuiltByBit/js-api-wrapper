@@ -12,8 +12,8 @@ object.init = function(wrapper) {
 
 /* functions */
 // List licenses for a given resource.
-object.list = async function(resource_id) {
-  return await this.wrapper.get(`/resources/${resource_id}/licenses`);
+object.list = async function(resource_id, sort_options) {
+  return await this.wrapper.get(`/resources/${resource_id}/licenses`, sort_options);
 };
 
 // Issue a new license for a given resource.

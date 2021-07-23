@@ -104,8 +104,22 @@ object.stall_for_helper = async function(last_retry, last_request, time) {
   }
 };
 
-object.get = async function(endpoint) {
+object.sort_options_to_query = function(sort_options) {
+  let as_array = [];
+
+  for (index in sort_options) {
+    as_array.push(`${index}=${sort_options[index]}`);
+  }
+
+  return "?" + as_array.join("&");
+};
+
+object.get = async function(endpoint, sort_options) {
   try {
+    if (sort_options) {
+      endpoint += this.sort_options_to_query(sort_options);
+    }
+
     await this.stall_if_required(false);
     let response = await this.client.get(endpoint);
 

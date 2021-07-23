@@ -11,8 +11,8 @@ object.init = function(wrapper) {
 };
 
 // Fetch a list of unread conversations.
-object.list = async function() {
-  return await this.wrapper.get(`/conversations`);
+object.list = async function(sort_options) {
+  return await this.wrapper.get(`/conversations`, sort_options);
 };
 
 object.create = async function(title, message, recipient_id) {
@@ -21,8 +21,8 @@ object.create = async function(title, message, recipient_id) {
 };
 
 // Fetch a list of replies to an unread conversation
-object.list_replies = async function(conversation_id) {
-  return await this.wrapper.get(`/conversations/${conversation_id}/replies`);
+object.list_replies = async function(conversation_id, sort_options) {
+  return await this.wrapper.get(`/conversations/${conversation_id}/replies`, sort_options);
 };
 
 // Reply to an unread conversation

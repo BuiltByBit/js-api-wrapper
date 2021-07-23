@@ -12,8 +12,8 @@ object.init = function(wrapper) {
 
 /* functions */
 // List reviews for a given resource.
-object.list = async function(resource_id) {
-  return await this.wrapper.get(`/resources/${resource_id}/reviews`);
+object.list = async function(resource_id, sort_options) {
+  return await this.wrapper.get(`/resources/${resource_id}/reviews`, sort_options);
 };
 
 // Fetch a resource review by a member for a given resource.

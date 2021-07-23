@@ -12,8 +12,8 @@ object.init = function(wrapper) {
 
 /* functions */
 // List profile posts on your profile.
-object.list = async function() {
-  return await this.wrapper.get(`/members/self/profile-posts`);
+object.list = async function(sort_options) {
+  return await this.wrapper.get(`/members/self/profile-posts`, sort_options);
 };
 
 // Fetch information about a profile post on your profile.

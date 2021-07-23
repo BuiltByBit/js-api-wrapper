@@ -12,8 +12,8 @@ object.init = function(wrapper) {
 
 /* functions */
 // Fetch a list of unread alerts.
-object.list = async function() {
-  return await this.wrapper.get(`/alerts`);
+object.list = async function(sort_options) {
+  return await this.wrapper.get(`/alerts`, sort_options);
 };
 
 // Mark unread alerts as read
