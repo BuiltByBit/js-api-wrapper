@@ -31,6 +31,8 @@ object.init = async function(token) {
     return {result: "error", error: {code: "LocalWrapperError", message: "Parameter object token fields missing."}};
   }
 
+  this.token = token;
+
   // Create axios instance with our base URL and default headers.
   this.client = axios.create({
     baseURL: BASE_URL,
@@ -162,7 +164,30 @@ object.post = async function(endpoint, body) {
       this.rate_limits.write_last_retry = error.response.headers["retry-after"];
       this.rate_limits.write_last_request = Date.now();
 
-      return await this.patch(endpoint, body);
+      return await this.post(endpoint, body);
+    } else if (error.response) {
+      return error.response.data;
+    } else {
+      return {result: "error", error: {code: "LocalWrapperError", message: error.message}};
+    }
+  }
+};
+
+object.delete = async function(endpoint) {
+  try {
+    await this.stall_if_required(true);
+    let response = await this.client.delete(endpoint);
+
+    this.rate_limits.write_last_request = Date.now();
+    this.rate_limits.write_last_retry = 0;
+
+    return response.data;
+  } catch (error) {
+    if (error.response && error.response.status === 429) {
+      this.rate_limits.write_last_retry = error.response.headers["retry-after"];
+      this.rate_limits.write_last_request = Date.now();
+
+      return await this.delete(endpoint);
     } else if (error.response) {
       return error.response.data;
     } else {
@@ -197,8 +222,8 @@ object.ping = async function() {
 // Initialise and insert all helper objects.
 object.alerts = require('./helpers/alerts.js').init(object);
 object.conversations = require('./helpers/conversations.js').init(object);
-object.members = require('./helpers/members.js').init(object);
-object.resources = require('./helpers/resources.js').init(object);
+object.members = require('./helpers/members/members.js').init(object);
+object.resources = require('./helpers/resources/resources.js').init(object);
 object.threads = require('./helpers/threads.js').init(object);
 
 /* exports */

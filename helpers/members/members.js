@@ -21,5 +21,8 @@ object.fetch = async function(member_id) {
   return await this.wrapper.get(`/members/${member_id}`);
 };
 
+// Initialise and insert child helper object.
+object.profile_posts = require('./profile_posts.js').init(object);
+
 /* exports */
 module.exports = object;

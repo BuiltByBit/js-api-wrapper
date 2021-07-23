@@ -10,19 +10,30 @@ An official asynchronous JavaScript (Node.js) wrapper for MC-Market's HTTP API (
 
 ---
 
+Promise:
+```JS
+const wrapper = require('./mcm-js-api-wrapper');
+const token = {type: "Private", value: "xXoIjvQ6G8UmUPufZWxN-Kkyd54Js_bY"};
+
+wrapper.init(token).then(init => {
+  if (init.result === "error") {
+    console.log(init.error);
+    process.exit(0);
+  }
+}).then(wrapper.members.self().then(self => {
+  console.log(self);
+}));
+```
+
 Async/await:
 ```JS
-let mcm_api_wrapper = require('../mcm-js-api-wrapper');
+const wrapper = require('./mcm-js-api-wrapper');
+const token = {type: "Private", value: "xXoIjvQ6G8UmUPufZWxN-Kkyd54Js_bY"};
 ...
 
-let wrapper = await mcm_api_wrapper.init({
-  type: "Private",
-  value: "xXoIjvQ6G8UmUPufZWxN-Kkyd54Js_bY"
-});
-
-if (wrapper.result === "error") {
-  console.log(wrapper.error);
-  return;
+if (await wrapper.init(token).result === "error") {
+  console.log(wrapper);
+  process.exit(0);
 }
 
 console.log(await wrapper.members.self());
