@@ -4,6 +4,7 @@
 /* imports */
 const axios = require('axios');
 const debug = require('debug')('mcm-js-api-wrapper');
+const utils = require('./utils.js');
 
 /* constants */
 // MC-Market's base API URL and version which will be prepended to non-absolute paths by axios.
@@ -57,70 +58,13 @@ object.init = async function(token) {
 };
 
 /* functions */
-// Compute how long, if at all, we should stall the next request in order to be compliant with rate limiting.
-//
-// Note:
-// If stalling is required, it will be handled by the inner `stall_for_helper` function. Thus, once we return from
-// this function, the caller can be sure that we're now within rate limiting rules and can freely make its request.
-object.stall_if_required = async function(write) {
-  let stall = true;
-
-  while(stall) {
-    let time = Date.now();
-    let limits = this.rate_limits;
-
-    // As rate limits for WRITE operations are applied independently of those applied to READ operations, we first
-    // determine if we're in a WRITE operation, and if we are, attempt to stall if required. `stall_for_helper` will
-    // return true if a stall was required (and it completed the stall), or false if no stall was required.
-    if (write && await this.stall_for_helper(limits.write_last_retry, limits.write_last_request, time)) {
-      continue;
-    } else if (write) {
-      stall = false;
-      continue;
-    }
-
-    // If we haven't started a new iteration of this loop yet, we must be in a READ operation.
-    if (await this.stall_for_helper(limits.read_last_retry, limits.read_last_request, time)) {
-      continue;
-    } else {
-      stall = false;
-    }
-  }
-};
-
-// A helper function for `stall_if_required` which computes over a generic set of rate limiting parameters.
-object.stall_for_helper = async function(last_retry, last_request, time) {
-  // If we've previously hit a rate limit, no other request has been completed with a non-429 response since, and
-  // we're still within the Retry-After delay period, we should stall this request. The exact amount of time we stall
-  // for derives from the amount of time that has passed since the last request, minus the Retry-After value.
-  if (last_retry > 0 && (time - last_request) < last_retry) {
-    let stall_for = last_retry - (time - last_request);
-    debug(`Stalling request for ${stall_for}ms.`);
-    await new Promise(resolve => setTimeout(resolve, stall_for));
-
-    return true;
-  } else {
-    return false;
-  }
-};
-
-object.sort_options_to_query = function(sort_options) {
-  let as_array = [];
-
-  for (index in sort_options) {
-    as_array.push(`${index}=${sort_options[index]}`);
-  }
-
-  return "?" + as_array.join("&");
-};
-
 object.get = async function(endpoint, sort_options) {
   try {
     if (sort_options) {
-      endpoint += this.sort_options_to_query(sort_options);
+      endpoint += utils.sort_options_to_query(sort_options);
     }
 
-    await this.stall_if_required(false);
+    await utils.stall_if_required(this.rate_limits, false);
     let response = await this.client.get(endpoint);
 
     this.rate_limits.read_last_request = Date.now();
@@ -143,7 +87,7 @@ object.get = async function(endpoint, sort_options) {
 
 object.patch = async function(endpoint, body) {
   try {
-    await this.stall_if_required(true);
+    await utils.stall_if_required(this.rate_limits, true);
     let response = await this.client.patch(endpoint, body);
 
     this.rate_limits.write_last_request = Date.now();
@@ -166,7 +110,7 @@ object.patch = async function(endpoint, body) {
 
 object.post = async function(endpoint, body) {
   try {
-    await this.stall_if_required(true);
+    await utils.stall_if_required(this.rate_limits, true);
     let response = await this.client.post(endpoint, body);
 
     this.rate_limits.write_last_request = Date.now();
@@ -189,7 +133,7 @@ object.post = async function(endpoint, body) {
 
 object.delete = async function(endpoint) {
   try {
-    await this.stall_if_required(true);
+    await utils.stall_if_required(this.rate_limits, true);
     let response = await this.client.delete(endpoint);
 
     this.rate_limits.write_last_request = Date.now();
