@@ -7,6 +7,10 @@ let object = {};
 /* initialise */
 object.init = function(wrapper) {
   this.wrapper = wrapper;
+
+  // Initialise and insert child helper object.
+  this.profile_posts = require('./profile_posts.js').init(object.wrapper);
+
   return this;
 };
 
@@ -20,9 +24,6 @@ object.self = async function() {
 object.fetch = async function(member_id) {
   return await this.wrapper.get(`/members/${member_id}`);
 };
-
-// Initialise and insert child helper object.
-object.profile_posts = require('./profile_posts.js').init(object);
 
 /* exports */
 module.exports = object;

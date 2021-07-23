@@ -7,6 +7,15 @@ let object = {};
 /* initialise */
 object.init = function(wrapper) {
   this.wrapper = wrapper;
+
+  // Initialise and insert child helper objects.
+  this.downloads = require('./downloads.js').init(object.wrapper);
+  this.licenses = require('./licenses.js').init(object.wrapper);
+  this.purchases = require('./purchases.js').init(object.wrapper);
+  this.reviews = require('./reviews.js').init(object.wrapper);
+  this.updates = require('./updates.js').init(object.wrapper);
+  this.versions = require('./versions.js').init(object.wrapper);
+
   return this;
 };
 
@@ -30,14 +39,6 @@ object.fetch = async function(resource_id) {
 object.edit = async function(fields) {
   return await this.wrapper.patch(`/resources/${resource_id}`, fields);
 };
-
-// Initialise and insert child helper objects.
-object.downloads = require('./downloads.js').init(object);
-object.licenses = require('./licenses.js').init(object);
-object.purchases = require('./purchases.js').init(object);
-object.reviews = require('./reviews.js').init(object);
-object.updates = require('./updates.js').init(object);
-object.versions = require('./versions.js').init(object);
 
 /* exports */
 module.exports = object;

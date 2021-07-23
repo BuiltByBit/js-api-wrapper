@@ -26,5 +26,10 @@ object.fetch = async function(resource_id, version_id) {
   return await this.wrapper.get(`/resources/${resource_id}/versions/${version_id}`);
 };
 
+// Delete a version for a given resource.
+object.delete = async function(resource_id, version_id) {
+  return await this.wrapper.delete(`/resources/${resource_id}/versions/${version_id}`);
+};
+
 /* exports */
 module.exports = object;
