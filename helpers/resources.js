@@ -11,14 +11,14 @@ object.init = function(wrapper) {
 };
 
 /* functions */
-// Fetch a list of unread alerts.
+// List resources
 object.list = async function() {
-  return await this.wrapper.get(`/alerts`);
+  return await this.wrapper.get(`/resources`);
 };
 
-// Mark unread alerts as read
-object.mark_as_read = async function() {
-  return await this.wrapper.patch('/alerts', {read: true});
+// Fetch detailed information about a resource.
+object.fetch = async function(resource_id) {
+  return await this.wrapper.get(`/resources/${resource_id}`);
 };
 
 /* exports */

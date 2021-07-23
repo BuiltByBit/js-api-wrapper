@@ -11,14 +11,14 @@ object.init = function(wrapper) {
 };
 
 /* functions */
-// Fetch a list of unread alerts.
-object.list = async function() {
-  return await this.wrapper.get(`/alerts`);
+// Fetch detailed information about yourself.
+object.self = async function() {
+  return await this.wrapper.get(`/members/self`);
 };
 
-// Mark unread alerts as read
-object.mark_as_read = async function() {
-  return await this.wrapper.patch('/alerts', {read: true});
+// Fetch detailed information about a member.
+object.fetch = async function(member_id) {
+  return await this.wrapper.get(`/members/${member_id}`);
 };
 
 /* exports */
