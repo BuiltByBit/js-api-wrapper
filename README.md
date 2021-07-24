@@ -44,6 +44,7 @@ console.log(await wrapper.members.self());
 ## API
 We assume the `wrapper` variable has been bound to.
 
+```
 Non-helper functions:
 wrapper.init(token) where token is an object with the fields 'type' and 'value'.
 wrapper.get(endpoint, sort_options)
@@ -110,6 +111,7 @@ wrapper.threads.list(sort_options)
 wrapper.threads.fetch(thread_id)
 wrapper.threads.list_replies(thread_id, sort_options)
 wrapper.threads.reply(thread_id, message)
+```
 
 ## Issues & Support
 Whether you're wanting to report a bug you've come across during use of this wrapper or are seeking general help/assistance, please utilise the [issues tracker](https://github.com/Majored/mcm-js-api-wrapper/issues) and tag your issue appropriately during creation.
