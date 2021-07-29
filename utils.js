@@ -2,13 +2,13 @@
 // MIT License (https://github.com/Majored/mcm-js-api-wrapper/blob/main/LICENSE)
 
 /* imports */
-const debug = require('debug')('mcm-js-api-wrapper');
+const debug = require("debug")("mcm-js-api-wrapper");
 
 /* construct */
 let object = {};
 
 /* functions */
-object.sort_options_to_query = function(sort_options) {
+object.object_to_query_string = function(sort_options) {
   let as_array = [];
 
   for (index in sort_options) {

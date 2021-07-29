@@ -2,9 +2,9 @@
 // MIT License (https://github.com/Majored/mcm-js-api-wrapper/blob/main/LICENSE)
 
 /* imports */
-const axios = require('axios');
-const debug = require('debug')('mcm-js-api-wrapper');
-const utils = require('./utils.js');
+const axios = require("axios");
+const debug = require("debug")("mcm-js-api-wrapper");
+const utils = require("./utils.js");
 
 /* constants */
 // MC-Market's base API URL and version which will be prepended to non-absolute paths by axios.
@@ -37,7 +37,7 @@ object.init = async function(token) {
   // Create axios instance with our base URL and default headers.
   this.client = axios.create({
     baseURL: BASE_URL,
-    headers: {"Authorization": token.type + " " + token.value}
+    headers: {"Authorization": token.type + " " + token.value, "Content-Type": "application/json"}
   });
 
   // Insert rate limiting store object.
@@ -61,7 +61,7 @@ object.init = async function(token) {
 object.get = async function(endpoint, sort_options) {
   try {
     if (sort_options) {
-      endpoint += utils.sort_options_to_query(sort_options);
+      endpoint += utils.object_to_query_string(sort_options);
     }
 
     await utils.stall_if_required(this.rate_limits, false);
