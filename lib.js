@@ -61,6 +61,7 @@ object.init = async function(token) {
 };
 
 /* functions */
+// A raw function which makes a GET request to a specific endpoint (with optional sort options).
 object.get = async function(endpoint, sort_options) {
   try {
     if (sort_options) {
@@ -88,6 +89,7 @@ object.get = async function(endpoint, sort_options) {
   }
 };
 
+// A raw function which makes a PATCH request to a specific endpoint with a body.
 object.patch = async function(endpoint, body) {
   try {
     await utils.stall_if_required(this.rate_limits, true);
@@ -111,6 +113,7 @@ object.patch = async function(endpoint, body) {
   }
 };
 
+// A raw function which makes a POST request to a specific endpoint with a body.
 object.post = async function(endpoint, body) {
   try {
     await utils.stall_if_required(this.rate_limits, true);
@@ -134,6 +137,7 @@ object.post = async function(endpoint, body) {
   }
 };
 
+// A raw function which makes a DELETE request to a specific endpoint.
 object.delete = async function(endpoint) {
   try {
     await utils.stall_if_required(this.rate_limits, true);

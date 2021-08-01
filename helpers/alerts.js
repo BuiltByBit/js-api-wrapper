@@ -11,11 +11,12 @@ object.init = function(wrapper) {
 };
 
 /* functions */
-// Fetch a list of unread alerts.
+// Fetch a single page of unread alerts (with optional sort options).
 object.list = async function(sort_options) {
   return await this.wrapper.get(`/alerts`, sort_options);
 };
 
+// Fetch a list of all unread alerts (with optional sort options).
 object.list_all = async function(sort_options) {
   return await this.wrapper.list_until(`/alerts`, function(e) { return true; }, sort_options);
 };

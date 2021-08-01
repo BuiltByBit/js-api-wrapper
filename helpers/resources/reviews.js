@@ -16,6 +16,16 @@ object.list = async function(resource_id, sort_options) {
   return await this.wrapper.get(`/resources/${resource_id}/reviews`, sort_options);
 };
 
+object.list_all = async function(resource_id, sort_options) {
+  return await this.wrapper.list_until(
+    `/resources/${resource_id}/reviews`, function(e) { return true; }, sort_options
+  );
+};
+
+object.list_until = async function(resource_id, should_continue, sort_options) {
+  return await this.wrapper.list_until(`/resources/${resource_id}/reviews`, should_continue, sort_options);
+};
+
 // Fetch a resource review by a member for a given resource.
 object.fetch = async function(resource_id, member_id) {
   return await this.wrapper.get(`/resources/${resource_id}/reviews/members/${member_id}`);

@@ -16,6 +16,16 @@ object.list = async function(resource_id, sort_options) {
   return await this.wrapper.get(`/resources/${resource_id}/versions`, sort_options);
 };
 
+object.list_all = async function(resource_id, sort_options) {
+  return await this.wrapper.list_until(
+    `/resources/${resource_id}/versions`, function(e) { return true; }, sort_options
+  );
+};
+
+object.list_until = async function(resource_id, should_continue, sort_options) {
+  return await this.wrapper.list_until(`/resources/${resource_id}/versions`, should_continue, sort_options);
+};
+
 // Fetch the latest version for a given resource.
 object.latest = async function(resource_id) {
   return await this.wrapper.get(`/resources/${resource_id}/versions/latest`);

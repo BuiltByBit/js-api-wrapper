@@ -16,6 +16,16 @@ object.list = async function(resource_id, sort_options) {
   return await this.wrapper.get(`/resources/${resource_id}/licenses`, sort_options);
 };
 
+object.list_all = async function(resource_id, sort_options) {
+  return await this.wrapper.list_until(
+    `/resources/${resource_id}/licenses`, function(e) { return true; }, sort_options
+  );
+};
+
+object.list_until = async function(resource_id, should_continue, sort_options) {
+  return await this.wrapper.list_until(`/resources/${resource_id}/licenses`, should_continue, sort_options);
+};
+
 // Issue a new license for a given resource.
 object.issue = async function(resource_id, fields) {
   return await this.wrapper.post(`/resources/${resource_id}/licenses`, fields);
