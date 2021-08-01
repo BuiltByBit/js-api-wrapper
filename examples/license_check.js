@@ -12,7 +12,7 @@ let timestamp = "%%__TIMESTAMP__%%";
 
 async function main() {
   if (await wrapper.init(token).result === "error") {
-    console.log(wrapper);
+    console.log(wrapper.error);
     return;
   }
 
