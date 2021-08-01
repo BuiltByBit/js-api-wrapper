@@ -25,5 +25,10 @@ object.fetch = async function(member_id) {
   return await this.wrapper.get(`/members/${member_id}`);
 };
 
+// Fetch a list of recently issued bans.
+object.bans = async function() {
+  return await this.wrapper.get("/members/bans");
+};
+
 /* exports */
 module.exports = object;

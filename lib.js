@@ -10,6 +10,9 @@ const utils = require("./utils.js");
 // MC-Market's base API URL and version which will be prepended to non-absolute paths by axios.
 const BASE_URL = "https://api.mc-market.org/v1";
 
+// The maximum number of objects returned by a list endpoint for a single request.
+const PER_PAGE = 20;
+
 /* construct */
 let object = {};
 
@@ -152,6 +155,48 @@ object.delete = async function(endpoint) {
       return {result: "error", error: {code: "LocalWrapperError", message: error.message}};
     }
   }
+};
+
+// A raw function returning a compiled list of objects from all available pages or until we decide to stop.
+//
+// 'should_continue' expects a function with a single parameter and should return a boolean representing if we should
+// continue to add the current (and future) objects to the final list (and thus, if we should continue to make
+// requests). This function is called for every single object as a parameter within each request's returned list.
+//
+// This function continuously makes requests to a specific endpoint with a set of sort options, and increments the sort
+// option page count after each request. This is continued until we either encounter an error, `should_continue`
+// returns false, or we've reached the last page (ie. data.length() != PER_PAGE).
+object.list_until = async function (endpoint, should_continue, sort_options) {
+  if (typeof sort_options === "undefined") {
+    sort_options = {page: 1};
+  }
+
+  let all_data = [];
+  let continue_for = true;
+
+  while (continue_for) {
+    let response = await this.get(endpoint, sort_options);
+    if (response.result === "error") {
+      return response;
+    }
+
+    for (index in response.data) {
+      if (should_continue(response.data[index])) {
+        all_data.push(response.data[index]);
+      } else {
+        continue_for = false;
+        break;
+      }
+    }
+
+    if (response.data.length != PER_PAGE) {
+      continue_for = false;
+    }
+
+    sort_options.page++;
+  }
+
+  return {result: "success", data: all_data};
 };
 
 // Schedule a plain request which we expect to always succeed under nominal conditions.

@@ -16,6 +16,14 @@ object.list = async function(sort_options) {
   return await this.wrapper.get(`/members/self/profile-posts`, sort_options);
 };
 
+object.list_all = async function(sort_options) {
+  return await this.wrapper.list_until(`/members/self/profile-posts`, function(e) { return true; }, sort_options);
+};
+
+object.list_until = async function(should_continue, sort_options) {
+  return await this.wrapper.list_until(`/members/self/profile-posts`, should_continue, sort_options);
+};
+
 // Fetch information about a profile post on your profile.
 object.fetch = async function(profile_post_id) {
   return await this.wrapper.get(`/members/self/profile-posts/${profile_post_id}`);

@@ -15,6 +15,16 @@ object.list = async function(sort_options) {
   return await this.wrapper.get(`/conversations`, sort_options);
 };
 
+// Fetch a list of all unread conversations.
+object.list_all = async function(sort_options) {
+  return await this.wrapper.list_until(`/conversations`, function(e) { return true; }, sort_options);
+};
+
+// Fetch a list of all unread conversations.
+object.list_until = async function(should_continue, sort_options) {
+  return await this.wrapper.list_until(`/conversations`, should_continue, sort_options);
+};
+
 object.create = async function(title, message, recipient_id) {
   let body_data = {title: title, message: message, recipient_id: recipient_id};
   return await this.wrapper.post(`/conversations`, body_data);
@@ -23,6 +33,18 @@ object.create = async function(title, message, recipient_id) {
 // Fetch a list of replies to an unread conversation
 object.list_replies = async function(conversation_id, sort_options) {
   return await this.wrapper.get(`/conversations/${conversation_id}/replies`, sort_options);
+};
+
+// Fetch a list of replies to an unread conversation
+object.list_replies_all = async function(conversation_id, sort_options) {
+  return await this.wrapper.list_until(`/conversations/${conversation_id}/replies`, function(e) {
+    return true;
+  }, sort_options);
+};
+
+// Fetch a list of replies to an unread conversation
+object.list_replies_until = async function(conversation_id, should_continue, sort_options) {
+  return await this.wrapper.list_until(`/conversations/${conversation_id}/replies`, should_continue, sort_options);
 };
 
 // Reply to an unread conversation
