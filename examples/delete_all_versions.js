@@ -12,7 +12,8 @@ async function main() {
     return;
   }
 
-  let versions = await wrapper.resources.versions.list(resource_id);
+  let versions = await wrapper.resources.versions.list_all(resource_id);
+
   if (versions.result === "error") {
     console.log(versions.error);
     process.exit(0);
@@ -21,7 +22,6 @@ async function main() {
   // The current version cannot be deleted so we shift it out of the returned list of versions.
   versions.data.shift();
 
-  // Loop through and manually delete each version.
   for (index in versions.data) {
     let version_id = versions.data[index].version_id;
 
@@ -33,7 +33,6 @@ async function main() {
 
     console.log("Successfully deleted version with id: " + version_id);
   }
-  console.log("Completed.");
 }
 
 main();

@@ -33,12 +33,7 @@ async function init() {
 
 async function task() {
   let purchases = await wrapper.resources.purchases.list_until(resource_id, function (purchase) {
-    // We only want to list purchases we haven't alerted about previously.
-    if (purchase.purchase_id > last_purchase_id) {
-      return true;
-    } else {
-      return false;
-    }
+    return purchase.purchase_id > last_purchase_id;
   });
 
   if (purchases.result === "error") {
