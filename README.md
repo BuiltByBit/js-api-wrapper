@@ -10,7 +10,7 @@ An official asynchronous JavaScript (Node.js) wrapper for MC-Market's [Ultimate 
 
 ## Installation & Basic Initialisation
 Install via `npm`:
-`npm i mcm-js-api-wrapper`
+```npm i mcm-js-api-wrapper```
 
 Initialise wrapper and fetch information about yourself via Promise's .then() notation:
 ```JS
