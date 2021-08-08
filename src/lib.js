@@ -57,7 +57,7 @@ object.init = async function(token) {
     return health_check;
   }
 
-  return this;
+  return {result: "success"};
 };
 
 /* functions */
