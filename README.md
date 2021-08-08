@@ -9,12 +9,12 @@ An official asynchronous JavaScript (Node.js) wrapper for MC-Market's [Ultimate 
 * Heavily commented making contributions painless.
 
 ## Installation & Basic Initialisation
-Install via npm:
-...
+Install via `npm`:
+`npm i mcm-js-api-wrapper`
 
 Initialise wrapper and fetch information about yourself via Promise's .then() notation:
 ```JS
-const wrapper = require('./mcm-js-api-wrapper');
+const wrapper = require("mcm-js-api-wrapper");
 const token = {type: "Private", value: "xXoIjvQ6G8UmUPufZWxN-Kkyd54Js_bY"};
 
 wrapper.init(token).then(init => {
@@ -29,12 +29,13 @@ wrapper.init(token).then(init => {
 
 Initialise wrapper and fetch information about yourself via async/await:
 ```JS
-const wrapper = require('./mcm-js-api-wrapper');
+const wrapper = require("mcm-js-api-wrapper");
 const token = {type: "Private", value: "xXoIjvQ6G8UmUPufZWxN-Kkyd54Js_bY"};
 ...
 
-if (await wrapper.init(token).result === "error") {
-  console.log(wrapper);
+let build = await wrapper.init(token);
+if (build.result === "error") {
+  console.log(build.error);
   process.exit(0);
 }
 
