@@ -16,16 +16,22 @@ object.init = function(wrapper) {
 
 /* functions */
 // Fetch detailed information about yourself.
+//
+// See documentation for response object fields: https://www.mc-market.org/wiki/ultimate-api-v1-members/
 object.self = async function() {
   return await this.wrapper.get(`/members/self`);
 };
 
 // Fetch detailed information about a member.
+//
+// See documentation for response object fields: https://www.mc-market.org/wiki/ultimate-api-v1-members/
 object.fetch = async function(member_id) {
   return await this.wrapper.get(`/members/${member_id}`);
 };
 
 // Fetch a list of recently issued bans.
+//
+// See documentation for response object fields: https://www.mc-market.org/wiki/ultimate-api-v1-members/
 object.bans = async function() {
   return await this.wrapper.get("/members/bans");
 };

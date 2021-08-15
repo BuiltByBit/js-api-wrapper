@@ -7,7 +7,7 @@ const debug = require("debug")("mcm-js-api-wrapper");
 const utils = require("./utils.js");
 
 /* constants */
-// MC-Market's base API URL and version which will be prepended to non-absolute paths by axios.
+// The base API URL and version which will be prepended to non-absolute paths by axios.
 const BASE_URL = "https://api.mc-market.org/v1";
 
 // The maximum number of objects returned by a list endpoint for a single request.
