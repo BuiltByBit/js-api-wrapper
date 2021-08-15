@@ -13,6 +13,9 @@ const BASE_URL = "https://api.mc-market.org/v1";
 // The maximum number of objects returned by a list endpoint for a single request.
 const PER_PAGE = 20;
 
+// The content type used for WRITE operations with bodies (ie. POST/PATCH).
+const WRITE_CONTENT_TYPE = "application/json";
+
 /* construct */
 let object = {};
 
@@ -40,7 +43,7 @@ object.init = async function(token) {
   // Create axios instance with our base URL and default headers.
   this.client = axios.create({
     baseURL: BASE_URL,
-    headers: {"Authorization": token.type + " " + token.value, "Content-Type": "application/json"}
+    headers: {"Authorization": token.type + " " + token.value}
   });
 
   // Insert rate limiting store object.
@@ -93,7 +96,7 @@ object.get = async function(endpoint, sort_options) {
 object.patch = async function(endpoint, body) {
   try {
     await utils.stall_if_required(this.rate_limits, true);
-    let response = await this.client.patch(endpoint, body);
+    let response = await this.client.patch(endpoint, body, {headers: {"Content-Type": WRITE_CONTENT_TYPE}});
 
     this.rate_limits.write_last_request = Date.now();
     this.rate_limits.write_last_retry = 0;
@@ -117,7 +120,7 @@ object.patch = async function(endpoint, body) {
 object.post = async function(endpoint, body) {
   try {
     await utils.stall_if_required(this.rate_limits, true);
-    let response = await this.client.post(endpoint, body);
+    let response = await this.client.post(endpoint, body, {headers: {"Content-Type": WRITE_CONTENT_TYPE}});
 
     this.rate_limits.write_last_request = Date.now();
     this.rate_limits.write_last_retry = 0;
@@ -172,7 +175,10 @@ object.delete = async function(endpoint) {
 // returns false, or we've reached the last page (ie. data.length() != PER_PAGE).
 object.list_until = async function (endpoint, should_continue, sort_options) {
   if (typeof sort_options === "undefined") {
-    sort_options = {page: 1};
+    sort_options = {};
+  }
+  if (typeof sort_options.page === "undefined") {
+    sort_options.page = 1;
   }
 
   let all_data = [];
