@@ -25,7 +25,7 @@ object.list = async function(resource_id, sort_options) {
 // https://www.mc-market.org/wiki/ultimate-api-v1-resources-updates/
 object.list_all = async function(resource_id, sort_options) {
   return await this.wrapper.list_until(
-    `/resources/${resource_id}/updates`, function(e) { return true; }, sort_options
+    `/resources/${resource_id}/updates`, () => true, sort_options
   );
 };
 

@@ -42,7 +42,7 @@ object.list_owned = async function(sort_options) {
 //
 // See documentation for response array object fields: https://www.mc-market.org/wiki/ultimate-api-v1-resources/
 object.list_owned_all = async function(sort_options) {
-  return await this.wrapper.list_until(`/resources/owned`, function(e) { return true; }, sort_options);
+  return await this.wrapper.list_until(`/resources/owned`, () => true, sort_options);
 };
 
 // List multiple pages of owned resources (with optional sort options) until a condition is no longer met.

@@ -24,7 +24,7 @@ object.list = async function(sort_options) {
 // See documentation for response array object fields:
 // https://www.mc-market.org/wiki/ultimate-api-v1-members-profile-posts/
 object.list_all = async function(sort_options) {
-  return await this.wrapper.list_until(`/members/self/profile-posts`, function(e) { return true; }, sort_options);
+  return await this.wrapper.list_until(`/members/self/profile-posts`, () => true, sort_options);
 };
 
 // List multiple pages of profile posts on your profile (with optional sort options) until a condition is no longer
