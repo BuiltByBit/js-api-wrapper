@@ -171,9 +171,9 @@ object.delete = async function(endpoint) {
 // requests). This function is called for every single object as a parameter within each request's returned list.
 //
 // This function continuously makes requests to a specific endpoint with a set of sort options, and increments the sort
-// option page count after each request. This is continued until we either encounter an error, `should_continue`
-// returns false, or we've reached the last page (ie. data.length() != PER_PAGE).
+// option page count after each request.
 object.list_until = async function (endpoint, should_continue, sort_options) {
+  // Ensure an object is initialised if undefined, and that the page field exists.
   if (typeof sort_options === "undefined") {
     sort_options = {};
   }
@@ -184,7 +184,10 @@ object.list_until = async function (endpoint, should_continue, sort_options) {
   let all_data = [];
   let continue_for = true;
 
+  // This is continued until we either encounter an error, `should_continue` returns false, or we've reached the last
+  // page (ie. data.length() != PER_PAGE).
   while (continue_for) {
+    // If any requests return an error, pass the response to the caller rather than continuing.
     let response = await this.get(endpoint, sort_options);
     if (response.result === "error") {
       return response;

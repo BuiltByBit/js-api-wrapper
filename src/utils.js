@@ -8,6 +8,9 @@ const debug = require("debug")("mcm-js-api-wrapper");
 let object = {};
 
 /* functions */
+// Convert an object to a query string with prepended '?' delimiter.
+//
+// Note: This function doesn't handle precent encoding as there's currently no need for such.
 object.object_to_query_string = function(sort_options) {
   let as_array = [];
 

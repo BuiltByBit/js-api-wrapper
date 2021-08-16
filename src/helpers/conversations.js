@@ -50,9 +50,7 @@ object.list_replies = async function(conversation_id, sort_options) {
 // See documentation for response array object fields:
 // https://www.mc-market.org/wiki/ultimate-api-v1-conversations-replies/
 object.list_replies_all = async function(conversation_id, sort_options) {
-  return await this.wrapper.list_until(`/conversations/${conversation_id}/replies`, function(e) {
-    return true;
-  }, sort_options);
+  return await this.wrapper.list_until(`/conversations/${conversation_id}/replies`, () => true, sort_options);
 };
 
 // List multiple pages of replies to an unread conversation (with optional sort options) until a condition is no longer
