@@ -9,9 +9,10 @@ let resource_id = "%%__RESOURCE__%%";
 let version_id = "%%__VERSION__%%";
 
 async function main() {
-  if (await wrapper.init(token).result === "error") {
-    console.log(wrapper.error);
-    return;
+  let init = await wrapper.init(token);
+  if (init.result === "error") {
+    console.log(init.error);
+    process.exit(0);
   }
 
   let latest = await wrapper.resources.versions.latest(resource_id);

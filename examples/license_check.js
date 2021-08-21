@@ -11,9 +11,10 @@ let nonce = "%%__NONCE__%%";
 let timestamp = "%%__TIMESTAMP__%%";
 
 async function main() {
-  if (await wrapper.init(token).result === "error") {
-    console.log(wrapper.error);
-    return;
+  let init = await wrapper.init(token);
+  if (init.result === "error") {
+    console.log(init.error);
+    process.exit(0);
   }
 
   let fields = {nonce: nonce, date: timestamp};

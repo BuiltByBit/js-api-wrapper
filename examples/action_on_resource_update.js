@@ -12,8 +12,9 @@ let resource_id = 0;
 let last_update_id = 0;
 
 async function init() {
-  if (await wrapper.init(token).result === "error") {
-    console.log(wrapper.error);
+  let init = await wrapper.init(token);
+  if (init.result === "error") {
+    console.log(init.error);
     process.exit(0);
   }
 

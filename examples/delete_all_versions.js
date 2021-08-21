@@ -7,9 +7,10 @@ const token = {type: "Private", value: "xXoIjvQ6G8UmUPufZWxN-Kkyd54Js_bY"};
 let resource_id = 3;
 
 async function main() {
-  if (await wrapper.init(token).result === "error") {
-    console.log(wrapper.error);
-    return;
+  let init = await wrapper.init(token);
+  if (init.result === "error") {
+    console.log(init.error);
+    process.exit(0);
   }
 
   let versions = await wrapper.resources.versions.list_all(resource_id);
