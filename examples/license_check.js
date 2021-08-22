@@ -11,6 +11,7 @@ let nonce = "%%__NONCE__%%";
 let timestamp = "%%__TIMESTAMP__%%";
 
 async function main() {
+  // Initialise wrapper and exit if a failure occurs.
   let init = await wrapper.init(token);
   if (init.result === "error") {
     console.log(init.error);
@@ -21,21 +22,19 @@ async function main() {
   let validated = await wrapper.resources.licenses.validate(resource_id, purchaser_id, fields);
 
   if (validated.result === "error") {
-    console.log(`Failed to check license due to API Error: ${validated.error}.`);
-    console.log("Exiting...");
-    process.exit(0);
-  }
+    if (validated.error.code === "ContentNotFoundError") {
+      console.log("No license was found for this user. Exiting...");
+    } else {
+      console.log(`Failed to check license due to API Error: ${validated.error}.`);
+      console.log("Exiting...");
+    }
 
-  if (!validated.data) {
-    console.log("No active license was found. Exiting...");
     process.exit(0);
-    return;
   }
 
   if (!validated.data.active) {
     console.log("A license has been found, but it's been disabled. Exiting...");
     process.exit(0);
-    return;
   }
 
   console.log("Active license found, returning from function without exiting.");
