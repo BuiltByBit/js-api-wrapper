@@ -9,6 +9,7 @@ let resource_id = "%%__RESOURCE__%%";
 let version_id = "%%__VERSION__%%";
 
 async function main() {
+  // Initialise wrapper and exit if a failure occurs.
   let init = await wrapper.init(token);
   if (init.result === "error") {
     console.log(init.error);
