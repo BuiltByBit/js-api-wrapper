@@ -12,18 +12,21 @@ let resource_id = 0;
 let last_update_id = 0;
 
 async function init() {
+  // Initialise wrapper and exit if a failure occurs.
   let init = await wrapper.init(token);
   if (init.result === "error") {
     console.log(init.error);
     process.exit(0);
   }
 
+  // Poll once every hour.
   task();
   setInterval(task, 60 * 60 * 1000);
 }
 
 async function task() {
-  let updates = await wrapper.resources.updates.list_until(resource_id, function (update) {
+  // Only list updates we haven't taken action on before using the 'list_until' helper function.
+  let updates = await wrapper.resources.updates.list_until(resource_id, (update) => {
     return update.update_id > last_update_id;
   });
 
