@@ -22,18 +22,20 @@ Thanks,
 - Author`;
 
 async function init() {
+  // Initialise wrapper and exit if a failure occurs.
   let init = await wrapper.init(token);
   if (init.result === "error") {
     console.log(init.error);
     process.exit(0);
   }
 
+  // Poll once every hour.
   task();
   setInterval(task, 60 * 60 * 1000);
 }
 
 async function task() {
-  let purchases = await wrapper.resources.purchases.list_until(resource_id, function (purchase) {
+  let purchases = await wrapper.resources.purchases.list_until(resource_id, (purchase) => {
     return purchase.purchase_id > last_purchase_id;
   });
 
