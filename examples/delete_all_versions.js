@@ -7,6 +7,7 @@ const token = {type: "Private", value: "xXoIjvQ6G8UmUPufZWxN-Kkyd54Js_bY"};
 let resource_id = 3;
 
 async function main() {
+  // Initialise wrapper and exit if a failure occurs.
   let init = await wrapper.init(token);
   if (init.result === "error") {
     console.log(init.error);
@@ -14,13 +15,12 @@ async function main() {
   }
 
   let versions = await wrapper.resources.versions.list_all(resource_id);
-
   if (versions.result === "error") {
     console.log(versions.error);
     process.exit(0);
   }
 
-  // The current version cannot be deleted so we shift it out of the returned list of versions.
+  // The current version cannot be deleted so we remove it from the returned list of versions.
   versions.data.shift();
 
   for (index in versions.data) {
