@@ -7,24 +7,27 @@ const token = {type: "Private", value: "xXoIjvQ6G8UmUPufZWxN-Kkyd54Js_bY"};
 // We're only listening for a specific thread in this example, but this could be expanded to cover multiple.
 let thread_id = 0;
 
-// We're only keeping a store of the last post ID in memory for this example, but it's likely you'd want to read/write
+// We're only keeping a store of the last reply ID in memory for this example, but it's likely you'd want to read/write
 // this to a secondary data store (ie. a file or database).
-let last_post_id = 0;
+let last_reply_id = 0;
 
 async function init() {
+  // Initialise wrapper and exit if a failure occurs.
   let init = await wrapper.init(token);
   if (init.result === "error") {
     console.log(init.error);
     process.exit(0);
   }
 
+  // Poll once every hour.
   task();
   setInterval(task, 60 * 60 * 1000);
 }
 
 async function task() {
-  let replies = await wrapper.thread.list_replies_until(thread_id, function (post) {
-    return post.reply_id > last_post_id;
+  // Only list replies we haven't taken action on before using the 'list_until' helper function.
+  let replies = await wrapper.threads.list_replies_until(thread_id, (reply) => {
+    return reply.reply_id > last_reply_id;
   });
 
   if (replies.result === "error") {
@@ -33,7 +36,7 @@ async function task() {
   }
 
   if (replies.data.length > 0) {
-    last_post_id = replies.data[0].reply_id;
+    last_reply_id = replies.data[0].reply_id;
 
     for (index in replies.data) {
       await on(replies.data[index]);
