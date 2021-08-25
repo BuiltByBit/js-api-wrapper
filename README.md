@@ -9,7 +9,7 @@ An official asynchronous JavaScript (Node.js) wrapper for MC-Market's [Ultimate 
 * A comprehensive set of usage examples.
 * Heavily commented making contributions painless.
 
-## Installation & Basic Initialisation
+## Installation & Basic Usage
 Install via `npm`:
 ```
 npm i mcm-js-api-wrapper
@@ -36,19 +36,18 @@ const wrapper = require("mcm-js-api-wrapper");
 const token = {type: "Private", value: "xXoIjvQ6G8UmUPufZWxN-Kkyd54Js_bY"};
 ...
 
-let build = await wrapper.init(token);
-if (build.result === "error") {
-  console.log(build.error);
+let init = await wrapper.init(token);
+if (init.result === "error") {
+  console.log(init.error);
   process.exit(0);
 }
 
 console.log(await wrapper.members.self());
 ```
 
-## Usage
-https://github.com/Majored/mcm-js-api-wrapper/blob/main/USAGE.md
+A full list of functions and their signatures can be found [here](https://github.com/MC-Market-org/mcm-js-api-wrapper/blob/main/USAGE.md).
 
 ## Issues & Support
-Whether you're wanting to report a bug you've come across during use of this wrapper or are seeking general help/assistance, please utilise the [issues tracker](https://github.com/Majored/mcm-js-api-wrapper/issues) and tag your issue appropriately during creation.
+The [issues tracker](https://github.com/MC-Market-org/mcm-js-api-wrapper/issues) for this repository should only be used to report bugs or issues with this official JS wrapper.
 
-I try to respond to issues as fast as possible.
+For bugs or issues related to the Ultimate API itself, please open a [support ticket](https://www.mc-market.org/tickets/new) or create a [bug report](https://www.mc-market.org/suggestions/create-thread) on our platform.
