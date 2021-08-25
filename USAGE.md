@@ -36,12 +36,12 @@ wrapper.conversations.reply(conversation_id, message)
 wrapper.members.self()
 wrapper.members.fetch(member_id)
 
-wrapper.member.profile_posts.list(?sort_options)
-wrapper.member.profile_posts.list_all(?sort_options)
-wrapper.member.profile_posts.list_until(should_continue, ?sort_options)
-wrapper.member.profile_posts.fetch(profile_post_id)
-wrapper.member.profile_posts.edit(profile_post_id, message)
-wrapper.member.profile_posts.delete(profile_post_id)
+wrapper.members.profile_posts.list(?sort_options)
+wrapper.members.profile_posts.list_all(?sort_options)
+wrapper.members.profile_posts.list_until(should_continue, ?sort_options)
+wrapper.members.profile_posts.fetch(profile_post_id)
+wrapper.members.profile_posts.edit(profile_post_id, message)
+wrapper.members.profile_posts.delete(profile_post_id)
 ```
 
 ## Resources
