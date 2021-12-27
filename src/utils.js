@@ -1,5 +1,5 @@
-// Copyright (c) 2021 Harry [Majored] [hello@majored.pw]
-// MIT License (https://github.com/Majored/mcm-js-api-wrapper/blob/main/LICENSE)
+// Copyright (c) 2021 MC-Market (Mick Capital Pty. Ltd.)
+// MIT License (https://github.com/MC-Market-org/js-api-wrapper/blob/main/LICENSE)
 
 /* imports */
 const debug = require("debug")("mcm-js-api-wrapper");

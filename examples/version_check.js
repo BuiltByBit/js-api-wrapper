@@ -1,5 +1,5 @@
-// Copyright (c) 2021 Harry [Majored] [hello@majored.pw]
-// MIT License (https://github.com/Majored/mcm-js-api-wrapper/blob/main/LICENSE)
+// Copyright (c) 2021 MC-Market (Mick Capital Pty. Ltd.)
+// MIT License (https://github.com/MC-Market-org/js-api-wrapper/blob/main/LICENSE)
 
 const wrapper = require("../mcm-js-api-wrapper");
 const token = {type: "Shared", value: "xXoIjvQ6G8UmUPufZWxN-Kkyd54Js_bY"};
