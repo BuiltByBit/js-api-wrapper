@@ -29,6 +29,13 @@ object.fetch = async function(member_id) {
   return await this.wrapper.get(`/members/${member_id}`);
 };
 
+// Fetch detailed information about a member by username.
+//
+// See documentation for response object fields: https://www.mc-market.org/wiki/ultimate-api-v1-members/
+object.fetch_by_username = async function(username) {
+  return await this.wrapper.get(`/members/username/${username}`);
+};
+
 // Fetch a list of recently issued bans.
 //
 // See documentation for response object fields: https://www.mc-market.org/wiki/ultimate-api-v1-members/

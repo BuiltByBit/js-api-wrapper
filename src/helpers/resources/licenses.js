@@ -52,26 +52,26 @@ object.fetch = async function(resource_id, license_id) {
   return await this.wrapper.get(`/resources/${resource_id}/licenses/${license_id}`);
 };
 
-// Modify a license for a given resource.
+// Fetch a member's license for a given resource.
 //
 // See documentation for response array object fields:
 // https://www.mc-market.org/wiki/ultimate-api-v1-resources-licenses/
-object.modify = async function(resource_id, license_id, fields) {
-  return await this.wrapper.patch(`/resources/${resource_id}/licenses/${license_id}`, fields);
-};
-
-// Validate a license for a given resource.
-//
-// See documentation for response array object fields:
-// https://www.mc-market.org/wiki/ultimate-api-v1-resources-licenses/
-object.validate = async function(resource_id, license_id, fields) {
-  let endpoint = `/resources/${resource_id}/licenses/${license_id}`;
+object.fetch_member = async function(resource_id, purchaser_id, fields) {
+  let endpoint = `/resources/${resource_id}/licenses/member/${purchaser_id}`;
 
   if (this.wrapper.token.type === "Shared") {
     endpoint += `?nonce=${fields.nonce}&timestamp=${fields.timestamp}`
   }
 
   return await this.wrapper.get(endpoint, fields);
+};
+
+// Modify a license for a given resource.
+//
+// See documentation for response array object fields:
+// https://www.mc-market.org/wiki/ultimate-api-v1-resources-licenses/
+object.modify = async function(resource_id, license_id, fields) {
+  return await this.wrapper.patch(`/resources/${resource_id}/licenses/${license_id}`, fields);
 };
 
 /* exports */

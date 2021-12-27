@@ -32,8 +32,8 @@ object.list_until = async function(should_continue, sort_options) {
 };
 
 // Create a new conversation.
-object.create = async function(title, message, recipient_id) {
-  let body_data = {title: title, message: message, recipient_id: recipient_id};
+object.create = async function(title, message, recipient_ids) {
+  let body_data = {title: title, message: message, recipient_id: recipient_ids};
   return await this.wrapper.post(`/conversations`, body_data);
 };
 
