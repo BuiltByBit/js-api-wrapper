@@ -27,7 +27,7 @@ wrapper.conversations.list_until(should_continue, ?sort_options)
 wrapper.conversations.list_replies(conversation_id, ?sort_options)
 wrapper.conversations.list_replies_all(conversation_id, ?sort_options)
 wrapper.conversations.list_replies_until(conversation_id, should_continue, ?sort_options)
-wrapper.conversations.create(title, message, recipient_id)
+wrapper.conversations.create(title, message, recipient_ids)
 wrapper.conversations.reply(conversation_id, message)
 ```
 
@@ -35,6 +35,8 @@ wrapper.conversations.reply(conversation_id, message)
 ```
 wrapper.members.self()
 wrapper.members.fetch(member_id)
+wrapper.members.fetch_username(username)
+wrapper.members.bans()
 
 wrapper.members.profile_posts.list(?sort_options)
 wrapper.members.profile_posts.list_all(?sort_options)
@@ -50,6 +52,9 @@ wrapper.resources.list(?sort_options)
 wrapper.resources.list_owned(?sort_options)
 wrapper.resources.list_owned_all(?sort_options)
 wrapper.resources.list_owned_until(should_continue, ?sort_options)
+wrapper.resources.list_collaborated(?sort_options)
+wrapper.resources.list_collaborated_all(?sort_options)
+wrapper.resources.list_collaborated_until(should_continue, ?sort_options)
 wrapper.resources.fetch(resource_id)
 wrapper.resources.edit(resource_id, fields)
 ```
@@ -74,8 +79,8 @@ wrapper.resources.licenses.list_all(resource_id, ?sort_options)
 wrapper.resources.licenses.list_until(resource_id, should_continue, ?sort_options)
 wrapper.resources.licenses.issue(resource_id, fields)
 wrapper.resources.licenses.fetch(resource_id, license_id)
+wrapper.resources.licenses.fetch_member(resource_id, member_id, fields)
 wrapper.resources.licenses.modify(resource_id, license_id, fields)
-wrapper.resources.licenses.validate(resource_id, member_id, fields)
 ```
 
 #### Purchases
