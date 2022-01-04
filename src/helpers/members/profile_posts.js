@@ -11,41 +11,36 @@ object.init = function(wrapper) {
 };
 
 /* functions */
-// List a page of profile posts on your profile (with optional sort options).
+// List a page of profile posts on your profile.
 //
-// See documentation for response array object fields:
-// https://www.mc-market.org/wiki/ultimate-api-v1-members-profile-posts/
+// Response data: {}
 object.list = async function(sort_options) {
   return await this.wrapper.get(`/members/self/profile-posts`, sort_options);
 };
 
-// List all pages of profile posts on your profile (with optional sort options).
+// List all pages of profile posts on your profile.
 //
-// See documentation for response array object fields:
-// https://www.mc-market.org/wiki/ultimate-api-v1-members-profile-posts/
+// Response data: {}
 object.list_all = async function(sort_options) {
   return await this.wrapper.list_until(`/members/self/profile-posts`, () => true, sort_options);
 };
 
-// List multiple pages of profile posts on your profile (with optional sort options) until a condition is no longer
-// met.
+// List multiple pages of profile posts on your profile until a condition is no longer met.
 //
-// See documentation for response array object fields:
-// https://www.mc-market.org/wiki/ultimate-api-v1-members-profile-posts/
+// Response data: {}
 object.list_until = async function(should_continue, sort_options) {
   return await this.wrapper.list_until(`/members/self/profile-posts`, should_continue, sort_options);
 };
 
 // Fetch information about a profile post on your profile.
 //
-// See documentation for response array object fields:
-// https://www.mc-market.org/wiki/ultimate-api-v1-members-profile-posts/
+// Response data: {}
 object.fetch = async function(profile_post_id) {
   return await this.wrapper.get(`/members/self/profile-posts/${profile_post_id}`);
 };
 
-// Edit a profile post on your profile that you've authored.
-object.edit = async function(profile_post_id, message) {
+// Modify a profile post on your profile that you've authored.
+object.modify = async function(profile_post_id, message) {
   return await this.wrapper.patch(`/members/self/profile-posts/${profile_post_id}`, {message: message});
 };
 

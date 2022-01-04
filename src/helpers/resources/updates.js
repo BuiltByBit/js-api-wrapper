@@ -11,42 +11,37 @@ object.init = function(wrapper) {
 };
 
 /* functions */
-// List a page of updates for a given resource (with optional sort options).
+// List a page of updates for a given resource.
 //
-// See documentation for response array object fields:
-// https://www.mc-market.org/wiki/ultimate-api-v1-resources-updates/
+// Response data: {}
 object.list = async function(resource_id, sort_options) {
   return await this.wrapper.get(`/resources/${resource_id}/updates`, sort_options);
 };
 
-// List all pages of updates for a given resource (with optional sort options).
+// List all pages of updates for a given resource.
 //
-// See documentation for response array object fields:
-// https://www.mc-market.org/wiki/ultimate-api-v1-resources-updates/
+// Response data: {}
 object.list_all = async function(resource_id, sort_options) {
   return await this.wrapper.list_until(`/resources/${resource_id}/updates`, () => true, sort_options);
 };
 
-// List multiple pages of updates for a given resource (with optional sort options) until a condition is no longer met.
+// List multiple pages of updates for a given resource until a condition is no longer met.
 //
-// See documentation for response array object fields:
-// https://www.mc-market.org/wiki/ultimate-api-v1-resources-updates/
+// Response data: {}
 object.list_until = async function(resource_id, should_continue, sort_options) {
   return await this.wrapper.list_until(`/resources/${resource_id}/updates`, should_continue, sort_options);
 };
 
 // Fetch the latest update for a given resource.
 //
-// See documentation for response array object fields:
-// https://www.mc-market.org/wiki/ultimate-api-v1-resources-updates/
+// Response data: {}
 object.latest = async function(resource_id) {
   return await this.wrapper.get(`/resources/${resource_id}/updates/latest`);
 };
 
 // Fetch an update for a given resource.
 //
-// See documentation for response array object fields:
-// https://www.mc-market.org/wiki/ultimate-api-v1-resources-updates/
+// Response data: {}
 object.fetch = async function(resource_id, update_id) {
   return await this.wrapper.get(`/resources/${resource_id}/updates/${update_id}`);
 };

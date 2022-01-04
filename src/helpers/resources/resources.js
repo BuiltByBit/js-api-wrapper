@@ -20,9 +20,9 @@ object.init = function(wrapper) {
 };
 
 /* functions */
-// List a page of public resources (with optional sort options).
+// List a page of public resources.
 //
-// See documentation for response array object fields: https://www.mc-market.org/wiki/ultimate-api-v1-resources/
+// Response data: {}
 object.list = async function(sort_options) {
   return await this.wrapper.get(`/resources`, sort_options);
 };
@@ -31,58 +31,59 @@ object.list = async function(sort_options) {
 // consistency with the rest of this wrapper, doing so would greatly encourage the undue scraping of our public
 // resource list.
 
-// List a page of owned resources (with optional sort options).
+// List a page of owned resources.
 //
-// See documentation for response array object fields: https://www.mc-market.org/wiki/ultimate-api-v1-resources/
+// Response data: {}
 object.list_owned = async function(sort_options) {
   return await this.wrapper.get(`/resources/owned`, sort_options);
 };
 
-// List all pages of owned resources (with optional sort options).
+// List all pages of owned resources.
 //
-// See documentation for response array object fields: https://www.mc-market.org/wiki/ultimate-api-v1-resources/
+// Response data: {}
 object.list_owned_all = async function(sort_options) {
   return await this.wrapper.list_until(`/resources/owned`, () => true, sort_options);
 };
 
-// List multiple pages of owned resources (with optional sort options) until a condition is no longer met.
+// List multiple pages of owned resources until a condition is no longer met.
 //
-// See documentation for response array object fields: https://www.mc-market.org/wiki/ultimate-api-v1-resources/
+// Response data: {}
 object.list_owned_until = async function(should_continue, sort_options) {
   return await this.wrapper.list_until(`/resources/owned`, should_continue, sort_options);
 };
 
-// List a page of collaborated resources (with optional sort options).
+// List a page of collaborated resources.
 //
-// See documentation for response array object fields: https://www.mc-market.org/wiki/ultimate-api-v1-resources/
+// Response data: {}
 object.list_collaborated = async function(sort_options) {
   return await this.wrapper.get(`/resources/collaborated`, sort_options);
 };
 
-// List all pages of collaborated resources (with optional sort options).
+// List all pages of collaborated resources.
 //
-// See documentation for response array object fields: https://www.mc-market.org/wiki/ultimate-api-v1-resources/
+// Response data: {}
 object.list_collaborated_all = async function(sort_options) {
   return await this.wrapper.list_until(`/resources/collaborated`, () => true, sort_options);
 };
 
-// List multiple pages of collaborated resources (with optional sort options) until a condition is no longer met.
+// List multiple pages of collaborated resources until a condition is no longer met.
 //
-// See documentation for response array object fields: https://www.mc-market.org/wiki/ultimate-api-v1-resources/
+// Response data: {}
 object.list_collaborated_until = async function(should_continue, sort_options) {
   return await this.wrapper.list_until(`/resources/collaborated`, should_continue, sort_options);
 };
 
 // Fetch detailed information about a resource.
 //
-// See documentation for response array object fields: https://www.mc-market.org/wiki/ultimate-api-v1-resources/
+// Response data: {}
 object.fetch = async function(resource_id) {
   return await this.wrapper.get(`/resources/${resource_id}`);
 };
 
 // Edit resource fields for a resource you own or collaborate on.
-object.edit = async function(resource_id, fields) {
-  return await this.wrapper.patch(`/resources/${resource_id}`, fields);
+object.modify = async function(resource_id, title, description, tag_line) {
+  let body = {title: title, description: description, tag_line: tag_line};
+  return await this.wrapper.patch(`/resources/${resource_id}`, body);
 };
 
 /* exports */

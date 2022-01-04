@@ -15,30 +15,39 @@ object.init = function(wrapper) {
 };
 
 /* functions */
-// Fetch detailed information about yourself.
+// Fetch information about yourself.
 //
-// See documentation for response object fields: https://www.mc-market.org/wiki/ultimate-api-v1-members/
+// Response data: {}
 object.self = async function() {
   return await this.wrapper.get(`/members/self`);
 };
 
-// Fetch detailed information about a member.
+/* functions */
+// Modify information about yourself.
 //
-// See documentation for response object fields: https://www.mc-market.org/wiki/ultimate-api-v1-members/
+// Response data: {}
+object.modify_self = async function(about_me, custom_title, signature) {
+  let body = {about_me: about_me, custom_title: custom_title, signature: signature};
+  return await this.wrapper.patch(`/members/self`, body);
+};
+
+// Fetch information about a member.
+//
+// Response data: {}
 object.fetch = async function(member_id) {
   return await this.wrapper.get(`/members/${member_id}`);
 };
 
-// Fetch detailed information about a member by username.
+// Fetch information about a member by username.
 //
-// See documentation for response object fields: https://www.mc-market.org/wiki/ultimate-api-v1-members/
+// Response data: {}
 object.fetch_by_username = async function(username) {
-  return await this.wrapper.get(`/members/username/${username}`);
+  return await this.wrapper.get(`/members/usernames/${username}`);
 };
 
 // Fetch a list of recently issued bans.
 //
-// See documentation for response object fields: https://www.mc-market.org/wiki/ultimate-api-v1-members/
+// Response data: {}
 object.bans = async function() {
   return await this.wrapper.get("/members/bans");
 };

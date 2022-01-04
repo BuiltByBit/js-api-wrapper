@@ -11,53 +11,56 @@ object.init = function(wrapper) {
 };
 
 /* functions */
-// List a page of licenses for a given resource (with optional sort options).
+// List a page of licenses for a given resource.
 //
-// See documentation for response array object fields:
-// https://www.mc-market.org/wiki/ultimate-api-v1-resources-licenses/
+// Response data: {}
 object.list = async function(resource_id, sort_options) {
   return await this.wrapper.get(`/resources/${resource_id}/licenses`, sort_options);
 };
 
-// List all pages of licenses for a given resource (with optional sort options).
+// List all pages of licenses for a given resource.
 //
-// See documentation for response array object fields:
-// https://www.mc-market.org/wiki/ultimate-api-v1-resources-licenses/
+// Response data: {}
 object.list_all = async function(resource_id, sort_options) {
   return await this.wrapper.list_until(`/resources/${resource_id}/licenses`, () => true, sort_options);
 };
 
-// List multiple pages of licenses for a given resource (with optional sort options) until a condition is no longer
-// met.
+// List multiple pages of licenses for a given resource until a condition is no longer met.
 //
-// See documentation for response array object fields:
-// https://www.mc-market.org/wiki/ultimate-api-v1-resources-licenses/
+// Response data: {}
 object.list_until = async function(resource_id, should_continue, sort_options) {
   return await this.wrapper.list_until(`/resources/${resource_id}/licenses`, should_continue, sort_options);
 };
 
-// Issue a new license for a given resource.
+// Issue a new permanent license for a given resource.
 //
-// See documentation for response array object fields:
-// https://www.mc-market.org/wiki/ultimate-api-v1-resources-licenses/
-object.issue = async function(resource_id, fields) {
-  return await this.wrapper.post(`/resources/${resource_id}/licenses`, fields);
+// Response data: {}
+object.issue_permanent = async function(resource_id, purchaser_id, active) {
+  let body = {permanent: true, purchaser_id: purchaser_id, active: active};
+  return await this.wrapper.post(`/resources/${resource_id}/licenses`, body);
 };
+
+// Issue a new temporay license for a given resource.
+//
+// Response data: {}
+object.issue_temporary = async function(resource_id, purchaser_id, start_date, end_date) {
+  let body = {permanent: false, purchaser_id: purchaser_id, start_date: start_date, end_date: end_date};
+  return await this.wrapper.post(`/resources/${resource_id}/licenses`, body);
+};
+
 
 // Fetch a license for a given resource.
 //
-// See documentation for response array object fields:
-// https://www.mc-market.org/wiki/ultimate-api-v1-resources-licenses/
+// Response data: {}
 object.fetch = async function(resource_id, license_id) {
   return await this.wrapper.get(`/resources/${resource_id}/licenses/${license_id}`);
 };
 
 // Fetch a member's license for a given resource.
 //
-// See documentation for response array object fields:
-// https://www.mc-market.org/wiki/ultimate-api-v1-resources-licenses/
+// Response data: {}
 object.fetch_member = async function(resource_id, purchaser_id, fields) {
-  let endpoint = `/resources/${resource_id}/licenses/member/${purchaser_id}`;
+  let endpoint = `/resources/${resource_id}/licenses/members/${purchaser_id}`;
 
   if (this.wrapper.token.type === "Shared") {
     endpoint += `?nonce=${fields.nonce}&timestamp=${fields.timestamp}`
@@ -66,12 +69,16 @@ object.fetch_member = async function(resource_id, purchaser_id, fields) {
   return await this.wrapper.get(endpoint, fields);
 };
 
-// Modify a license for a given resource.
-//
-// See documentation for response array object fields:
-// https://www.mc-market.org/wiki/ultimate-api-v1-resources-licenses/
-object.modify = async function(resource_id, license_id, fields) {
-  return await this.wrapper.patch(`/resources/${resource_id}/licenses/${license_id}`, fields);
+// Modify a permanent license (and convert to permanent if currently temporary).
+object.modify_permanent = async function(resource_id, license_id, active) {
+  let body = {permanent: true, active: active};
+  return await this.wrapper.patch(`/resources/${resource_id}/licenses/${license_id}`, body);
+};
+
+// Modify a temporary license (and convert to temporary if currently permanent).
+object.modify_temporary = async function(resource_id, license_id, start_date, end_date) {
+  let body = {permanent: false, start_date: start_date, end_date: end_date};
+  return await this.wrapper.patch(`/resources/${resource_id}/licenses/${license_id}`, body);
 };
 
 /* exports */

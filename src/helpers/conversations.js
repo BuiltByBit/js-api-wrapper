@@ -10,59 +10,59 @@ object.init = function(wrapper) {
   return this;
 };
 
-// List a page of unread conversations (with optional sort options).
+// List a page of unread conversations.
 //
-// See documentation for response array object fields: https://www.mc-market.org/wiki/ultimate-api-v1-conversations/
+// Response data: {}
 object.list = async function(sort_options) {
   return await this.wrapper.get(`/conversations`, sort_options);
 };
 
-// List all pages of unread conversations (with optional sort options).
+// List all pages of unread conversations.
 //
-// See documentation for response array object fields: https://www.mc-market.org/wiki/ultimate-api-v1-conversations/
+// Response data: {}
 object.list_all = async function(sort_options) {
   return await this.wrapper.list_until(`/conversations`, () => true, sort_options);
 };
 
-// List multiple pages of unread conversations (with optional sort options) until a condition is no longer met.
+// List multiple pages of unread conversations until a condition is no longer met.
 //
-// See documentation for response array object fields: https://www.mc-market.org/wiki/ultimate-api-v1-conversations/
+// Response data: {}
 object.list_until = async function(should_continue, sort_options) {
   return await this.wrapper.list_until(`/conversations`, should_continue, sort_options);
 };
 
-// Create a new conversation.
-object.create = async function(title, message, recipient_ids) {
+// Start a new conversation.
+//
+// Response data: {}
+object.start = async function(title, message, recipient_ids) {
   let body_data = {title: title, message: message, recipient_id: recipient_ids};
   return await this.wrapper.post(`/conversations`, body_data);
 };
 
-// List a page of replies to an unread conversation (with optional sort options).
+// List a page of replies to an unread conversation.
 //
-// See documentation for response array object fields:
-// https://www.mc-market.org/wiki/ultimate-api-v1-conversations-replies/
+// Response data: {}
 object.list_replies = async function(conversation_id, sort_options) {
   return await this.wrapper.get(`/conversations/${conversation_id}/replies`, sort_options);
 };
 
-// List all pages of replies to an unread conversation (with optional sort options).
+// List all pages of replies to an unread conversation.
 //
-// See documentation for response array object fields:
-// https://www.mc-market.org/wiki/ultimate-api-v1-conversations-replies/
+// Response data: {}
 object.list_replies_all = async function(conversation_id, sort_options) {
   return await this.wrapper.list_until(`/conversations/${conversation_id}/replies`, () => true, sort_options);
 };
 
-// List multiple pages of replies to an unread conversation (with optional sort options) until a condition is no longer
-// met.
+// List multiple pages of replies to an unread conversation until a condition is no longer met.
 //
-// See documentation for response array object fields:
-// https://www.mc-market.org/wiki/ultimate-api-v1-conversations-replies/
+// Response data: {}
 object.list_replies_until = async function(conversation_id, should_continue, sort_options) {
   return await this.wrapper.list_until(`/conversations/${conversation_id}/replies`, should_continue, sort_options);
 };
 
 // Reply to an unread conversation
+//
+// Response data: {}
 object.reply = async function(conversation_id, message) {
   return await this.wrapper.post(`/conversations/${conversation_id}/replies`, {message: message});
 };
