@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Majored/mcm-js-api-wrapper.git"
+    "url": "git+https://github.com/MC-Market-org/js-api-wrapper.git"
   },
   "author": "Harry <36297990+Majored@users.noreply.github.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Majored/mcm-js-api-wrapper/issues"
+    "url": "https://github.com/MC-Market-org/js-api-wrapper/issues"
   },
-  "homepage": "https://github.com/Majored/mcm-js-api-wrapper#readme",
+  "homepage": "https://github.com/MC-Market-org/js-api-wrapper#readme",
   "dependencies": {
     "axios": "^0.21.1",
     "debug": "^4.3.2"
