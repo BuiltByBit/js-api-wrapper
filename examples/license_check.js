@@ -19,7 +19,7 @@ async function main() {
   }
 
   let fields = {nonce: nonce, date: timestamp};
-  let validated = await wrapper.resources.licenses.validate(resource_id, purchaser_id, fields);
+  let validated = await wrapper.resources.licenses.fetch_member(resource_id, purchaser_id, fields);
 
   if (validated.result === "error") {
     if (validated.error.code === "ContentNotFoundError") {
