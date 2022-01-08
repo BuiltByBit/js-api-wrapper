@@ -3,7 +3,7 @@
 
 const wrapper = require("../mcm-js-api-wrapper");
 const token = {
-  type: "Private",
+  type: "Shared",
   value: "Find API Key @ https://www.mc-market.org/account/api",
 };
 
