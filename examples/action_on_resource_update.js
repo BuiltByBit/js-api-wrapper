@@ -2,7 +2,7 @@
 // MIT License (https://github.com/MC-Market-org/js-api-wrapper/blob/main/LICENSE)
 
 const wrapper = require("../mcm-js-api-wrapper");
-const token = {type: "Private", value: "xXoIjvQ6G8UmUPufZWxN-Kkyd54Js_bY"};
+const token = { type: "Private", value: "Find API Key @ https://www.mc-market.org/account/api" };
 
 // We're only listening for a specific resource in this example, but this could be expanded to cover multiple.
 let resource_id = 0;
@@ -26,9 +26,12 @@ async function init() {
 
 async function task() {
   // Only list updates we haven't taken action on before using the 'list_until' helper function.
-  let updates = await wrapper.resources.updates.list_until(resource_id, (update) => {
-    return update.update_id > last_update_id;
-  });
+  let updates = await wrapper.resources.updates.list_until(
+    resource_id,
+    (update) => {
+      return update.update_id > last_update_id;
+    }
+  );
 
   if (updates.result === "error") {
     console.log(updates.error);

@@ -2,7 +2,7 @@
 // MIT License (https://github.com/MC-Market-org/js-api-wrapper/blob/main/LICENSE)
 
 const wrapper = require("../mcm-js-api-wrapper");
-const token = {type: "Private", value: "xXoIjvQ6G8UmUPufZWxN-Kkyd54Js_bY"};
+const token = { type: "Private", value: "Find API Key @ https://www.mc-market.org/account/api" };
 
 // A list of member IDs to be alerted about if banned.
 let user_list = [1, 2, 3];

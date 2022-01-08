@@ -2,7 +2,7 @@
 // MIT License (https://github.com/MC-Market-org/js-api-wrapper/blob/main/LICENSE)
 
 const wrapper = require("./mcm-js-api-wrapper");
-const token = {type: "Private", value: "xXoIjvQ6G8UmUPufZWxN-Kkyd54Js_bY"};
+const token = { type: "Private", value: "Find API Key @ https://www.mc-market.org/account/api" };
 
 // We're only listening for a specific resource in this example, but this could be expanded to cover multiple.
 let resource_id = 0;
@@ -35,9 +35,12 @@ async function init() {
 }
 
 async function task() {
-  let purchases = await wrapper.resources.purchases.list_until(resource_id, (purchase) => {
-    return purchase.purchase_id > last_purchase_id;
-  });
+  let purchases = await wrapper.resources.purchases.list_until(
+    resource_id,
+    (purchase) => {
+      return purchase.purchase_id > last_purchase_id;
+    }
+  );
 
   if (purchases.result === "error") {
     console.log(purchases.error);
@@ -54,12 +57,18 @@ async function task() {
 }
 
 async function on_purchase(purchase) {
-  let response = await wrapper.conversations.create(pm_title, pm_message, purchase.purchaser_id);
+  let response = await wrapper.conversations.create(
+    pm_title,
+    pm_message,
+    purchase.purchaser_id
+  );
 
   if (response.result === "success") {
     console.log(`A PM has been sent to user ${purchase.purchaser_id}.`);
   } else {
-    console.log(`Unable to create a conversation with user ${purchase.purchaser_id}.`);
+    console.log(
+      `Unable to create a conversation with user ${purchase.purchaser_id}.`
+    );
     console.log(response.error);
   }
 }

@@ -2,7 +2,7 @@
 // MIT License (https://github.com/MC-Market-org/js-api-wrapper/blob/main/LICENSE)
 
 const wrapper = require("../mcm-js-api-wrapper");
-const token = {type: "Shared", value: "xXoIjvQ6G8UmUPufZWxN-Kkyd54Js_bY"};
+const token = { type: "Private", value: "Find API Key @ https://www.mc-market.org/account/api" };
 
 // Injected placeholders.
 let resource_id = "%%__RESOURCE__%%";
@@ -19,7 +19,9 @@ async function main() {
   let latest = await wrapper.resources.versions.latest(resource_id);
 
   if (latest.result === "error") {
-    console.log(`Failed to check latest version due to API Error: ${latest.error}.`);
+    console.log(
+      `Failed to check latest version due to API Error: ${latest.error}.`
+    );
     console.log("Exiting...");
     process.exit(0);
   }
@@ -27,7 +29,9 @@ async function main() {
   if (Number(version_id) === latest.version_id) {
     console.log("Up to date.");
   } else {
-    console.log("A new version exists. https://www.mc-market.org/resources/" + resource_id);
+    console.log(
+      "A new version exists. https://www.mc-market.org/resources/" + resource_id
+    );
   }
 }
 
