@@ -2,7 +2,10 @@
 // MIT License (https://github.com/MC-Market-org/js-api-wrapper/blob/main/LICENSE)
 
 const wrapper = require("../mcm-js-api-wrapper");
-const token = { type: "Private", value: "Find API Key @ https://www.mc-market.org/account/api" };
+const token = {
+  type: "Private",
+  value: "Find API Key @ https://www.mc-market.org/account/api",
+};
 
 let resource_id = 3;
 
