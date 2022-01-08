@@ -38,12 +38,9 @@ async function init() {
 }
 
 async function task() {
-  let purchases = await wrapper.resources.purchases.list_until(
-    resource_id,
-    (purchase) => {
-      return purchase.purchase_id > last_purchase_id;
-    }
-  );
+  let purchases = await wrapper.resources.purchases.list_until(resource_id, (purchase) => {
+    return purchase.purchase_id > last_purchase_id;
+  });
 
   if (purchases.result === "error") {
     console.log(purchases.error);
@@ -60,18 +57,12 @@ async function task() {
 }
 
 async function on_purchase(purchase) {
-  let response = await wrapper.conversations.create(
-    pm_title,
-    pm_message,
-    purchase.purchaser_id
-  );
+  let response = await wrapper.conversations.create(pm_title, pm_message, purchase.purchaser_id);
 
   if (response.result === "success") {
     console.log(`A PM has been sent to user ${purchase.purchaser_id}.`);
   } else {
-    console.log(
-      `Unable to create a conversation with user ${purchase.purchaser_id}.`
-    );
+    console.log(`Unable to create a conversation with user ${purchase.purchaser_id}.`);
     console.log(response.error);
   }
 }

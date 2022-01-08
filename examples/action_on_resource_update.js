@@ -29,12 +29,9 @@ async function init() {
 
 async function task() {
   // Only list updates we haven't taken action on before using the 'list_until' helper function.
-  let updates = await wrapper.resources.updates.list_until(
-    resource_id,
-    (update) => {
-      return update.update_id > last_update_id;
-    }
-  );
+  let updates = await wrapper.resources.updates.list_until(resource_id, (update) => {
+    return update.update_id > last_update_id;
+  });
 
   if (updates.result === "error") {
     console.log(updates.error);

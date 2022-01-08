@@ -35,14 +35,7 @@ object.stall_if_required = async function (limits, write) {
     // As rate limits for WRITE operations are applied independently of those applied to READ operations, we first
     // determine if we're in a WRITE operation, and if we are, attempt to stall if required. `stall_for_helper` will
     // return true if a stall was required (and it completed the stall), or false if no stall was required.
-    if (
-      write &&
-      (await this.stall_for_helper(
-        limits.write_last_retry,
-        limits.write_last_request,
-        time
-      ))
-    ) {
+    if (write && (await this.stall_for_helper(limits.write_last_retry, limits.write_last_request, time))) {
       continue;
     } else if (write) {
       stall = false;
@@ -50,13 +43,7 @@ object.stall_if_required = async function (limits, write) {
     }
 
     // If we haven't started a new iteration of this loop yet, we must be in a READ operation.
-    if (
-      await this.stall_for_helper(
-        limits.read_last_retry,
-        limits.read_last_request,
-        time
-      )
-    ) {
+    if (await this.stall_for_helper(limits.read_last_retry, limits.read_last_request, time)) {
       continue;
     } else {
       stall = false;

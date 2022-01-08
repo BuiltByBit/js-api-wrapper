@@ -29,11 +29,7 @@ object.list_all = async function (sort_options) {
 //
 // Response data: {}
 object.list_until = async function (should_continue, sort_options) {
-  return await this.wrapper.list_until(
-    `/alerts`,
-    should_continue,
-    sort_options
-  );
+  return await this.wrapper.list_until(`/alerts`, should_continue, sort_options);
 };
 
 // Mark unread alerts as read.

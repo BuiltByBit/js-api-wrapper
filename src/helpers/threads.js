@@ -29,11 +29,7 @@ object.list_all = async function (sort_options) {
 //
 // Response data: {}
 object.list_until = async function (should_continue, sort_options) {
-  return await this.wrapper.list_until(
-    `/threads`,
-    should_continue,
-    sort_options
-  );
+  return await this.wrapper.list_until(`/threads`, should_continue, sort_options);
 };
 
 // Fetch information about a thread you own or collaborate on.
@@ -54,26 +50,14 @@ object.list_replies = async function (thread_id, sort_options) {
 //
 // Response data: {}
 object.list_replies_all = async function (thread_id, sort_options) {
-  return await this.wrapper.list_until(
-    `/threads/${thread_id}/replies`,
-    () => true,
-    sort_options
-  );
+  return await this.wrapper.list_until(`/threads/${thread_id}/replies`, () => true, sort_options);
 };
 
 // List multiple pages of replies for a thread you own or collaborate on until a condition is no longer met.
 //
 // Response data: {}
-object.list_replies_until = async function (
-  thread_id,
-  should_continue,
-  sort_options
-) {
-  return await this.wrapper.list_until(
-    `/threads/${thread_id}/replies`,
-    should_continue,
-    sort_options
-  );
+object.list_replies_until = async function (thread_id, should_continue, sort_options) {
+  return await this.wrapper.list_until(`/threads/${thread_id}/replies`, should_continue, sort_options);
 };
 
 // Reply to a thread you own or collaborate on.

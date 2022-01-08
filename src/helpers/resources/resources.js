@@ -42,22 +42,14 @@ object.list_owned = async function (sort_options) {
 //
 // Response data: {}
 object.list_owned_all = async function (sort_options) {
-  return await this.wrapper.list_until(
-    `/resources/owned`,
-    () => true,
-    sort_options
-  );
+  return await this.wrapper.list_until(`/resources/owned`, () => true, sort_options);
 };
 
 // List multiple pages of owned resources until a condition is no longer met.
 //
 // Response data: {}
 object.list_owned_until = async function (should_continue, sort_options) {
-  return await this.wrapper.list_until(
-    `/resources/owned`,
-    should_continue,
-    sort_options
-  );
+  return await this.wrapper.list_until(`/resources/owned`, should_continue, sort_options);
 };
 
 // List a page of collaborated resources.
@@ -71,25 +63,14 @@ object.list_collaborated = async function (sort_options) {
 //
 // Response data: {}
 object.list_collaborated_all = async function (sort_options) {
-  return await this.wrapper.list_until(
-    `/resources/collaborated`,
-    () => true,
-    sort_options
-  );
+  return await this.wrapper.list_until(`/resources/collaborated`, () => true, sort_options);
 };
 
 // List multiple pages of collaborated resources until a condition is no longer met.
 //
 // Response data: {}
-object.list_collaborated_until = async function (
-  should_continue,
-  sort_options
-) {
-  return await this.wrapper.list_until(
-    `/resources/collaborated`,
-    should_continue,
-    sort_options
-  );
+object.list_collaborated_until = async function (should_continue, sort_options) {
+  return await this.wrapper.list_until(`/resources/collaborated`, should_continue, sort_options);
 };
 
 // Fetch detailed information about a resource.

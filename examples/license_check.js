@@ -22,19 +22,13 @@ async function main() {
   }
 
   let fields = { nonce: nonce, date: timestamp };
-  let validated = await wrapper.resources.licenses.fetch_member(
-    resource_id,
-    purchaser_id,
-    fields
-  );
+  let validated = await wrapper.resources.licenses.fetch_member(resource_id, purchaser_id, fields);
 
   if (validated.result === "error") {
     if (validated.error.code === "ContentNotFoundError") {
       console.log("No license was found for this user. Exiting...");
     } else {
-      console.log(
-        `Failed to check license due to API Error: ${validated.error}.`
-      );
+      console.log(`Failed to check license due to API Error: ${validated.error}.`);
       console.log("Exiting...");
     }
 
