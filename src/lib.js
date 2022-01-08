@@ -29,13 +29,25 @@ let object = {};
 // under nominal conditions. If the request does fail, we expect subsequent requests to other endpoints to also fail
 // so we conclude that an initialisation failure has occured. We pass back to the caller the error we received. As
 // a result, a check for the presence of the 'result' field should be done by the caller afer this function returns.
-object.init = async function(token) {
+object.init = async function (token) {
   // Ensure parameter is valid and contains the required fields.
   if (typeof token === "undefined" || token.constructor !== Object) {
-    return {result: "error", error: {code: "LocalWrapperError", message: "Parameter is undefined or not an object."}};
+    return {
+      result: "error",
+      error: {
+        code: "LocalWrapperError",
+        message: "Parameter is undefined or not an object.",
+      },
+    };
   }
   if (typeof token.type === "undefined" || typeof token.value === "undefined") {
-    return {result: "error", error: {code: "LocalWrapperError", message: "Parameter object token fields missing."}};
+    return {
+      result: "error",
+      error: {
+        code: "LocalWrapperError",
+        message: "Parameter object token fields missing.",
+      },
+    };
   }
 
   this.token = token;
@@ -43,7 +55,7 @@ object.init = async function(token) {
   // Create axios instance with our base URL and default headers.
   this.client = axios.create({
     baseURL: BASE_URL,
-    headers: {"Authorization": token.type + " " + token.value}
+    headers: { Authorization: token.type + " " + token.value },
   });
 
   // Insert rate limiting store object.
@@ -51,7 +63,7 @@ object.init = async function(token) {
     read_last_retry: 0,
     read_last_request: Date.now(),
     write_last_retry: 0,
-    write_last_request: Date.now()
+    write_last_request: Date.now(),
   };
 
   // Make a request to the health endpoint. If errored, return the provided error instead of the wrapper object.
@@ -60,12 +72,12 @@ object.init = async function(token) {
     return health_check;
   }
 
-  return {result: "success"};
+  return { result: "success" };
 };
 
 /* functions */
 // A raw function which makes a GET request to a specific endpoint (with optional sort options).
-object.get = async function(endpoint, sort_options) {
+object.get = async function (endpoint, sort_options) {
   try {
     if (sort_options) {
       endpoint += utils.object_to_query_string(sort_options);
@@ -87,16 +99,21 @@ object.get = async function(endpoint, sort_options) {
     } else if (error.response) {
       return error.response.data;
     } else {
-      return {result: "error", error: {code: "LocalWrapperError", message: error.message}};
+      return {
+        result: "error",
+        error: { code: "LocalWrapperError", message: error.message },
+      };
     }
   }
 };
 
 // A raw function which makes a PATCH request to a specific endpoint with a body.
-object.patch = async function(endpoint, body) {
+object.patch = async function (endpoint, body) {
   try {
     await utils.stall_if_required(this.rate_limits, true);
-    let response = await this.client.patch(endpoint, body, {headers: {"Content-Type": WRITE_CONTENT_TYPE}});
+    let response = await this.client.patch(endpoint, body, {
+      headers: { "Content-Type": WRITE_CONTENT_TYPE },
+    });
 
     this.rate_limits.write_last_request = Date.now();
     this.rate_limits.write_last_retry = 0;
@@ -111,16 +128,21 @@ object.patch = async function(endpoint, body) {
     } else if (error.response) {
       return error.response.data;
     } else {
-      return {result: "error", error: {code: "LocalWrapperError", message: error.message}};
+      return {
+        result: "error",
+        error: { code: "LocalWrapperError", message: error.message },
+      };
     }
   }
 };
 
 // A raw function which makes a POST request to a specific endpoint with a body.
-object.post = async function(endpoint, body) {
+object.post = async function (endpoint, body) {
   try {
     await utils.stall_if_required(this.rate_limits, true);
-    let response = await this.client.post(endpoint, body, {headers: {"Content-Type": WRITE_CONTENT_TYPE}});
+    let response = await this.client.post(endpoint, body, {
+      headers: { "Content-Type": WRITE_CONTENT_TYPE },
+    });
 
     this.rate_limits.write_last_request = Date.now();
     this.rate_limits.write_last_retry = 0;
@@ -135,13 +157,16 @@ object.post = async function(endpoint, body) {
     } else if (error.response) {
       return error.response.data;
     } else {
-      return {result: "error", error: {code: "LocalWrapperError", message: error.message}};
+      return {
+        result: "error",
+        error: { code: "LocalWrapperError", message: error.message },
+      };
     }
   }
 };
 
 // A raw function which makes a DELETE request to a specific endpoint.
-object.delete = async function(endpoint) {
+object.delete = async function (endpoint) {
   try {
     await utils.stall_if_required(this.rate_limits, true);
     let response = await this.client.delete(endpoint);
@@ -159,7 +184,10 @@ object.delete = async function(endpoint) {
     } else if (error.response) {
       return error.response.data;
     } else {
-      return {result: "error", error: {code: "LocalWrapperError", message: error.message}};
+      return {
+        result: "error",
+        error: { code: "LocalWrapperError", message: error.message },
+      };
     }
   }
 };
@@ -209,11 +237,11 @@ object.list_until = async function (endpoint, should_continue, sort_options) {
     sort_options.page++;
   }
 
-  return {result: "success", data: all_data};
+  return { result: "success", data: all_data };
 };
 
 // Schedule a plain request which we expect to always succeed under nominal conditions.
-object.health = async function() {
+object.health = async function () {
   return await this.get(`/health`);
 };
 
@@ -223,7 +251,7 @@ object.health = async function() {
 // This duration may not be representative of the raw request latency due to the fact that requests may be stalled
 // locally within this wrapper to ensure compliance with rate limiting rules. Whilst this is a trade-off, it can
 // be argued that the returned duration will be more representative of the true latencies experienced.
-object.ping = async function() {
+object.ping = async function () {
   let start = Date.now();
   let response = await this.health();
   let stop = Date.now();
@@ -236,11 +264,11 @@ object.ping = async function() {
 };
 
 // Initialise and insert all helper objects.
-object.alerts = require('./helpers/alerts.js').init(object);
-object.conversations = require('./helpers/conversations.js').init(object);
-object.members = require('./helpers/members/members.js').init(object);
-object.resources = require('./helpers/resources/resources.js').init(object);
-object.threads = require('./helpers/threads.js').init(object);
+object.alerts = require("./helpers/alerts.js").init(object);
+object.conversations = require("./helpers/conversations.js").init(object);
+object.members = require("./helpers/members/members.js").init(object);
+object.resources = require("./helpers/resources/resources.js").init(object);
+object.threads = require("./helpers/threads.js").init(object);
 
 /* exports */
 module.exports = object;

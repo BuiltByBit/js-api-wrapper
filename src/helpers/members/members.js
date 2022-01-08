@@ -5,11 +5,11 @@
 let object = {};
 
 /* initialise */
-object.init = function(wrapper) {
+object.init = function (wrapper) {
   this.wrapper = wrapper;
 
   // Initialise and insert child helper object.
-  this.profile_posts = require('./profile_posts.js').init(object.wrapper);
+  this.profile_posts = require("./profile_posts.js").init(object.wrapper);
 
   return this;
 };
@@ -18,7 +18,7 @@ object.init = function(wrapper) {
 // Fetch information about yourself.
 //
 // Response data: {}
-object.self = async function() {
+object.self = async function () {
   return await this.wrapper.get(`/members/self`);
 };
 
@@ -26,29 +26,32 @@ object.self = async function() {
 // Modify information about yourself.
 //
 // Response data: {}
-object.modify_self = async function(about_me, custom_title, signature) {
-  let body = {about_me: about_me, custom_title: custom_title, signature: signature};
-  return await this.wrapper.patch(`/members/self`, body);
+object.modify_self = async function (about_me, custom_title, signature) {
+  return await this.wrapper.patch(`/members/self`, {
+    about_me,
+    custom_title,
+    signature,
+  });
 };
 
 // Fetch information about a member.
 //
 // Response data: {}
-object.fetch = async function(member_id) {
+object.fetch = async function (member_id) {
   return await this.wrapper.get(`/members/${member_id}`);
 };
 
 // Fetch information about a member by username.
 //
 // Response data: {}
-object.fetch_by_username = async function(username) {
+object.fetch_by_username = async function (username) {
   return await this.wrapper.get(`/members/usernames/${username}`);
 };
 
 // Fetch a list of recently issued bans.
 //
 // Response data: {}
-object.bans = async function() {
+object.bans = async function () {
   return await this.wrapper.get("/members/bans");
 };
 
