@@ -2,8 +2,10 @@
 // MIT License (https://github.com/MC-Market-org/js-api-wrapper/blob/main/LICENSE)
 
 const wrapper = require("../mcm-js-api-wrapper");
+
+/* please be aware; an private token could be used but you'd probably ship out publicly and that would risk account compromisation. */
 const token = {
-  type: "Private",
+  type: "Shared",
   value: "Find API Key @ https://www.mc-market.org/account/api",
 };
 
