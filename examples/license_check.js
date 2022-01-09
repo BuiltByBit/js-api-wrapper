@@ -2,7 +2,10 @@
 // MIT License (https://github.com/MC-Market-org/js-api-wrapper/blob/main/LICENSE)
 
 const wrapper = require("../mcm-js-api-wrapper");
-const token = {type: "Shared", value: "xXoIjvQ6G8UmUPufZWxN-Kkyd54Js_bY"};
+const token = {
+  type: "Shared",
+  value: "Find API Key @ https://www.mc-market.org/account/api",
+};
 
 // Injected placeholders.
 let resource_id = "%%__RESOURCE__%%";
@@ -18,7 +21,7 @@ async function main() {
     process.exit(0);
   }
 
-  let fields = {nonce: nonce, date: timestamp};
+  let fields = { nonce: nonce, date: timestamp };
   let validated = await wrapper.resources.licenses.fetch_member(resource_id, purchaser_id, fields);
 
   if (validated.result === "error") {
