@@ -2,6 +2,7 @@
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-007ec6)](https://github.com/Majored/mcm-js-api-wrapper/blob/main/LICENSE)
 [![npm version](https://badge.fury.io/js/mcm-js-api-wrapper.svg)](https://www.npmjs.com/package/mcm-js-api-wrapper)
+[![npm version](https://img.shields.io/badge/docs-passing-brightgreen)](https://mc-market-org.github.io/js-api-wrapper/)
 
 An official asynchronous JavaScript (Node.js) wrapper for MC-Market's [Ultimate REST API](https://www.mc-market.org/wiki/ultimate-api/).
 
