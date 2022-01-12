@@ -6,8 +6,8 @@ let object = {};
 
 /* initialise */
 object.init = function (wrapper) {
-  this.wrapper = wrapper;
-  return this;
+    this.wrapper = wrapper;
+    return this;
 };
 
 /* functions */
@@ -15,26 +15,26 @@ object.init = function (wrapper) {
 //
 // Response data: {}
 object.list = async function (sort_options) {
-  return await this.wrapper.get(`/alerts`, sort_options);
+    return await this.wrapper.get("/alerts", sort_options);
 };
 
 // List all pages of unread alerts.
 //
 // Response data: {}
 object.list_all = async function (sort_options) {
-  return await this.wrapper.list_until(`/alerts`, () => true, sort_options);
+    return await this.wrapper.list_until("/alerts", () => true, sort_options);
 };
 
 // List multiple pages of unread alerts until a condition is no longer met.
 //
 // Response data: {}
 object.list_until = async function (should_continue, sort_options) {
-  return await this.wrapper.list_until(`/alerts`, should_continue, sort_options);
+    return await this.wrapper.list_until("/alerts", should_continue, sort_options);
 };
 
 // Mark unread alerts as read.
 object.mark_as_read = async function () {
-  return await this.wrapper.patch("/alerts", { read: true });
+    return await this.wrapper.patch("/alerts", { read: true });
 };
 
 /* exports */

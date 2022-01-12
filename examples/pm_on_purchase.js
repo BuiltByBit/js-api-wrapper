@@ -3,8 +3,8 @@
 
 const wrapper = require("./mcm-js-api-wrapper");
 const token = {
-  type: "Private",
-  value: "Find API Key @ https://www.mc-market.org/account/api",
+    type: "Private",
+    value: "Find API Key @ https://www.mc-market.org/account/api",
 };
 
 // We're only listening for a specific resource in this example, but this could be expanded to cover multiple.
@@ -25,46 +25,46 @@ Thanks,
 - Author`;
 
 async function init() {
-  // Initialise wrapper and exit if a failure occurs.
-  let init = await wrapper.init(token);
-  if (init.result === "error") {
-    console.log(init.error);
-    process.exit(0);
-  }
+    // Initialise wrapper and exit if a failure occurs.
+    let init = await wrapper.init(token);
+    if (init.result === "error") {
+        console.log(init.error);
+        process.exit(0);
+    }
 
-  // Poll once every hour.
-  task();
-  setInterval(task, 60 * 60 * 1000);
+    // Poll once every hour.
+    task();
+    setInterval(task, 60 * 60 * 1000);
 }
 
 async function task() {
-  let purchases = await wrapper.resources.purchases.list_until(resource_id, (purchase) => {
-    return purchase.purchase_id > last_purchase_id;
-  });
+    let purchases = await wrapper.resources.purchases.list_until(resource_id, (purchase) => {
+        return purchase.purchase_id > last_purchase_id;
+    });
 
-  if (purchases.result === "error") {
-    console.log(purchases.error);
-    return;
-  }
-
-  if (purchases.data.length > 0) {
-    last_purchase_id = purchases.data[0].purchase_id;
-
-    for (index in purchases.data) {
-      await on_purchase(purchases.data[index]);
+    if (purchases.result === "error") {
+        console.log(purchases.error);
+        return;
     }
-  }
+
+    if (purchases.data.length > 0) {
+        last_purchase_id = purchases.data[0].purchase_id;
+
+        for (const index in purchases.data) {
+            await on_purchase(purchases.data[index]);
+        }
+    }
 }
 
 async function on_purchase(purchase) {
-  let response = await wrapper.conversations.create(pm_title, pm_message, purchase.purchaser_id);
+    let response = await wrapper.conversations.create(pm_title, pm_message, purchase.purchaser_id);
 
-  if (response.result === "success") {
-    console.log(`A PM has been sent to user ${purchase.purchaser_id}.`);
-  } else {
-    console.log(`Unable to create a conversation with user ${purchase.purchaser_id}.`);
-    console.log(response.error);
-  }
+    if (response.result === "success") {
+        console.log(`A PM has been sent to user ${purchase.purchaser_id}.`);
+    } else {
+        console.log(`Unable to create a conversation with user ${purchase.purchaser_id}.`);
+        console.log(response.error);
+    }
 }
 
 init();
