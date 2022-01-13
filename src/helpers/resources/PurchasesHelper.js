@@ -5,36 +5,36 @@ class PurchasesHelper {
     #wrapper;
     
     constructor(wrapper) {
-      this.#wrapper = wrapper;
+        this.#wrapper = wrapper;
     }
     
     // List a page of purchases for a given resource.
     //
     // Response data: {}
-    async list(resource_id, sort_options) {
-      return await this.#wrapper.get(`/resources/${resource_id}/purchases`, sort_options);
+    async list(resourceId, sortOptions) {
+        return await this.#wrapper.get(`/resources/${resourceId}/purchases`, sortOptions);
     }
     
     // List all pages of purchases for a given resource.
     //
     // Response data: {}
-    async list_all(resource_id, sort_options) {
-      return await this.#wrapper.list_until(`/resources/${resource_id}/purchases`, () => true, sort_options);
+    async listAll(resourceId, sortOptions) {
+        return await this.#wrapper.listUntil(`/resources/${resourceId}/purchases`, () => true, sortOptions);
     }
     
     // List multiple pages of purchases for a given resource until a condition is no longer
     // met.
     //
     // Response data: {}
-    async list_until(resource_id, should_continue, sort_options) {
-      return await this.#wrapper.list_until(`/resources/${resource_id}/purchases`, should_continue, sort_options);
+    async listUntil(resourceId, shouldContinue, sortOptions) {
+        return await this.#wrapper.listUntil(`/resources/${resourceId}/purchases`, shouldContinue, sortOptions);
     }
     
     // Fetch a purchase for a given resource.
     //
     // Response data: {}
-    async fetch(resource_id, purchase_id) {
-      return await this.#wrapper.get(`/resources/${resource_id}/purchases/${purchase_id}`);
+    async fetch(resourceId, purchaseId) {
+        return await this.#wrapper.get(`/resources/${resourceId}/purchases/${purchaseId}`);
     }
 }
 

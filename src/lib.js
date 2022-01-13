@@ -1,10 +1,6 @@
 // Copyright (c) 2021 MC-Market (Mick Capital Pty. Ltd.)
 // MIT License (https://github.com/MC-Market-org/js-api-wrapper/blob/main/LICENSE)
 
-/* imports */
-const axios = require("axios");
-const utils = require("./utils.js");
-
 exports.Token = require("./Token.js");
 exports.Wrapper = require("./Wrapper.js");
 

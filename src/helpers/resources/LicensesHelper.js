@@ -5,86 +5,86 @@ class LicensesHelper {
     #wrapper;
     
     constructor(wrapper) {
-      this.#wrapper = wrapper;
+        this.#wrapper = wrapper;
     }
     
     // List a page of licenses for a given resource.
     //
     // Response data: {}
-    async list(resource_id, sort_options) {
-      return await this.#wrapper.get(`/resources/${resource_id}/licenses`, sort_options);
+    async list(resourceId, sortOptions) {
+        return await this.#wrapper.get(`/resources/${resourceId}/licenses`, sortOptions);
     }
     
     // List all pages of licenses for a given resource.
     //
     // Response data: {}
-    async list_all(resource_id, sort_options) {
-      return await this.#wrapper.list_until(`/resources/${resource_id}/licenses`, () => true, sort_options);
+    async listAll(resourceId, sortOptions) {
+        return await this.#wrapper.listUntil(`/resources/${resourceId}/licenses`, () => true, sortOptions);
     }
     
     // List multiple pages of licenses for a given resource until a condition is no longer met.
     //
     // Response data: {}
-    async list_until(resource_id, should_continue, sort_options) {
-      return await this.#wrapper.list_until(`/resources/${resource_id}/licenses`, should_continue, sort_options);
+    async listUntil(resourceId, should_continue, sortOptions) {
+        return await this.#wrapper.listUntil(`/resources/${resourceId}/licenses`, should_continue, sortOptions);
     }
     
     // Issue a new permanent license for a given resource.
     //
     // Response data: {}
-    async issue_permanent(resource_id, purchaser_id, active) {
-      return await this.#wrapper.post(`/resources/${resource_id}/licenses`, {
-        permanent: true,
-        purchaser_id,
-        active,
-      });
+    async issuePermanent(resourceId, purchaserid, active) {
+        return await this.#wrapper.post(`/resources/${resourceId}/licenses`, {
+            permanent: true,
+            purchaserid,
+            active,
+        });
     }
     
     // Issue a new temporay license for a given resource.
     //
     // Response data: {}
-    async issue_temporary(resource_id, purchaser_id, start_date, end_date) {
-      return await this.#wrapper.post(`/resources/${resource_id}/licenses`, {
-        permanent: false,
-        purchaser_id,
-        start_date,
-        end_date,
-      });
+    async issueTemporary(resourceId, purchaserid, startDate, endDate) {
+        return await this.#wrapper.post(`/resources/${resourceId}/licenses`, {
+            permanent: false,
+            purchaserid,
+            startDate,
+            endDate,
+        });
     }
     
     // Fetch a license for a given resource.
     //
     // Response data: {}
-    async fetch(resource_id, license_id) {
-      return await this.#wrapper.get(`/resources/${resource_id}/licenses/${license_id}`);
+    async fetch(resourceId, licenseId) {
+        return await this.#wrapper.get(`/resources/${resourceId}/licenses/${licenseId}`);
     }
     
     // Fetch a member's license for a given resource.
     //
     // Response data: {}
-    async fetch_member(resource_id, purchaser_id, fields) {
-      let endpoint = `/resources/${resource_id}/licenses/members/${purchaser_id}`;
+    async fetchMember(resourceId, purchaserId, fields) {
+        let endpoint = `/resources/${resourceId}/licenses/members/${purchaserId}`;
       
-      if (this.#wrapper.token.type === "Shared") endpoint += `?nonce=${fields.nonce}&timestamp=${fields.timestamp}`;
+        if (this.#wrapper.token.type === "Shared") endpoint += `?nonce=${fields.nonce}&timestamp=${fields.timestamp}`;
       
-      return await this.#wrapper.get(endpoint, fields);
+        return await this.#wrapper.get(endpoint, fields);
     }
     
     // Modify a permanent license (and convert to permanent if currently temporary).
-    async modify_permanent(resource_id, license_id, active) {
-      return await this.#wrapper.patch(`/resources/${resource_id}/licenses/${license_id}`, {
-        permanent: true,
-        active: active,
-      });
+    async modifyPermanent(resourceId, licenseId, active) {
+        return await this.#wrapper.patch(`/resources/${resourceId}/licenses/${licenseId}`, {
+            permanent: true,
+            active,
+        });
     }
     
     // Modify a temporary license (and convert to temporary if currently permanent).
-    async modify_temporary(resource_id, license_id, start_date, end_date) {
-      return await this.#wrapper.patch(`/resources/${resource_id}/licenses/${license_id}`, {
-        permanent: false,
-        start_date: start_date,
-        end_date: end_date,
-      });
+    async modifyTemporary(resourceId, license_id, startDate, endDate) {
+        return await this.#wrapper.patch(`/resources/${resourceId}/licenses/${license_id}`, {
+            permanent: false,
+            startDate,
+            endDate,
+        });
     }
 }
 

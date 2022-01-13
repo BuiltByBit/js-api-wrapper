@@ -1,6 +1,9 @@
 // Copyright (c) 2021 MC-Market (Mick Capital Pty. Ltd.)
 // MIT License (https://github.com/MC-Market-org/js-api-wrapper/blob/main/LICENSE)
 
+const axios = require("axios");
+const utils = require("./utils.js");
+
 const { AlertsHelper } = require("./helpers/AlertsHelper.js");
 const { ConversationsHelper } = require("./helpers/ConversationsHelper.js");
 const { ThreadsHelper } = require("./helpers/ThreadsHelper.js");
@@ -28,17 +31,12 @@ class Wrapper {
     async init(token) {
         // Create axios instance with our base URL and default headers.
         this.#client = axios.create({
-            baseURL: #Wrapper.BASE_URL,
-            headers: { Authorization: token.type + " " + token.value },
+            baseURL: Wrapper.#BASE_URL,
+            headers: token.asHeader(),
         });
     
         // Insert rate limiting store object.
-        this.#throttler = {
-            read_last_retry: 0,
-            read_last_request: Date.now(),
-            write_last_retry: 0,
-            write_last_request: Date.now(),
-        };
+        this.#throttler = new Throttler();
 
         // Make a request to the health endpoint. If errored, return the provided error instead of the wrapper object.
         let healthCheck = await this.health();
@@ -49,10 +47,10 @@ class Wrapper {
         return { result: "success" };
     }
 
-    async get(endpoint, sort_options) {
+    async get(endpoint, sortOptions) {
         try {
-            if (sort_options) {
-                endpoint += utils.object_to_query_string(sort_options);
+            if (sortOptions) {
+                endpoint += utils.object_to_query_string(sortOptions);
             }
     
             await utils.stall_if_required(this.rate_limits, false);
@@ -161,44 +159,44 @@ class Wrapper {
         }
     }
 
-    async list_until(endpoint, should_continue, sort_options) {
+    async listUntil(endpoint, shouldContinue, sortOptions) {
         // Ensure an object is initialised if undefined, and that the page field exists.
-        if (typeof sort_options === "undefined") {
-            sort_options = {};
+        if (typeof sortOptions === "undefined") {
+            sortOptions = {};
         }
-        if (typeof sort_options.page === "undefined") {
-            sort_options.page = 1;
+        if (typeof sortOptions.page === "undefined") {
+            sortOptions.page = 1;
         }
 
-        let all_data = [];
-        let continue_for = true;
+        let allData = [];
+        let continueFor = true;
 
-        // This is continued until we either encounter an error, `should_continue` returns false, or we've reached the last
+        // This is continued until we either encounter an error, `shouldContinue` returns false, or we've reached the last
         // page (ie. data.length() != PER_PAGE).
-        while (continue_for) {
+        while (continueFor) {
         // If any requests return an error, pass the response to the caller rather than continuing.
-            let response = await this.get(endpoint, sort_options);
+            let response = await this.get(endpoint, sortOptions);
             if (response.result === "error") {
                 return response;
             }
 
             for (const index in response.data) {
-                if (should_continue(response.data[index])) {
-                    all_data.push(response.data[index]);
+                if (shouldContinue(response.data[index])) {
+                    allData.push(response.data[index]);
                 } else {
-                    continue_for = false;
+                    continueFor = false;
                     break;
                 }
             }
 
             if (response.data.length != PER_PAGE) {
-                continue_for = false;
+                continueFor = false;
             }
 
-            sort_options.page++;
+            sortOptions.page++;
         }
 
-        return { result: "success", data: all_data };
+        return { result: "success", data: allData };
     }
 
     async ping() {

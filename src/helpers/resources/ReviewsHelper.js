@@ -5,40 +5,40 @@ class ReviewsHelper {
     #wrapper;
     
     constructor(wrapper) {
-      this.#wrapper = wrapper;
+        this.#wrapper = wrapper;
     }
     
     // List a page of reviews for a given resource.
     //
     // Response data: {}
-    async list(resource_id, sort_options) {
-      return await this.#wrapper.get(`/resources/${resource_id}/reviews`, sort_options);
+    async list(resourceId, sortOptions) {
+        return await this.#wrapper.get(`/resources/${resourceId}/reviews`, sortOptions);
     }
     
     // List all pages of reviews for a given resource.
     //
     // Response data: {}
-    async list_all(resource_id, sort_options) {
-      return await this.#wrapper.list_until(`/resources/${resource_id}/reviews`, () => true, sort_options);
+    async listAll(resourceId, sortOptions) {
+        return await this.#wrapper.listUntil(`/resources/${resourceId}/reviews`, () => true, sortOptions);
     }
     
     // List multiple pages of reviews for a given resource until a condition is no longer met.
     //
     // Response data: {}
-    async list_until(resource_id, should_continue, sort_options) {
-      return await this.#wrapper.list_until(`/resources/${resource_id}/reviews`, should_continue, sort_options);
+    async listUntil(resourceId, shouldContinue, sortOptions) {
+        return await this.#wrapper.listUntil(`/resources/${resourceId}/reviews`, shouldContinue, sortOptions);
     }
     
     // Fetch a resource review by a member for a given resource.
     //
     // Response data: {}
-    async fetch(resource_id, member_id) {
-      return await this.#wrapper.get(`/resources/${resource_id}/reviews/members/${member_id}`);
+    async fetch(resourceId, memberId) {
+        return await this.#wrapper.get(`/resources/${resourceId}/reviews/members/${memberId}`);
     }
     
     // Respond to a review for a given resource.
-    async respond(resource_id, review_id, response) {
-      return await this.#wrapper.patch(`/resources/${resource_id}/reviews/${review_id}`, { response });
+    async respond(resourceId, reviewId, response) {
+        return await this.#wrapper.patch(`/resources/${resourceId}/reviews/${reviewId}`, { response });
     }
 }
 

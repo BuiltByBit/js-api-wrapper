@@ -5,47 +5,47 @@ class UpdatesHelper {
     #wrapper;
     
     constructor(wrapper) {
-      this.#wrapper = wrapper;
+        this.#wrapper = wrapper;
     }
     
     // List a page of updates for a given resource.
     //
     // Response data: {}
-    async list(resource_id, sort_options) {
-      return await this.#wrapper.get(`/resources/${resource_id}/updates`, sort_options);
+    async list(resourceId, sortOptions) {
+        return await this.#wrapper.get(`/resources/${resourceId}/updates`, sortOptions);
     }
     
     // List all pages of updates for a given resource.
     //
     // Response data: {}
-    async list_all(resource_id, sort_options) {
-      return await this.#wrapper.list_until(`/resources/${resource_id}/updates`, () => true, sort_options);
+    async listAll(resourceId, sortOptions) {
+        return await this.#wrapper.listUntil(`/resources/${resourceId}/updates`, () => true, sortOptions);
     }
     
     // List multiple pages of updates for a given resource until a condition is no longer met.
     //
     // Response data: {}
-    async list_until(resource_id, should_continue, sort_options) {
-      return await this.#wrapper.list_until(`/resources/${resource_id}/updates`, should_continue, sort_options);
+    async listUntil(resourceId, shouldContinue, sortOptions) {
+        return await this.#wrapper.listUntil(`/resources/${resourceId}/updates`, shouldContinue, sortOptions);
     }
     
     // Fetch the latest update for a given resource.
     //
     // Response data: {}
-    async latest(resource_id) {
-      return await this.#wrapper.get(`/resources/${resource_id}/updates/latest`);
+    async latest(resourceId) {
+        return await this.#wrapper.get(`/resources/${resourceId}/updates/latest`);
     }
     
     // Fetch an update for a given resource.
     //
     // Response data: {}
-    async fetch(resource_id, update_id) {
-      return await this.#wrapper.get(`/resources/${resource_id}/updates/${update_id}`);
+    async fetch(resourceId, updateId) {
+        return await this.#wrapper.get(`/resources/${resourceId}/updates/${updateId}`);
     }
     
     // Delete an update for a given resource.
-    async delete(resource_id, update_id) {
-      return await this.#wrapper.delete(`/resources/${resource_id}/updates/${update_id}`);
+    async delete(resourceId, updateId) {
+        return await this.#wrapper.delete(`/resources/${resourceId}/updates/${updateId}`);
     }
 }
 

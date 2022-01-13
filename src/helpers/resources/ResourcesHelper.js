@@ -12,14 +12,14 @@ class ResourcesHelper {
     #wrapper;
     
     constructor(wrapper) {
-      this.#wrapper = wrapper;
+        this.#wrapper = wrapper;
     }
     
     // List a page of public resources.
     //
     // Response data: {}
-    async list(sort_options) {
-      return await this.#wrapper.get("/resources", sort_options);
+    async list(sortOptions) {
+        return await this.#wrapper.get("/resources", sortOptions);
     }
     
     // No helper functions for `list_until` have been provided here for listing public resources. Whilst this breaks
@@ -29,83 +29,83 @@ class ResourcesHelper {
     // List a page of owned resources.
     //
     // Response data: {}
-    async list_owned(sort_options) {
-      return await this.#wrapper.get("/resources/owned", sort_options);
+    async listOwned(sortOptions) {
+        return await this.#wrapper.get("/resources/owned", sortOptions);
     }
     
     // List all pages of owned resources.
     //
     // Response data: {}
-    async list_owned_all(sort_options) {
-      return await this.#wrapper.list_until("/resources/owned", () => true, sort_options);
+    async listOwnedAll(sortOptions) {
+        return await this.#wrapper.listUntil("/resources/owned", () => true, sortOptions);
     }
     
     // List multiple pages of owned resources until a condition is no longer met.
     //
     // Response data: {}
-    async list_owned_until(should_continue, sort_options) {
-      return await this.#wrapper.list_until("/resources/owned", should_continue, sort_options);
+    async listOwnedUntil(shouldContinue, sortOptions) {
+        return await this.#wrapper.listUntil("/resources/owned", shouldContinue, sortOptions);
     }
     
     // List a page of collaborated resources.
     //
     // Response data: {}
-    async list_collaborated(sort_options) {
-      return await this.wrapper.get("/resources/collaborated", sort_options);
+    async listCollaborated(sortOptions) {
+        return await this.wrapper.get("/resources/collaborated", sortOptions);
     }
     
     // List all pages of collaborated resources.
     //
     // Response data: {}
-    async list_collaborated_all(sort_options) {
-      return await this.#wrapper.list_until("/resources/collaborated", () => true, sort_options);
+    async listCollaboratedAll(sortOptions) {
+        return await this.#wrapper.listUntil("/resources/collaborated", () => true, sortOptions);
     }
     
     // List multiple pages of collaborated resources until a condition is no longer met.
     //
     // Response data: {}
-    async list_collaborated_until(should_continue, sort_options) {
-      return await this.#wrapper.list_until("/resources/collaborated", should_continue, sort_options);
+    async listCollaboratedUntil(shouldContinue, sortOptions) {
+        return await this.#wrapper.listUntil("/resources/collaborated", shouldContinue, sortOptions);
     }
     
     // Fetch detailed information about a resource.
     //
     // Response data: {}
-    async fetch(resource_id) {
-      return await this.#wrapper.get(`/resources/${resource_id}`);
+    async fetch(resourceId) {
+        return await this.#wrapper.get(`/resources/${resourceId}`);
     }
     
     // Edit resource fields for a resource you own or collaborate on.
-    async modify(resource_id, title, description, tag_line) {
-      return await this.#wrapper.patch(`/resources/${resource_id}`, {
-        title: title,
-        description: description,
-        tag_line: tag_line,
-      });
+    async modify(resourceId, title, description, tagLine) {
+        return await this.#wrapper.patch(`/resources/${resourceId}`, {
+            title: title,
+            description: description,
+            tag_line: tagLine,
+        });
     }
 
     downloads() {
-      return new DownloadsHelper(this.#wrapper);
+        return new DownloadsHelper(this.#wrapper);
     }
 
     licenses() {
-      return new LicensesHelper(this.#wrapper);
+        return new LicensesHelper(this.#wrapper);
     }
 
     purchases() {
-      return new PurchasesHelper(this.#wrapper);
+        return new PurchasesHelper(this.#wrapper);
     }
 
     reviews() {
-      return new ReviewsHelper(this.#wrapper);
+        return new ReviewsHelper(this.#wrapper);
     }
 
     updates() {
-      return new UpdatesHelper(this.#wrapper);
+        return new UpdatesHelper(this.#wrapper);
     }
 
     versions() {
-      return new VersionsHelper(this.#wrapper);
+        return new VersionsHelper(this.#wrapper);
     }
 }
 

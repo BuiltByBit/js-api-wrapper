@@ -11,8 +11,8 @@ class Token {
      * @param {string} value The token value.
      */
     private(value) {
-        #type = "Private";
-        #value = value;
+        this.#type = "Private";
+        this.#value = value;
     }
 
     /** Sets the values of this token associated with a Shared type.
@@ -20,8 +20,8 @@ class Token {
      * @param {string} value The token value.
      */
     shared(value) {
-        #type = "Shared";
-        #value = value;
+        this.#type = "Shared";
+        this.#value = value;
     }
 
     /** Constructs an object containing the header representation of this token.
@@ -29,6 +29,6 @@ class Token {
      * @returns An object with a single attribute, 'Authorization'.
      */
     #asHeader() {
-        return {Authorization: `${#type} ${#value}`};
+        return {Authorization: `${this.#type} ${this.#value}`};
     }
 }

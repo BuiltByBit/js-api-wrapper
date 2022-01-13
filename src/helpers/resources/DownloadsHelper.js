@@ -5,86 +5,86 @@ class DownloadsHelper {
     #wrapper;
     
     constructor(wrapper) {
-      this.#wrapper = wrapper;
+        this.#wrapper = wrapper;
     }
     
     // List a page of downloads for a given resource.
     //
     // Response data: {}
-    async list(resource_id, sort_options) {
-      return await this.#wrapper.get(`/resources/${resource_id}/downloads`, sort_options);
+    async list(resourceId, sortOptions) {
+        return await this.#wrapper.get(`/resources/${resourceId}/downloads`, sortOptions);
     }
     
     // List all pages of downloads for a given resource.
     //
     // Response data: {}
-    async list_all(resource_id, sort_options) {
-      return await this.#wrapper.list_until(`/resources/${resource_id}/downloads`, () => true, sort_options);
+    async listAll(resourceId, sortOptions) {
+        return await this.#wrapper.listUntil(`/resources/${resourceId}/downloads`, () => true, sortOptions);
     }
     
     // List multiple pages of downloads for a given resource until a condition is no longer met.
     //
     // Response data: {}
-    async list_until(resource_id, should_continue, sort_options) {
-      return await this.#wrapper.list_until(`/resources/${resource_id}/downloads`, should_continue, sort_options);
+    async listUntil(resourceId, shouldContinue, sortOptions) {
+        return await this.#wrapper.listUntil(`/resources/${resourceId}/downloads`, shouldContinue, sortOptions);
     }
     
     // List a page of downloads by member for a given resource.
     //
     // Response data: {}
-    async list_by_member(resource_id, member_id, sort_options) {
-      return await this.#wrapper.get(`/resources/${resource_id}/downloads/members/${member_id}`, sort_options);
+    async listByMember(resourceId, memberId, sortOptions) {
+        return await this.#wrapper.get(`/resources/${resourceId}/downloads/members/${memberId}`, sortOptions);
     }
     
     // List all pages of downloads by member for a given resource.
     //
     // Response data: {}
-    async list_by_member_all(resource_id, member_id, sort_options) {
-      return await this.#wrapper.list_until(
-        `/resources/${resource_id}/downloads/members/${member_id}`,
-        () => true,
-        sort_options
-      );
+    async listByMemberAll(resource_id, member_id, sort_options) {
+        return await this.#wrapper.listUntil(
+            `/resources/${resourceId}/downloads/members/${memberId}`,
+            () => true,
+            sortOptions
+        );
     }
     
     // List multiple pages of downloads by member for a given resource until a condition is no longer met.
     //
     // Response data: {}
-    async list_by_member_until(resource_id, member_id, should_continue, sort_options) {
-      return await this.#wrapper.list_until(
-        `/resources/${resource_id}/downloads/members/${member_id}`,
-        should_continue,
-        sort_options
-      );
+    async listByMemberUntil(resourceId, memberId, shouldContinue, sortOptions) {
+        return await this.#wrapper.listUntil(
+            `/resources/${resourceId}/downloads/members/${memberId}`,
+            shouldContinue,
+            sortOptions
+        );
     }
     
     // List a page of downloads by version for a given resource.
     //
     // Response data: {}
-    async list_by_version(resource_id, version_id, sort_options) {
-      return await this.#wrapper.get(`/resources/${resource_id}/downloads/versions/${version_id}`, sort_options);
+    async listByVersion(resourceId, versionId, sortOptions) {
+        return await this.#wrapper.get(`/resources/${resourceId}/downloads/versions/${versionId}`, sortOptions);
     }
     
     // List all pages of downloads by version for a given resource.
     //
     // Response data: {}
-    async list_by_version_all(resource_id, version_id, sort_options) {
-      return await this.#wrapper.list_until(
-        `/resources/${resource_id}/downloads/versions/${version_id}`,
-        () => true,
-        sort_options
-      );
+    async listByVersionAll(resourceId, versionId, sortOptions) {
+        return await this.#wrapper.listUntil(
+            `/resources/${resourceId}/downloads/versions/${versionId}`,
+            () => true,
+            sortOptions
+        );
     }
     
     // List multiple pages of downloads by version for a given resource until a condition is no longer met.
     //
     // Response data: {}
-    async list_by_version_until(resource_id, version_id, should_continue, sort_options) {
-      return await this.#wrapper.list_until(
-        `/resources/${resource_id}/downloads/versions/${version_id}`,
-        should_continue,
-        sort_options
-      );
+    async listByVersionUntil(resourceId, versionId, shouldContinue, sortOptions) {
+        return await this.#wrapper.listUntil(
+            `/resources/${resourceId}/downloads/versions/${versionId}`,
+            shouldContinue,
+            sortOptions
+        );
     }
 }
 

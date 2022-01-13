@@ -5,45 +5,45 @@ class ProfilePostsHelper {
     #wrapper;
     
     constructor(wrapper) {
-      this.#wrapper = wrapper;
+        this.#wrapper = wrapper;
     }
     
     // List a page of profile posts on your profile.
     //
     // Response data: {}
-    async list(sort_options) {
-      return await this.#wrapper.get("/members/self/profile-posts", sort_options);
+    async list(sortOptions) {
+        return await this.#wrapper.get("/members/self/profile-posts", sortOptions);
     }
     
     // List all pages of profile posts on your profile.
     //
     // Response data: {}
-    async list_all(sort_options) {
-      return await this.#wrapper.list_until("/members/self/profile-posts", () => true, sort_options);
+    async listAll(sortOptions) {
+        return await this.#wrapper.listUntil("/members/self/profile-posts", () => true, sortOptions);
     }
     
     // List multiple pages of profile posts on your profile until a condition is no longer met.
     //
     // Response data: {}
-    async list_until(should_continue, sort_options) {
-      return await this.#wrapper.list_until("/members/self/profile-posts", should_continue, sort_options);
+    async listUntil(shouldContinue, sortOptions) {
+        return await this.#wrapper.listUntil("/members/self/profile-posts", shouldContinue, sortOptions);
     }
     
     // Fetch information about a profile post on your profile.
     //
     // Response data: {}
-    async fetch(profile_post_id) {
-      return await this.#wrapper.get(`/members/self/profile-posts/${profile_post_id}`);
+    async fetch(profilePostId) {
+        return await this.#wrapper.get(`/members/self/profile-posts/${profilePostId}`);
     }
     
     // Modify a profile post on your profile that you've authored.
-    async modify(profile_post_id, message) {
-      return await this.#wrapper.patch(`/members/self/profile-posts/${profile_post_id}`, { message });
+    async modify(profilePostId, message) {
+        return await this.#wrapper.patch(`/members/self/profile-posts/${profilePostId}`, { message });
     }
     
     // Delete a profile post on your profile that you've authored.
-    async delete(profile_post_id) {
-      return await this.#wrapper.delete(`/members/self/profile-posts/${profile_post_id}`);
+    async delete(profilePostId) {
+        return await this.#wrapper.delete(`/members/self/profile-posts/${profilePostId}`);
     }
 }
 

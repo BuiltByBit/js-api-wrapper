@@ -13,6 +13,9 @@
             "error",
             {"code": 120}
         ],
+        "camelcase": [
+            "error"
+        ],
         "indent": [
             "error",
             4

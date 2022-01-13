@@ -5,61 +5,61 @@ class ThreadsHelper {
     #wrapper;
     
     constructor(wrapper) {
-      this.#wrapper = wrapper;
+        this.#wrapper = wrapper;
     }
     
     // List a page of threads you own or collaborate on.
     //
     // Response data: {}
-    async list(sort_options) {
-      return await this.#wrapper.get("/threads", sort_options);
+    async list(sortOptions) {
+        return await this.#wrapper.get("/threads", sortOptions);
     }
     
     // List all pages of threads you own or collaborate on.
     //
     // Response data: {}
-    async list_all(sort_options) {
-      return await this.#wrapper.list_until("/threads", () => true, sort_options);
+    async listAll(sortOptions) {
+        return await this.#wrapper.listUntil("/threads", () => true, sortOptions);
     }
     
     // List multiple pages of threads you own or collaborate on until a condition is no longer met.
     //
     // Response data: {}
-    async list_until(should_continue, sort_options) {
-      return await this.#wrapper.list_until("/threads", should_continue, sort_options);
+    async listUntil(shouldContinue, sortOptions) {
+        return await this.#wrapper.listUntil("/threads", shouldContinue, sortOptions);
     }
     
     // Fetch information about a thread you own or collaborate on.
     //
     // Response data: {}
-    async fetch(thread_id) {
-      return await this.#wrapper.get(`/threads/${thread_id}`);
+    async fetch(threadId) {
+        return await this.#wrapper.get(`/threads/${threadId}`);
     }
     
     // List a page of replies for a thread you own or collaborate on.
     //
     // Response data: {}
-    async list_replies(thread_id, sort_options) {
-      return await this.#wrapper.get(`/threads/${thread_id}/replies`, sort_options);
+    async listReplies(threadId, sortOptions) {
+        return await this.#wrapper.get(`/threads/${threadId}/replies`, sortOptions);
     }
     
     // List all pages of replies for a thread you own or collaborate on.
     //
     // Response data: {}
-    async list_replies_all(thread_id, sort_options) {
-      return await this.#wrapper.list_until(`/threads/${thread_id}/replies`, () => true, sort_options);
+    async listRepliesAll(threadId, sortOptions) {
+        return await this.#wrapper.listUntil(`/threads/${threadId}/replies`, () => true, sortOptions);
     }
     
     // List multiple pages of replies for a thread you own or collaborate on until a condition is no longer met.
     //
     // Response data: {}
-    async list_replies_until(thread_id, should_continue, sort_options) {
-      return await this.#wrapper.list_until(`/threads/${thread_id}/replies`, should_continue, sort_options);
+    async listRepliesUntil(threadId, shouldContinue, sortOptions) {
+        return await this.#wrapper.listUntil(`/threads/${threadId}/replies`, shouldContinue, sortOptions);
     }
     
     // Reply to a thread you own or collaborate on.
-    async reply(thread_id, message) {
-      return await this.#wrapper.post(`/threads/${thread_id}/replies`, { message });
+    async reply(threadId, message) {
+        return await this.#wrapper.post(`/threads/${threadId}/replies`, { message });
     }
 }
 
