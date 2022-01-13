@@ -46,5 +46,5 @@ class ProfilePostsHelper {
       return await this.wrapper.delete(`/members/self/profile-posts/${profile_post_id}`);
     }
 }
-  
+
 exports.ProfilePostsHelper = ProfilePostsHelper;

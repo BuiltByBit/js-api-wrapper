@@ -1,6 +1,8 @@
 // Copyright (c) 2021 MC-Market (Mick Capital Pty. Ltd.)
 // MIT License (https://github.com/MC-Market-org/js-api-wrapper/blob/main/LICENSE)
 
+const { ProfilePostsHelper } = require("./ProfilePostsHelper.js");
+
 class MembersHelper {
     #wrapper;
     
@@ -47,7 +49,10 @@ class MembersHelper {
     async bans() {
       return await this.wrapper.get("/members/bans");
     }
+
+    profilePosts() {
+      return new ProfilePostsHelper(#wrapper);
+    }
 }
-  
+
 exports.MembersHelper = MembersHelper;
-  

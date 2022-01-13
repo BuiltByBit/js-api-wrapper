@@ -1,6 +1,13 @@
 // Copyright (c) 2021 MC-Market (Mick Capital Pty. Ltd.)
 // MIT License (https://github.com/MC-Market-org/js-api-wrapper/blob/main/LICENSE)
 
+const { DownloadsHelper } = require("./DownloadsHelper.js");
+const { LicensesHelper } = require("./LicensesHelper.js");
+const { PurchasesHelper } = require("./PurchasesHelper.js");
+const { ReviewsHelper } = require("./ReviewsHelper.js");
+const { UpdatesHelper } = require("./UpdatesHelper.js");
+const { VersionsHelper } = require("./VersionsHelper.js");
+
 class ResourcesHelper {
     #wrapper;
     
@@ -75,6 +82,30 @@ class ResourcesHelper {
         description: description,
         tag_line: tag_line,
       });
+    }
+
+    downloads() {
+      return new DownloadsHelper(#wrapper);
+    }
+
+    licenses() {
+      return new LicensesHelper(#wrapper);
+    }
+
+    purchases() {
+      return new PurchasesHelper(#wrapper);
+    }
+
+    reviews() {
+      return new ReviewsHelper(#wrapper);
+    }
+
+    updates() {
+      return new UpdatesHelper(#wrapper);
+    }
+
+    versions() {
+      return new VersionsHelper(#wrapper);
     }
 }
 

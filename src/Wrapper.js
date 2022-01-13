@@ -1,11 +1,11 @@
 // Copyright (c) 2021 MC-Market (Mick Capital Pty. Ltd.)
 // MIT License (https://github.com/MC-Market-org/js-api-wrapper/blob/main/LICENSE)
 
-const AlertsHelper = require("./helpers/AlertsHelper.js");
-const ConversationsHelper = require("./helpers/ConversationsHelper.js");
-const ThreadsHelper = require("./helpers/ThreadsHelper.js");
-const MembersHelper = require("./helpers/members/MembersHelper.js");
-const ResourcesHelper = require("./helpers/resources/ResourcesHelper.js");
+const { AlertsHelper } = require("./helpers/AlertsHelper.js");
+const { ConversationsHelper } = require("./helpers/ConversationsHelper.js");
+const { ThreadsHelper } = require("./helpers/ThreadsHelper.js");
+const { MembersHelper } = require("./helpers/members/MembersHelper.js");
+const { ResourcesHelper } = require("./helpers/resources/ResourcesHelper.js");
 
 /** The primary wrapping type for interactions with MC-Market's API. */
 class Wrapper {
