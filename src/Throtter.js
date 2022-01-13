@@ -9,12 +9,10 @@ class Throttler {
     #writeLastRequest;
 
     constructor() {
-        #readLastRetry = 0;
-        #readLastRequest = Date.now();
+        this.#readLastRetry = 0;
+        this.#readLastRequest = Date.now();
 
-        #writeLastRetry = 0;
-        #writeLastRequest = Date.now();
+        this.#writeLastRetry = 0;
+        this.#writeLastRequest = Date.now();
     }
-
-
 }
