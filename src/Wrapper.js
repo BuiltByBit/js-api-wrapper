@@ -2,7 +2,9 @@
 // MIT License (https://github.com/MC-Market-org/js-api-wrapper/blob/main/LICENSE)
 
 const axios = require("axios");
-const utils = require("./utils.js");
+
+const { Http } = require("./Http.js");
+const { Throttler } = require("./Throttler.js");
 
 const { AlertsHelper } = require("./helpers/AlertsHelper.js");
 const { ConversationsHelper } = require("./helpers/ConversationsHelper.js");
@@ -21,8 +23,7 @@ class Wrapper {
     /** The content type used for WRITE operations with bodies (ie. POST/PATCH). */
     static #WRITE_CONTENT_TYPE = "application/json";
 
-    #client;
-    #throttler;
+    #http;
 
     /** Initialise the wrapper with a provided API token.
      * 
@@ -30,13 +31,15 @@ class Wrapper {
      */
     async init(token) {
         // Create axios instance with our base URL and default headers.
-        this.#client = axios.create({
+        let client = axios.create({
             baseURL: Wrapper.#BASE_URL,
             headers: token.asHeader(),
         });
     
         // Insert rate limiting store object.
-        this.#throttler = new Throttler();
+        let throttler = new Throttler();
+
+        this.#http = new Http(client, throttler);
 
         // Make a request to the health endpoint. If errored, return the provided error instead of the wrapper object.
         let healthCheck = await this.health();

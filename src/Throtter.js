@@ -15,4 +15,47 @@ class Throttler {
         this.#writeLastRetry = 0;
         this.#writeLastRequest = Date.now();
     }
+
+    async stallIfRequired(write) {
+        let stall = true;
+    
+        while (stall) {
+            let time = Date.now();
+    
+            // As rate limits for WRITE operations are applied independently of those applied to READ operations, we first
+            // determine if we're in a WRITE operation, and if we are, attempt to stall if required. `stall_for_helper` will
+            // return true if a stall was required (and it completed the stall), or false if no stall was required.
+            if (write && (await this.#stallForHelper(this.#writeLastRetry, this.#writeLastRequest, time))) {
+                continue;
+            } else if (write) {
+                stall = false;
+                continue;
+            }
+    
+            // If we haven't started a new iteration of this loop yet, we must be in a READ operation.
+            if (await this.#stallForHelper(this.#readLastRetry, this.#readLastRequest, time)) {
+                continue;
+            } else {
+                stall = false;
+            }
+        }
+    }
+    
+    // A helper function for `stall_if_required` which computes over a generic set of rate limiting parameters.
+    async #stallForHelper(last_retry, last_request, time) {
+        // If we've previously hit a rate limit, no other request has been completed with a non-429 response since, and
+        // we're still within the Retry-After delay period, we should stall this request. The exact amount of time we stall
+        // for derives from the amount of time that has passed since the last request, minus the Retry-After value.
+        if (last_retry > 0 && time - last_request < last_retry) {
+            let stall_for = last_retry - (time - last_request);
+            debug(`Stalling request for ${stall_for}ms.`);
+            await new Promise((resolve) => setTimeout(resolve, stall_for));
+    
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
+
+exports.Throttler = Throttler;
