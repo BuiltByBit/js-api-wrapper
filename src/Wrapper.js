@@ -4,6 +4,8 @@
 const axios = require("axios");
 
 const { Http } = require("./Http.js");
+const { Error } = require("./Error.js");
+const { Token } = require("./Token.js");
 const { Throttler } = require("./Throttler.js");
 
 const { AlertsHelper } = require("./helpers/AlertsHelper.js");
@@ -25,212 +27,102 @@ class Wrapper {
 
     #http;
 
-    /** Initialise the wrapper with a provided API token.
+    /** Initialise this wrapper with a provided API token.
      * 
-     * @param {Token} token The 
+     * <br><br>
+     * 
+     * By default, initialisation of this wrapper will execute a health check which we expect to always succeed under
+     * nominal conditions. If the request does fail, we expect subsequent requests to other endpoints to also fail. In
+     * this situation, we conclude that an initialisation failure has occured. We reject the returned Promise and pass
+     * back the error to the caller.
+     * 
+     * @param {Token} token The constructed API token.
+     * @param {boolean} health Whether or not to execute a health check during initialisation.
      */
-    async init(token) {
-        // Create axios instance with our base URL and default headers.
-        let client = axios.create({
-            baseURL: Wrapper.#BASE_URL,
-            headers: token.asHeader(),
-        });
-    
-        // Insert rate limiting store object.
-        let throttler = new Throttler();
-
-        this.#http = new Http(client, throttler);
-
-        // Make a request to the health endpoint. If errored, return the provided error instead of the wrapper object.
-        let healthCheck = await this.health();
-        if (healthCheck.result === "error") {
-            return healthCheck;
+    async init(token, health = true) {
+        if (!(token instanceof Token)) {
+            throw Error.internal("The 'token' parameter was not of type Token.");
+        } else if (!(typeof health === "boolean")) {
+            throw Error.internal("The 'health' parameter was not a boolean.");
         }
-    
-        return { result: "success" };
+
+        let client = axios.create({baseURL: Wrapper.#BASE_URL, headers: token.asHeader()});
+        this.#http = new Http(client, new Throttler());
+
+        if (health) await this.health();
+        return;
     }
 
-    async get(endpoint, sortOptions) {
-        try {
-            if (sortOptions) {
-                endpoint += utils.object_to_query_string(sortOptions);
-            }
-    
-            await utils.stall_if_required(this.rate_limits, false);
-            let response = await this.client.get(endpoint);
-    
-            this.rate_limits.read_last_request = Date.now();
-            this.rate_limits.read_last_retry = 0;
-    
-            return response.data;
-        } catch (error) {
-            if (error.response && error.response.status === 429) {
-                this.rate_limits.read_last_retry = error.response.headers["retry-after"];
-                this.rate_limits.read_last_request = Date.now();
-    
-                return await this.get(endpoint);
-            } else if (error.response) {
-                return error.response.data;
-            } else {
-                return {
-                    result: "error",
-                    error: { code: "LocalWrapperError", message: error.message },
-                };
-            }
+    /** Schedule an empty request which we expect to always succeed under nominal conditions. */
+    async health() {
+        if (await this.get("/health") !== "ok") {
+            throw Error.internal("The health response contained unexpected data.");
         }
     }
 
-    async patch(endpoint, body) {
-        try {
-            await utils.stall_if_required(this.rate_limits, true);
-            let response = await this.client.patch(endpoint, body, {
-                headers: { "Content-Type": WRITE_CONTENT_TYPE },
-            });
-    
-            this.rate_limits.write_last_request = Date.now();
-            this.rate_limits.write_last_retry = 0;
-    
-            return response.data;
-        } catch (error) {
-            if (error.response && error.response.status === 429) {
-                this.rate_limits.write_last_retry = error.response.headers["retry-after"];
-                this.rate_limits.write_last_request = Date.now();
-    
-                return await this.patch(endpoint, body);
-            } else if (error.response) {
-                return error.response.data;
-            } else {
-                return {
-                    result: "error",
-                    error: { code: "LocalWrapperError", message: error.message },
-                };
-            }
-        }
-    }
+    /** Schedule an empty request and measure how long the API took to respond.
+     * 
+     * <br><br>
+     * 
+     * This duration may not be representative of the raw request latency due to the fact that requests may be stalled
+     * locally within this wrapper to ensure compliance with rate limiting rules. Whilst this is a trade-off, it can
+     * be argued that the returned duration will be more representative of the true latencies experienced.
 
-    async post(endpoint, body) {
-        try {
-            await utils.stall_if_required(this.rate_limits, true);
-            let response = await this.client.post(endpoint, body, {
-                headers: { "Content-Type": WRITE_CONTENT_TYPE },
-            });
-    
-            this.rate_limits.write_last_request = Date.now();
-            this.rate_limits.write_last_retry = 0;
-    
-            return response.data;
-        } catch (error) {
-            if (error.response && error.response.status === 429) {
-                this.rate_limits.write_last_retry = error.response.headers["retry-after"];
-                this.rate_limits.write_last_request = Date.now();
-    
-                return await this.post(endpoint, body);
-            } else if (error.response) {
-                return error.response.data;
-            } else {
-                return {
-                    result: "error",
-                    error: { code: "LocalWrapperError", message: error.message },
-                };
-            }
-        }
-    }
-
-    async delete(endpoint) {
-        try {
-            await utils.stall_if_required(this.rate_limits, true);
-            let response = await this.client.delete(endpoint);
-    
-            this.rate_limits.write_last_request = Date.now();
-            this.rate_limits.write_last_retry = 0;
-    
-            return response.data;
-        } catch (error) {
-            if (error.response && error.response.status === 429) {
-                this.rate_limits.write_last_retry = error.response.headers["retry-after"];
-                this.rate_limits.write_last_request = Date.now();
-    
-                return await this.delete(endpoint);
-            } else if (error.response) {
-                return error.response.data;
-            } else {
-                return {
-                    result: "error",
-                    error: { code: "LocalWrapperError", message: error.message },
-                };
-            }
-        }
-    }
-
-    async listUntil(endpoint, shouldContinue, sortOptions) {
-        // Ensure an object is initialised if undefined, and that the page field exists.
-        if (typeof sortOptions === "undefined") {
-            sortOptions = {};
-        }
-        if (typeof sortOptions.page === "undefined") {
-            sortOptions.page = 1;
-        }
-
-        let allData = [];
-        let continueFor = true;
-
-        // This is continued until we either encounter an error, `shouldContinue` returns false, or we've reached the last
-        // page (ie. data.length() != PER_PAGE).
-        while (continueFor) {
-        // If any requests return an error, pass the response to the caller rather than continuing.
-            let response = await this.get(endpoint, sortOptions);
-            if (response.result === "error") {
-                return response;
-            }
-
-            for (const index in response.data) {
-                if (shouldContinue(response.data[index])) {
-                    allData.push(response.data[index]);
-                } else {
-                    continueFor = false;
-                    break;
-                }
-            }
-
-            if (response.data.length != PER_PAGE) {
-                continueFor = false;
-            }
-
-            sortOptions.page++;
-        }
-
-        return { result: "success", data: allData };
-    }
-
+     * @return {number} The response time in milliseconds.
+     */
     async ping() {
         let start = Date.now();
-        let response = await this.health();
-        let stop = Date.now();
-    
-        if (response.result === "success") {
-            response.data = stop - start;
-        }
-    
-        return response;
+        await this.health();
+        return Date.now() - start;
     }
 
+    /** Access alert-related helper functions.
+     * 
+     * @return {AlertsHelper} A newly-constructed alert helper instance.
+     */
     alerts() {
         return new AlertsHelper(this);
     }
 
+    /** Access conversation-related helper functions.
+     * 
+     * @return {ConversationsHelper} A newly-constructed conversation helper instance.
+     */
     conversations() {
         return new ConversationsHelper(this);
     }
 
+    /** Access thread-related helper functions.
+     * 
+     * @return {ThreadsHelper} A newly-constructed thread helper instance.
+     */
     threads() {
         return new ThreadsHelper(this);
     }
 
+    /** Access member-related helper functions.
+     * 
+     * @return {MembersHelper} A newly-constructed member helper instance.
+     */
     members() {
         return new MembersHelper(this);
     }
 
+    /** Access resource-related helper functions.
+     * 
+     * @return {ResourcesHelper} A newly-constructed resource helper instance.
+     */
     resources() {
         return new ResourcesHelper(this);
     }
+
+    /** Access the inner Http instance which can be used to make raw requests.
+     * 
+     * @returns {Http} The current Http instance in use by this wrapper.
+     */
+    http() {
+        return this.#http;
+    }
 }
+
+exports.Wrapper = Wrapper;

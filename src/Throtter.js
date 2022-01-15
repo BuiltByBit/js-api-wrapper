@@ -16,6 +16,26 @@ class Throttler {
         this.#writeLastRequest = Date.now();
     }
 
+    setRead(retry) {
+        this.#readLastRetry = retry;
+        this.#readLastRequest = Date.now();
+    }
+
+    setWrite(retry) {
+        this.#writeLastRetry = retry;
+        this.#writeLastRequest = Date.now();
+    }
+
+    resetRead() {
+        this.#readLastRetry = 0;
+        this.#readLastRequest = Date.now();
+    }
+
+    resetWrite() {
+        this.#writeLastRetry = 0;
+        this.#writeLastRequest = Date.now();
+    }
+
     async stallIfRequired(write) {
         let stall = true;
     
@@ -42,14 +62,13 @@ class Throttler {
     }
     
     // A helper function for `stall_if_required` which computes over a generic set of rate limiting parameters.
-    async #stallForHelper(last_retry, last_request, time) {
+    async #stallForHelper(lastRetry, lastRequest, time) {
         // If we've previously hit a rate limit, no other request has been completed with a non-429 response since, and
         // we're still within the Retry-After delay period, we should stall this request. The exact amount of time we stall
         // for derives from the amount of time that has passed since the last request, minus the Retry-After value.
-        if (last_retry > 0 && time - last_request < last_retry) {
-            let stall_for = last_retry - (time - last_request);
-            debug(`Stalling request for ${stall_for}ms.`);
-            await new Promise((resolve) => setTimeout(resolve, stall_for));
+        if (lastRetry > 0 && time - lastRequest < lastRetry) {
+            let stallFor = lastRetry - (time - lastRequest);
+            await new Promise((resolve) => setTimeout(resolve, stallFor));
     
             return true;
         } else {

@@ -13,6 +13,7 @@ class Token {
     private(value) {
         this.#type = "Private";
         this.#value = value;
+        return this;
     }
 
     /** Sets the values of this token associated with a Shared type.
@@ -22,6 +23,7 @@ class Token {
     shared(value) {
         this.#type = "Shared";
         this.#value = value;
+        return this;
     }
 
     /** Constructs an object containing the header representation of this token.
@@ -32,3 +34,5 @@ class Token {
         return {Authorization: `${this.#type} ${this.#value}`};
     }
 }
+
+exports.Token = Token;
