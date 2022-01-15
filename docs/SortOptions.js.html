@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: SortOptions.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,56 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: SortOptions.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// Copyright (c) 2021 MC-Market (Mick Capital Pty. Ltd.)
+// MIT License (https://github.com/MC-Market-org/js-api-wrapper/blob/main/LICENSE)
 
+/** A type representing the sorting options available for listing-style endpoints. */
+class SortOptions {
+    sort;
+    order;
+    page;
 
-    <h3> </h3>
+    /** Convets this SortOptions instance into a query string.
+     * 
+     * @returns {string} The query-string representation.
+     */
+    toQueryString() {
+        let asArray = [];
 
+        if (this.sort) {
+            asArray.push(`sort=${this.sort}`);
+        }
+        if (this.order) {
+            asArray.push(`order=${this.order}`);
+        }
+        if (this.page) {
+            asArray.push(`page=${this.page}`);
+        }
+        
+        return "?" + asArray.join("&amp;");
+    }
 
+    /** Returns whether or not any sort options have been set.
+     * 
+     * @returns {bool} Whether or not any sort options have been set.
+     */
+    isUnset() {
+        return this.sort || this.order || this.page;
+    }
+}
 
-
-
-
-
-
-
-
-    
-
-
-
-
-
+exports.SortOptions = SortOptions;</code></pre>
+        </article>
+    </section>
 
 
 

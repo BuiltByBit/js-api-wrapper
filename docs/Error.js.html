@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: Error.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,49 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: Error.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// Copyright (c) 2021 MC-Market (Mick Capital Pty. Ltd.)
+// MIT License (https://github.com/MC-Market-org/js-api-wrapper/blob/main/LICENSE)
 
+/** A type which represents a parsed error from the API, or an internal wrapper error. */
+class Error {
+    #code;
+    #message;
 
-    <h3> </h3>
+    constructor(json) {
+        this.#code = json.code;
+        this.#message = json.message;
+    }
 
+    /** Converts this error into a human-readable string.
+     * 
+     * @returns {string} A string representation of this error.
+     */
+    toString() {
+        return `${this.#code}: ${this.#message}`;
+    }
 
+    /** Constructs a new Error which originated within the wrapper.
+     * 
+     * @param {string} message The internal error message.
+     * @returns {Error} The newly-constructed error.
+     */
+    static internal(message) {
+        return new Error({code: "InternalWrapperError", message});
+    }
+}
 
-
-
-
-
-
-
-
-    
-
-
-
-
-
+exports.Error = Error;</code></pre>
+        </article>
+    </section>
 
 
 
