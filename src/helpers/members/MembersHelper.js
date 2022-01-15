@@ -50,7 +50,7 @@ class MembersHelper {
     
     /** Fetch a list of recently issued bans.
      * 
-     * @return {object} A raw data object.
+     * @return {Array<object>} An array of raw data objects.
      */
     async bans() {
         return await this.#wrapper.http().get("/members/bans");

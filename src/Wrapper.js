@@ -61,7 +61,7 @@ class Wrapper {
      * This duration may not be representative of the raw request latency due to the fact that requests may be stalled
      * locally within this wrapper to ensure compliance with rate limiting rules. Whilst this is a trade-off, it can
      * be argued that the returned duration will be more representative of the true latencies experienced.
-
+     * 
      * @return {number} The response time in milliseconds.
      */
     async ping() {

@@ -23,7 +23,7 @@ class Http {
         if (typeof endpoint !== "string") {
             throw Error.internal("The 'endpoint' parameter was not a string.");
         } else if (!(sort instanceof SortOptions)) {
-            throw Error.internal("The 'sortOptions' parameter was not of type SortOptions.");
+            throw Error.internal("The 'sort' parameter was not of type SortOptions.");
         }
 
         if (!sort.isUnset()) endpoint += sort.toQueryString();
@@ -94,7 +94,7 @@ class Http {
         if (!(typeof endpoint !== "string")) {
             throw Error.internal("The 'endpoint' parameter was not a string.");
         } else if (!(sort instanceof SortOptions)) {
-            throw Error.internal("The 'sortOptions' parameter was not of type SortOptions.");
+            throw Error.internal("The 'sort' parameter was not of type SortOptions.");
         }
 
         sort.page = 1;
