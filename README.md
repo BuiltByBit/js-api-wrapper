@@ -22,33 +22,30 @@ npm i mcm-js-api-wrapper
 Initialise wrapper and fetch information about yourself via Promise's .then() notation:
 
 ```JS
-const wrapper = require("mcm-js-api-wrapper");
-const token = {type: "Private", value: "Find @ https://www.mc-market.org/account/api"};
+const { Wrapper, Token, TokenType } = require("mcm-js-api-wrapper");
 
-wrapper.init(token).then(init => {
-  if (init.result === "error") {
-    console.log(init.error);
-    process.exit(0);
-  }
-}).then(wrapper.members.self().then(self => {
-  console.log(self);
-}));
+let token = new Token(TokenType.PRIVATE, "Find @ https://www.mc-market.org/account/api");
+
+// We catch any Promise rejections ourselves.
+wrapper.init(token).then(wrapper.members().self().then(self => {
+    console.log(self);
+})).catch(error => {
+    console.log(error.toString());
+});
 ```
 
 Initialise wrapper and fetch information about yourself via async/await:
 
 ```JS
-const wrapper = require("mcm-js-api-wrapper");
-const token = {type: "Private", value: "Find @ https://www.mc-market.org/account/api"};
+const { Wrapper, Token, TokenType } = require("mcm-js-api-wrapper");
 ...
 
-let init = await wrapper.init(token);
-if (init.result === "error") {
-  console.log(init.error);
-  process.exit(0);
-}
+let token = new Token(TokenType.PRIVATE, "Find @ https://www.mc-market.org/account/api");
+let wrapper = new Wrapper();
 
-console.log(await wrapper.members.self());
+// Let the caller catch any Promise rejections. Else, use a try-catch block.
+await wrapper.init(token);
+console.log(await wrapper.members().self());
 ```
 
 A full list of functions and their signatures can be found [here](https://github.com/MC-Market-org/mcm-js-api-wrapper/blob/main/USAGE.md).
