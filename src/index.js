@@ -3,6 +3,8 @@
 
 exports.Token = require("./Token.js");
 exports.SortOptions = require("./SortOptions.js");
+exports.Http = require("./Http.js");
+exports.Error = require("./Error.js");
 exports.Wrapper = require("./Wrapper.js");
 
 exports.AlertsHelper = require("./helpers/AlertsHelper.js");
