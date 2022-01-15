@@ -19,12 +19,6 @@ class Wrapper {
     /** The base API URL and version which will be prepended to non-absolute paths by axios. */
     static #BASE_URL = "https://api.mc-market.org/v1";
 
-    /** The maximum number of objects returned by a list endpoint for a single request. */
-    static #PER_PAGE = 20;
-
-    /** The content type used for WRITE operations with bodies (ie. POST/PATCH). */
-    static #WRITE_CONTENT_TYPE = "application/json";
-
     #http;
 
     /** Initialise this wrapper with a provided API token.

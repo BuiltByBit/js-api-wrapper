@@ -21,6 +21,10 @@ class SortOptions {
         
         return "?" + asArray.join("&");
     }
+
+    isUnset() {
+        return this.sort || this.order || this.page;
+    }
 }
 
 exports.SortOptions = SortOptions;
