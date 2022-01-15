@@ -25,6 +25,7 @@ Initialise wrapper and fetch information about yourself via Promise's .then() no
 const { Wrapper, Token, TokenType } = require("mcm-js-api-wrapper");
 
 let token = new Token(TokenType.PRIVATE, "Find @ https://www.mc-market.org/account/api");
+let wrapper = new Wrapper();
 
 // We catch any Promise rejections ourselves.
 wrapper.init(token).then(wrapper.members().self().then(self => {
