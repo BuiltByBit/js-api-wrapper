@@ -42,9 +42,10 @@ class Throttler {
         while (stall) {
             let time = Date.now();
     
-            // As rate limits for WRITE operations are applied independently of those applied to READ operations, we first
-            // determine if we're in a WRITE operation, and if we are, attempt to stall if required. `stall_for_helper` will
-            // return true if a stall was required (and it completed the stall), or false if no stall was required.
+            // As rate limits for WRITE operations are applied independently of those applied to READ operations, we
+            // first determine if we're in a WRITE operation, and if we are, attempt to stall if required.
+            // `stall_for_helper` will return true if a stall was required (and it completed the stall), or false if
+            // no stall was required.
             if (write && (await this.#stallForHelper(this.#writeLastRetry, this.#writeLastRequest, time))) {
                 continue;
             } else if (write) {
@@ -64,8 +65,9 @@ class Throttler {
     // A helper function for `stall_if_required` which computes over a generic set of rate limiting parameters.
     async #stallForHelper(lastRetry, lastRequest, time) {
         // If we've previously hit a rate limit, no other request has been completed with a non-429 response since, and
-        // we're still within the Retry-After delay period, we should stall this request. The exact amount of time we stall
-        // for derives from the amount of time that has passed since the last request, minus the Retry-After value.
+        // we're still within the Retry-After delay period, we should stall this request. The exact amount of time we
+        // stall for derives from the amount of time that has passed since the last request, minus the Retry-After
+        // value.
         if (lastRetry > 0 && time - lastRequest < lastRetry) {
             let stallFor = lastRetry - (time - lastRequest);
             await new Promise((resolve) => setTimeout(resolve, stallFor));

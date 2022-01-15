@@ -14,5 +14,9 @@
     "templates": {
         "cleverLinks": false,
         "monospaceLinks": false
+    },
+    "opts": {
+        "destination": "docs/",
+        "recurse": true
     }
 }

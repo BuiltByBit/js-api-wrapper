@@ -122,9 +122,9 @@ class LicensesHelper {
      * @param {number} startDate The UNIX timestamp of when the license should start.
      * @param {number} endDate The UNIX timestamp of when the license should end.
      */
-    async modifyTemporary(resourceId, license_id, startDate, endDate) {
+    async modifyTemporary(resourceId, licenseId, startDate, endDate) {
         let body = {permanent: false, "start_date": startDate, "end_date": endDate};
-        return await this.#wrapper.http().patch(`/resources/${resourceId}/licenses/${license_id}`, body);
+        return await this.#wrapper.http().patch(`/resources/${resourceId}/licenses/${licenseId}`, body);
     }
 }
 

@@ -114,7 +114,7 @@ class Http {
                 }
             }
 
-            if (data.length != PER_PAGE) continueFor = false;
+            if (data.length != Http.#PER_PAGE) continueFor = false;
             sort.page++;
         }
 
