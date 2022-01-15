@@ -10,22 +10,22 @@ class AlertsHelper {
 
     // List a single page of unread alerts.
     async list(sortOptions) {
-        return await this.#wrapper.get("/alerts", sortOptions);
+        return await this.#wrapper.http().get("/alerts", sortOptions);
     }
 
     // List all pages of unread alerts.
     async listAll(sortOptions) {
-        return await this.#wrapper.listUntil("/alerts", () => true, sortOptions);
+        return await this.#wrapper.http().listUntil("/alerts", () => true, sortOptions);
     }
 
     // List multiple pages of unread alerts until a condition is no longer met.
     async listUntil(shouldContinue, sortOptions) {
-        return await this.#wrapper.listUntil("/alerts", shouldContinue, sortOptions);
+        return await this.#wrapper.http().listUntil("/alerts", shouldContinue, sortOptions);
     }
 
     // Mark unread alerts as read.
     async markAsReadead() {
-        return await this.#wrapper.patch("/alerts", { read: true });
+        return await this.#wrapper.http().patch("/alerts", { read: true });
     }
 }
 

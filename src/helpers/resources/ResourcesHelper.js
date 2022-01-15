@@ -19,7 +19,7 @@ class ResourcesHelper {
     //
     // Response data: {}
     async list(sortOptions) {
-        return await this.#wrapper.get("/resources", sortOptions);
+        return await this.#wrapper.http().get("/resources", sortOptions);
     }
     
     // No helper functions for `list_until` have been provided here for listing public resources. Whilst this breaks
@@ -30,21 +30,21 @@ class ResourcesHelper {
     //
     // Response data: {}
     async listOwned(sortOptions) {
-        return await this.#wrapper.get("/resources/owned", sortOptions);
+        return await this.#wrapper.http().get("/resources/owned", sortOptions);
     }
     
     // List all pages of owned resources.
     //
     // Response data: {}
     async listOwnedAll(sortOptions) {
-        return await this.#wrapper.listUntil("/resources/owned", () => true, sortOptions);
+        return await this.#wrapper.http().listUntil("/resources/owned", () => true, sortOptions);
     }
     
     // List multiple pages of owned resources until a condition is no longer met.
     //
     // Response data: {}
     async listOwnedUntil(shouldContinue, sortOptions) {
-        return await this.#wrapper.listUntil("/resources/owned", shouldContinue, sortOptions);
+        return await this.#wrapper.http().listUntil("/resources/owned", shouldContinue, sortOptions);
     }
     
     // List a page of collaborated resources.
@@ -58,26 +58,26 @@ class ResourcesHelper {
     //
     // Response data: {}
     async listCollaboratedAll(sortOptions) {
-        return await this.#wrapper.listUntil("/resources/collaborated", () => true, sortOptions);
+        return await this.#wrapper.http().listUntil("/resources/collaborated", () => true, sortOptions);
     }
     
     // List multiple pages of collaborated resources until a condition is no longer met.
     //
     // Response data: {}
     async listCollaboratedUntil(shouldContinue, sortOptions) {
-        return await this.#wrapper.listUntil("/resources/collaborated", shouldContinue, sortOptions);
+        return await this.#wrapper.http().listUntil("/resources/collaborated", shouldContinue, sortOptions);
     }
     
     // Fetch detailed information about a resource.
     //
     // Response data: {}
     async fetch(resourceId) {
-        return await this.#wrapper.get(`/resources/${resourceId}`);
+        return await this.#wrapper.http().get(`/resources/${resourceId}`);
     }
     
     // Edit resource fields for a resource you own or collaborate on.
     async modify(resourceId, title, description, tagLine) {
-        return await this.#wrapper.patch(`/resources/${resourceId}`, {
+        return await this.#wrapper.http().patch(`/resources/${resourceId}`, {
             title: title,
             description: description,
             tag_line: tagLine,

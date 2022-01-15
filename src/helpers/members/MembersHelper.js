@@ -14,7 +14,7 @@ class MembersHelper {
     //
     // Response data: {}
     async self() {
-        return await this.#wrapper.get("/members/self");
+        return await this.#wrapper.http().get("/members/self");
     }
     
     /* functions */
@@ -22,32 +22,29 @@ class MembersHelper {
     //
     // Response data: {}
     async modifySelf(aboutMe, customTitle, signature) {
-        return await this.#wrapper.patch("/members/self", {
-            "about_me": aboutMe,
-            "custom_title": customTitle,
-            signature,
-        });
+        let body = {"about_me": aboutMe, "custom_title": customTitle, signature};
+        return await this.#wrapper.http().patch("/members/self", body);
     }
     
     // Fetch information about a member.
     //
     // Response data: {}
     async fetch(memberId) {
-        return await this.#wrapper.get(`/members/${memberId}`);
+        return await this.#wrapper.http().get(`/members/${memberId}`);
     }
     
     // Fetch information about a member by username.
     //
     // Response data: {}
     async fetchByUsername(username) {
-        return await this.#wrapper.get(`/members/usernames/${username}`);
+        return await this.#wrapper.http().get(`/members/usernames/${username}`);
     }
     
     // Fetch a list of recently issued bans.
     //
     // Response data: {}
     async bans() {
-        return await this.#wrapper.get("/members/bans");
+        return await this.#wrapper.http().get("/members/bans");
     }
 
     profilePosts() {

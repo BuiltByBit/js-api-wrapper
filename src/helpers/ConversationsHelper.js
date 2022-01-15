@@ -12,28 +12,28 @@ class ConversationsHelper {
     //
     // Response data: {}
     async list(sortOptions) {
-        return await this.#wrapper.get("/conversations", sortOptions);
+        return await this.#wrapper.http().get("/conversations", sortOptions);
     }
     
     // List all pages of unread conversations.
     //
     // Response data: {}
     async listAll(sortOptions) {
-        return await this.#wrapper.listUntil("/conversations", () => true, sortOptions);
+        return await this.#wrapper.http().listUntil("/conversations", () => true, sortOptions);
     }
     
     // List multiple pages of unread conversations until a condition is no longer met.
     //
     // Response data: {}
     async listUntil(shouldContinue, sortOptions) {
-        return await this.#wrapper.listUntil("/conversations", shouldContinue, sortOptions);
+        return await this.#wrapper.http().listUntil("/conversations", shouldContinue, sortOptions);
     }
     
     // Start a new conversation.
     //
     // Response data: {}
     async start(title, message, recipientIds) {
-        return await this.#wrapper.post("/conversations", {
+        return await this.#wrapper.http().post("/conversations", {
             title,
             message,
             "recipient_ids": recipientIds,
@@ -44,14 +44,14 @@ class ConversationsHelper {
     //
     // Response data: {}
     async listReplies(conversationId, sortOptions) {
-        return await this.#wrapper.get(`/conversations/${conversationId}/replies`, sortOptions);
+        return await this.#wrapper.http().get(`/conversations/${conversationId}/replies`, sortOptions);
     }
     
     // List all pages of replies to an unread conversation.
     //
     // Response data: {}
     async listRepliesAll(conversationId, sortOptions) {
-        return await this.#wrapper.listUntil(`/conversations/${conversationId}/replies`, () => true, sortOptions);
+        return await this.#wrapper.http().listUntil(`/conversations/${conversationId}/replies`, () => true, sortOptions);
     }
     
     // List multiple pages of replies to an unread conversation until a condition is no longer met.
@@ -65,7 +65,7 @@ class ConversationsHelper {
     //
     // Response data: {}
     async reply(conversationId, message) {
-        return await this.#wrapper.post(`/conversations/${conversationId}/replies`, {
+        return await this.#wrapper.http().post(`/conversations/${conversationId}/replies`, {
             message: message,
         });
     }

@@ -12,28 +12,28 @@ class LicensesHelper {
     //
     // Response data: {}
     async list(resourceId, sortOptions) {
-        return await this.#wrapper.get(`/resources/${resourceId}/licenses`, sortOptions);
+        return await this.#wrapper.http().get(`/resources/${resourceId}/licenses`, sortOptions);
     }
     
     // List all pages of licenses for a given resource.
     //
     // Response data: {}
     async listAll(resourceId, sortOptions) {
-        return await this.#wrapper.listUntil(`/resources/${resourceId}/licenses`, () => true, sortOptions);
+        return await this.#wrapper.http().listUntil(`/resources/${resourceId}/licenses`, () => true, sortOptions);
     }
     
     // List multiple pages of licenses for a given resource until a condition is no longer met.
     //
     // Response data: {}
     async listUntil(resourceId, should_continue, sortOptions) {
-        return await this.#wrapper.listUntil(`/resources/${resourceId}/licenses`, should_continue, sortOptions);
+        return await this.#wrapper.http().listUntil(`/resources/${resourceId}/licenses`, should_continue, sortOptions);
     }
     
     // Issue a new permanent license for a given resource.
     //
     // Response data: {}
     async issuePermanent(resourceId, purchaserid, active) {
-        return await this.#wrapper.post(`/resources/${resourceId}/licenses`, {
+        return await this.#wrapper.http().post(`/resources/${resourceId}/licenses`, {
             permanent: true,
             purchaserid,
             active,
@@ -44,7 +44,7 @@ class LicensesHelper {
     //
     // Response data: {}
     async issueTemporary(resourceId, purchaserid, startDate, endDate) {
-        return await this.#wrapper.post(`/resources/${resourceId}/licenses`, {
+        return await this.#wrapper.http().post(`/resources/${resourceId}/licenses`, {
             permanent: false,
             purchaserid,
             startDate,
@@ -56,7 +56,7 @@ class LicensesHelper {
     //
     // Response data: {}
     async fetch(resourceId, licenseId) {
-        return await this.#wrapper.get(`/resources/${resourceId}/licenses/${licenseId}`);
+        return await this.#wrapper.http().get(`/resources/${resourceId}/licenses/${licenseId}`);
     }
     
     // Fetch a member's license for a given resource.
@@ -67,12 +67,12 @@ class LicensesHelper {
       
         if (this.#wrapper.token.type === "Shared") endpoint += `?nonce=${fields.nonce}&timestamp=${fields.timestamp}`;
       
-        return await this.#wrapper.get(endpoint, fields);
+        return await this.#wrapper.http().get(endpoint, fields);
     }
     
     // Modify a permanent license (and convert to permanent if currently temporary).
     async modifyPermanent(resourceId, licenseId, active) {
-        return await this.#wrapper.patch(`/resources/${resourceId}/licenses/${licenseId}`, {
+        return await this.#wrapper.http().patch(`/resources/${resourceId}/licenses/${licenseId}`, {
             permanent: true,
             active,
         });
@@ -80,7 +80,7 @@ class LicensesHelper {
     
     // Modify a temporary license (and convert to temporary if currently permanent).
     async modifyTemporary(resourceId, license_id, startDate, endDate) {
-        return await this.#wrapper.patch(`/resources/${resourceId}/licenses/${license_id}`, {
+        return await this.#wrapper.http().patch(`/resources/${resourceId}/licenses/${license_id}`, {
             permanent: false,
             startDate,
             endDate,

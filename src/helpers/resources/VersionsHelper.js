@@ -12,14 +12,14 @@ class VersionsHelper {
     //
     // Response data: {}
     async list(resourceId, sortOptions) {
-        return await this.#wrapper.get(`/resources/${resourceId}/versions`, sortOptions);
+        return await this.#wrapper.http().get(`/resources/${resourceId}/versions`, sortOptions);
     }
     
     // List all pages of versions for a given resource.
     //
     // Response data: {}
     async listAll(resourceId, sortOptions) {
-        return await this.#wrapper.listUntil(`/resources/${resourceId}/versions`, () => true, sortOptions);
+        return await this.#wrapper.http().listUntil(`/resources/${resourceId}/versions`, () => true, sortOptions);
     }
     
     // List multiple pages of versions for a given resource until a condition is no longer
@@ -27,26 +27,26 @@ class VersionsHelper {
     //
     // Response data: {}
     async listUntil(resourceId, shouldContinue, sortOptions) {
-        return await this.#wrapper.listUntil(`/resources/${resourceId}/versions`, shouldContinue, sortOptions);
+        return await this.#wrapper.http().listUntil(`/resources/${resourceId}/versions`, shouldContinue, sortOptions);
     }
     
     // Fetch the latest version for a given resource.
     //
     // Response data: {}
     async latest(resourceId) {
-        return await this.#wrapper.get(`/resources/${resourceId}/versions/latest`);
+        return await this.#wrapper.http().get(`/resources/${resourceId}/versions/latest`);
     }
     
     // Fetch a version for a given resource.
     //
     // Response data: {}
     async fetch(resourceId, versionId) {
-        return await this.#wrapper.get(`/resources/${resourceId}/versions/${versionId}`);
+        return await this.#wrapper.http().get(`/resources/${resourceId}/versions/${versionId}`);
     }
     
     // Delete a version for a given resource.
     async delete(resourceId, versionId) {
-        return await this.#wrapper.delete(`/resources/${resourceId}/versions/${versionId}`);
+        return await this.#wrapper.http().delete(`/resources/${resourceId}/versions/${versionId}`);
     }
 }
 

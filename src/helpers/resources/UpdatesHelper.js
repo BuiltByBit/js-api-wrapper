@@ -12,40 +12,40 @@ class UpdatesHelper {
     //
     // Response data: {}
     async list(resourceId, sortOptions) {
-        return await this.#wrapper.get(`/resources/${resourceId}/updates`, sortOptions);
+        return await this.#wrapper.http().get(`/resources/${resourceId}/updates`, sortOptions);
     }
     
     // List all pages of updates for a given resource.
     //
     // Response data: {}
     async listAll(resourceId, sortOptions) {
-        return await this.#wrapper.listUntil(`/resources/${resourceId}/updates`, () => true, sortOptions);
+        return await this.#wrapper.http().listUntil(`/resources/${resourceId}/updates`, () => true, sortOptions);
     }
     
     // List multiple pages of updates for a given resource until a condition is no longer met.
     //
     // Response data: {}
     async listUntil(resourceId, shouldContinue, sortOptions) {
-        return await this.#wrapper.listUntil(`/resources/${resourceId}/updates`, shouldContinue, sortOptions);
+        return await this.#wrapper.http().listUntil(`/resources/${resourceId}/updates`, shouldContinue, sortOptions);
     }
     
     // Fetch the latest update for a given resource.
     //
     // Response data: {}
     async latest(resourceId) {
-        return await this.#wrapper.get(`/resources/${resourceId}/updates/latest`);
+        return await this.#wrapper.http().get(`/resources/${resourceId}/updates/latest`);
     }
     
     // Fetch an update for a given resource.
     //
     // Response data: {}
     async fetch(resourceId, updateId) {
-        return await this.#wrapper.get(`/resources/${resourceId}/updates/${updateId}`);
+        return await this.#wrapper.http().get(`/resources/${resourceId}/updates/${updateId}`);
     }
     
     // Delete an update for a given resource.
     async delete(resourceId, updateId) {
-        return await this.#wrapper.delete(`/resources/${resourceId}/updates/${updateId}`);
+        return await this.#wrapper.http().delete(`/resources/${resourceId}/updates/${updateId}`);
     }
 }
 

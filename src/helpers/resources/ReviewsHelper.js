@@ -12,33 +12,33 @@ class ReviewsHelper {
     //
     // Response data: {}
     async list(resourceId, sortOptions) {
-        return await this.#wrapper.get(`/resources/${resourceId}/reviews`, sortOptions);
+        return await this.#wrapper.http().get(`/resources/${resourceId}/reviews`, sortOptions);
     }
     
     // List all pages of reviews for a given resource.
     //
     // Response data: {}
     async listAll(resourceId, sortOptions) {
-        return await this.#wrapper.listUntil(`/resources/${resourceId}/reviews`, () => true, sortOptions);
+        return await this.#wrapper.http().listUntil(`/resources/${resourceId}/reviews`, () => true, sortOptions);
     }
     
     // List multiple pages of reviews for a given resource until a condition is no longer met.
     //
     // Response data: {}
     async listUntil(resourceId, shouldContinue, sortOptions) {
-        return await this.#wrapper.listUntil(`/resources/${resourceId}/reviews`, shouldContinue, sortOptions);
+        return await this.#wrapper.http().listUntil(`/resources/${resourceId}/reviews`, shouldContinue, sortOptions);
     }
     
     // Fetch a resource review by a member for a given resource.
     //
     // Response data: {}
     async fetch(resourceId, memberId) {
-        return await this.#wrapper.get(`/resources/${resourceId}/reviews/members/${memberId}`);
+        return await this.#wrapper.http().get(`/resources/${resourceId}/reviews/members/${memberId}`);
     }
     
     // Respond to a review for a given resource.
     async respond(resourceId, reviewId, response) {
-        return await this.#wrapper.patch(`/resources/${resourceId}/reviews/${reviewId}`, { response });
+        return await this.#wrapper.http().patch(`/resources/${resourceId}/reviews/${reviewId}`, { response });
     }
 }
 

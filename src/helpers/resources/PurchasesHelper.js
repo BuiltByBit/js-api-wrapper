@@ -12,14 +12,14 @@ class PurchasesHelper {
     //
     // Response data: {}
     async list(resourceId, sortOptions) {
-        return await this.#wrapper.get(`/resources/${resourceId}/purchases`, sortOptions);
+        return await this.#wrapper.http().get(`/resources/${resourceId}/purchases`, sortOptions);
     }
     
     // List all pages of purchases for a given resource.
     //
     // Response data: {}
     async listAll(resourceId, sortOptions) {
-        return await this.#wrapper.listUntil(`/resources/${resourceId}/purchases`, () => true, sortOptions);
+        return await this.#wrapper.http().listUntil(`/resources/${resourceId}/purchases`, () => true, sortOptions);
     }
     
     // List multiple pages of purchases for a given resource until a condition is no longer
@@ -27,14 +27,14 @@ class PurchasesHelper {
     //
     // Response data: {}
     async listUntil(resourceId, shouldContinue, sortOptions) {
-        return await this.#wrapper.listUntil(`/resources/${resourceId}/purchases`, shouldContinue, sortOptions);
+        return await this.#wrapper.http().listUntil(`/resources/${resourceId}/purchases`, shouldContinue, sortOptions);
     }
     
     // Fetch a purchase for a given resource.
     //
     // Response data: {}
     async fetch(resourceId, purchaseId) {
-        return await this.#wrapper.get(`/resources/${resourceId}/purchases/${purchaseId}`);
+        return await this.#wrapper.http().get(`/resources/${resourceId}/purchases/${purchaseId}`);
     }
 }
 
