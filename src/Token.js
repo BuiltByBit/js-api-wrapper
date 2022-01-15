@@ -8,6 +8,11 @@ class Token {
     #type;
     #value;
 
+    /** Constructs a new token from its constituents.
+     * 
+     * @param {TokenType} type The type of this token.
+     * @param {string} value The value of this token.
+     */
     constructor(type, value) {
         if (!(type instanceof TokenType)) {
             throw Error.internal("The 'type' parameter was not of type TokenType.");
