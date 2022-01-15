@@ -20,7 +20,7 @@ class Http {
     }
 
     async get(endpoint, sort = new SortOptions()) {
-        if (!(typeof endpoint !== "string")) {
+        if (typeof endpoint !== "string") {
             throw Error.internal("The 'endpoint' parameter was not a string.");
         } else if (!(sort instanceof SortOptions)) {
             throw Error.internal("The 'sortOptions' parameter was not of type SortOptions.");
@@ -32,7 +32,7 @@ class Http {
         try {
             let response = await this.#client.get(endpoint);
             this.#throttler.resetRead();
-            return response.data;
+            return response.data.data;
         } catch (error) {
             await this.#handleError(error, false);
             return this.get(endpoint);
@@ -40,7 +40,7 @@ class Http {
     }
 
     async post(endpoint, body) {
-        if (!(typeof endpoint !== "string")) {
+        if (typeof endpoint !== "string") {
             throw Error.internal("The 'endpoint' parameter was not a string.");
         }
 
@@ -49,7 +49,7 @@ class Http {
         try {
             let response = await this.#client.post(endpoint, body, Http.#WRITE_HEADERS).data;
             this.#throttler.resetWrite();
-            return response.data;
+            return response.data.data;
         } catch (error) {
             await this.#handleError(error, true);
             return this.post(endpoint, body);
@@ -57,7 +57,7 @@ class Http {
     }
 
     async patch(endpoint, body) {
-        if (!(typeof endpoint !== "string")) {
+        if (typeof endpoint !== "string") {
             throw Error.internal("The 'endpoint' parameter was not a string.");
         }
 
@@ -74,7 +74,7 @@ class Http {
     }
 
     async delete(endpoint) {
-        if (!(typeof endpoint !== "string")) {
+        if (typeof endpoint !== "string") {
             throw Error.internal("The 'endpoint' parameter was not a string.");
         }
 

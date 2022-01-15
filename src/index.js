@@ -1,23 +1,23 @@
 // Copyright (c) 2021 MC-Market (Mick Capital Pty. Ltd.)
 // MIT License (https://github.com/MC-Market-org/js-api-wrapper/blob/main/LICENSE)
 
-exports.Token = require("./Token.js");
-exports.SortOptions = require("./SortOptions.js");
-exports.Http = require("./Http.js");
-exports.Error = require("./Error.js");
-exports.Wrapper = require("./Wrapper.js");
+exports.Token = require("./Token.js").Token;
+exports.SortOptions = require("./SortOptions.js").SortOptions;
+exports.Http = require("./Http.js").Http;
+exports.Error = require("./Error.js").Error;
+exports.Wrapper = require("./Wrapper.js").Wrapper;
 
-exports.AlertsHelper = require("./helpers/AlertsHelper.js");
-exports.ConversationsHelper = require("./helpers/ConversationsHelper.js");
-exports.ThreadsHelper = require("./helpers/ThreadsHelper.js");
+exports.AlertsHelper = require("./helpers/AlertsHelper.js").AlertsHelper;
+exports.ConversationsHelper = require("./helpers/ConversationsHelper.js").ConversationsHelper;
+exports.ThreadsHelper = require("./helpers/ThreadsHelper.js").ThreadsHelper;
 
-exports.MembersHelper = require("./helpers/members/MembersHelper.js");
-exports.ProfilePostsHelper = require("./helpers/members/ProfilePostsHelper.js");
+exports.MembersHelper = require("./helpers/members/MembersHelper.js").MembersHelper;
+exports.ProfilePostsHelper = require("./helpers/members/ProfilePostsHelper.js").ProfilePostsHelper;
 
-exports.ResourcesHelper = require("./helpers/resources/ResourcesHelper.js");
-exports.DownloadsHelper = require("./helpers/resources/DownloadsHelper.js");
-exports.LicensesHelper = require("./helpers/resources/LicensesHelper.js");
-exports.PurchasesHelper = require("./helpers/resources/PurchasesHelper.js");
-exports.ReviewsHelper = require("./helpers/resources/ReviewsHelper.js");
-exports.UpdatesHelper = require("./helpers/resources/UpdatesHelper.js");
-exports.VersionsHelper = require("./helpers/resources/VersionsHelper.js");
+exports.ResourcesHelper = require("./helpers/resources/ResourcesHelper.js").ResourcesHelper;
+exports.DownloadsHelper = require("./helpers/resources/DownloadsHelper.js").DownloadsHelper;
+exports.LicensesHelper = require("./helpers/resources/LicensesHelper.js").LicensesHelper;
+exports.PurchasesHelper = require("./helpers/resources/PurchasesHelper.js").PurchasesHelper;
+exports.ReviewsHelper = require("./helpers/resources/ReviewsHelper.js").ReviewsHelper;
+exports.UpdatesHelper = require("./helpers/resources/UpdatesHelper.js").UpdatesHelper;
+exports.VersionsHelper = require("./helpers/resources/VersionsHelper.js").VersionsHelper;

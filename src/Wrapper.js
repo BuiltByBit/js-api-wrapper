@@ -36,7 +36,7 @@ class Wrapper {
     async init(token, health = true) {
         if (!(token instanceof Token)) {
             throw Error.internal("The 'token' parameter was not of type Token.");
-        } else if (!(typeof health === "boolean")) {
+        } else if (typeof health !== "boolean") {
             throw Error.internal("The 'health' parameter was not a boolean.");
         }
 
@@ -49,7 +49,7 @@ class Wrapper {
 
     /** Schedule an empty request which we expect to always succeed under nominal conditions. */
     async health() {
-        if (await this.get("/health") !== "ok") {
+        if (await this.#http.get("/health") !== "ok") {
             throw Error.internal("The health response contained unexpected data.");
         }
     }
