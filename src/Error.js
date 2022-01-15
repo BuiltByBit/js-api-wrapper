@@ -10,6 +10,10 @@ class Error {
         this.#message = json.message;
     }
 
+    toString() {
+        return `${this.#code}: ${this.#message}`;
+    }
+
     static internal(message) {
         return new Error({code: "InternalWrapperError", message});
     }

@@ -2,6 +2,7 @@
 // MIT License (https://github.com/MC-Market-org/js-api-wrapper/blob/main/LICENSE)
 
 exports.Token = require("./Token.js").Token;
+exports.TokenType = require("./TokenType.js").TokenType;
 exports.SortOptions = require("./SortOptions.js").SortOptions;
 exports.Http = require("./Http.js").Http;
 exports.Error = require("./Error.js").Error;
