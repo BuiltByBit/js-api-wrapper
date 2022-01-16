@@ -31,7 +31,7 @@ class SortOptions {
      * 
      * @returns {bool} Whether or not any sort options have been set.
      */
-    isUnset() {
+    isSet() {
         return this.sort || this.order || this.page;
     }
 }

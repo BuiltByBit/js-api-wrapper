@@ -34,7 +34,7 @@ class Http {
             throw Error.internal("The 'sort' parameter was not of type SortOptions.");
         }
 
-        if (!sort.isUnset()) endpoint += sort.toQueryString();
+        if (sort.isSet()) endpoint += sort.toQueryString();
         await this.#throttler.stallIfRequired(false);
 
         try {
@@ -134,8 +134,8 @@ class Http {
      * 
      * @return {Array<object>} An array of raw objects.
      */
-    async listUntil(endpoint, shouldContinue, sort) {
-        if (!(typeof endpoint !== "string")) {
+    async listUntil(endpoint, shouldContinue, sort = new SortOptions()) {
+        if (typeof endpoint !== "string") {
             throw Error.internal("The 'endpoint' parameter was not a string.");
         } else if (!(sort instanceof SortOptions)) {
             throw Error.internal("The 'sort' parameter was not of type SortOptions.");
