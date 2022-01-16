@@ -177,7 +177,7 @@ class Http {
         }
         
         if (error.response.status === 429) {
-            let retryAfter = error.response.headers["Retry-After"];
+            let retryAfter = error.response.headers["retry-after"];
 
             if (write) {
                 this.#throttler.setWrite(retryAfter);
