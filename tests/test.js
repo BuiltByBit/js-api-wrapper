@@ -3,5 +3,3 @@
 
 require("./base.js");
 require("./sort_options.js");
-
-throw "Test";
