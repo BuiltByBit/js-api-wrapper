@@ -35,7 +35,7 @@ async function run() {
         console.log(`Fetched all purchases for ${resourceId}.`);
     }
 
-    await fs.promises.writeFile("./purchases.json", fileData, {encoding: 'utf8'});
+    await fs.promises.writeFile("./purchases.csv", fileData, {encoding: 'utf8'});
     console.log("Done!");
 }
 
