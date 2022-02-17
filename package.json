@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "eslint": "^8.6.0",
-    "jsdoc": "^3.5.5"
+    "jsdoc": "^3.5.5",
+    "typescript": "^4.5.5"
   }
 }
