@@ -3,6 +3,7 @@
   "version": "1.1.1",
   "description": "An official asynchronous JavaScript (Node.js) wrapper for MC-Market's Ultimate REST API.",
   "main": "./src/index.js",
+  "types": "./types/index.d.ts",
   "scripts": {
     "test": "node ./tests/test.js && npx eslint ./src/"
   },
