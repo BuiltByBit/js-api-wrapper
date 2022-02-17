@@ -8,10 +8,6 @@ let token = new Token(TokenType.PRIVATE, "Find @ https://www.mc-market.org/accou
 let wrapper = new Wrapper();
 
 async function main() {
-    await run().catch(error => console.log(error.toString()));
-}
-
-async function run() {
     await wrapper.init(token);
 
     let ownedResources = await wrapper.resources().listOwnedAll();
@@ -35,8 +31,8 @@ async function run() {
         console.log(`Fetched all purchases for ${resourceId}.`);
     }
 
-    await fs.promises.writeFile("./purchases.csv", fileData, {encoding: 'utf8'});
+    await fs.promises.writeFile("./purchases.csv", fileData);
     console.log("Done!");
 }
 
-main();
+main().catch(error => console.error("ERROR: " + error));
