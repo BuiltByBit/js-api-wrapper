@@ -5,9 +5,10 @@
   "main": "./src/index.js",
   "types": "./types/index.d.ts",
   "scripts": {
-    "doc": "jsdoc -c .jsdoc.json",
+    "doc-live": "jsdoc -r ./src/ -d ./docs-live/",
+    "doc-latest": "jsdoc -r ./src/ -d ./docs-latest/",
     "lint": "npx eslint --fix ./src/",
-    "types": "npx tsc",
+    "type": "npx tsc",
     "test": "node ./tests/test.js && npx eslint ./src/"
   },
   "repository": {
