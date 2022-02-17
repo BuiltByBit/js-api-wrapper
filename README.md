@@ -1,16 +1,19 @@
-# MC-Market's Official JS API Wrapper
+# MC-Market's Official Node.js API Wrapper
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-007ec6)](https://github.com/Majored/mcm-js-api-wrapper/blob/main/LICENSE)
-[![npm version](https://badge.fury.io/js/mcm-js-api-wrapper.svg)](https://www.npmjs.com/package/mcm-js-api-wrapper)
+[![npm](https://img.shields.io/npm/v/mcm-js-api-wrapper)](https://www.npmjs.com/package/mcm-js-api-wrapper)
+[![npm type definitions](https://img.shields.io/npm/types/mcm-js-api-wrapper)](https://github.com/MC-Market-org/js-api-wrapper/tree/main/types)
+[![npm](https://img.shields.io/npm/dt/mcm-js-api-wrapper)](https://www.npmjs.com/package/mcm-js-api-wrapper)
 [![npm version](https://img.shields.io/badge/docs-passing-brightgreen)](https://mc-market-org.github.io/js-api-wrapper/)
+[![NPM](https://img.shields.io/npm/l/mcm-js-api-wrapper)](https://github.com/Majored/mcm-js-api-wrapper/blob/main/LICENSE)
 
-An official asynchronous Node.js wrapper for MC-Market's [Ultimate REST API](https://www.mc-market.org/wiki/ultimate-api/).
+An official asynchronous Node.js wrapper for MC-Market's [Ultimate API](https://www.mc-market.org/wiki/ultimate-api/).
 
-- Fully asynchronous design compatible with .then() notation or async/await.
-- Dynamically stalls requests when a rate limit is hit.
+- A Promise-based design built upon [`axios`](https://www.npmjs.com/package/axios).
+- Stalls requests when a dynamic rate limiting error is encountered.
 - Full coverage of the Ultimate API.
 - A comprehensive set of relevant usage examples.
-- Automatically generated and hosted documentation.
+- Automatically generated TypeScript declarations.
+- Automatically generated and hosted [documentation](https://mc-market-org.github.io/js-api-wrapper/).
 
 ## Installation & Basic Usage
 
@@ -32,7 +35,7 @@ let wrapper = new Wrapper();
 wrapper.init(token).then(wrapper.members().self().then(self => {
     console.log(self);
 })).catch(error => {
-    console.log(error.toString());
+    console.log("ERROR: " + error);
 });
 ```
 
@@ -54,12 +57,14 @@ An comprehensive set of [examples](https://github.com/MC-Market-org/js-api-wrapp
 
 ## Contributions
 
-We welcome contributions from our Ultimate members in the form of bug fixes or otherwise. All pull requests will be reviewed and changes may be requested before merging. Though, please seek advice regarding the introduction of additional features via an issue before working on them - we may have reasons not to introduce the given feature, or may want to introduce it via a different approach.
+We welcome contributions in the form of bug fixes or otherwise. All pull requests will be reviewed and changes may be requested before merging. Though, please seek advice regarding the introduction of additional features via an issue before working on them - we may have reasons not to introduce the given feature, or may want to introduce it via a different approach.
 
 Whilst no contribution guidelines exist currently, please ensure you:
 - Develop with readability in mind.
 - Comment appropriately where non-obvious approaches or invariants are being enforced.
 - Include documentation comments where appropriate.
+- Don't regenerate hosted documentation - this will be done upon version release.
+- Regenerate TypeScript declarations if modifying class/function signatures.
 - Use `eslint` within your final commit.
 
 ## Issues & Support
