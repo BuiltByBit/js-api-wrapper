@@ -64,7 +64,7 @@ class ResourcesHelper {
      * @return {Array<object>} An array of raw data objects.
      */
     async listCollaborated(sort) {
-        return await this.wrapper.get("/resources/collaborated", sort);
+        return await this.#wrapper.get("/resources/collaborated", sort);
     }
     
     /** List all pages of collaborated resources.
