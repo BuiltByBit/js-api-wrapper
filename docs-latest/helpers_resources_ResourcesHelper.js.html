@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: helpers/resources/ResourcesHelper.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: helpers/resources/ResourcesHelper.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// Copyright (c) 2021 MC-Market (Mick Capital Pty. Ltd.)
+// MIT License (https://github.com/MC-Market-org/js-api-wrapper/blob/main/LICENSE)
+
+const { DownloadsHelper } = require("./DownloadsHelper.js");
+const { LicensesHelper } = require("./LicensesHelper.js");
+const { PurchasesHelper } = require("./PurchasesHelper.js");
+const { ReviewsHelper } = require("./ReviewsHelper.js");
+const { UpdatesHelper } = require("./UpdatesHelper.js");
+const { VersionsHelper } = require("./VersionsHelper.js");
+
+/** A helper type for resource-related API endpoints. */
+class ResourcesHelper {
+    #wrapper;
+    
+    constructor(wrapper) {
+        this.#wrapper = wrapper;
+    }
+    
+    /** List a page of public resources.
+     * 
+     * @param {SortOptions} sort An optional set of sort options.
+     * @return {Array&lt;object>} An array of raw data objects.
+     */
+    async list(sort) {
+        return await this.#wrapper.http().get("/resources", sort);
+    }
+    
+    // No helper functions for `list_until` have been provided here for listing public resources. Whilst this breaks
+    // consistency with the rest of this wrapper, doing so would greatly encourage the undue scraping of our public
+    // resource list.
+    
+    /** List a page of owned resources.
+     * 
+     * @param {SortOptions} sort An optional set of sort options.
+     * @return {Array&lt;object>} An array of raw data objects.
+     */
+    async listOwned(sort) {
+        return await this.#wrapper.http().get("/resources/owned", sort);
+    }
+    
+    /** List all pages of owned resources.
+     * 
+     * @param {SortOptions} sort An optional set of sort options.
+     * @return {Array&lt;object>} An array of raw data objects.
+     */
+    async listOwnedAll(sort) {
+        return await this.#wrapper.http().listUntil("/resources/owned", () => true, sort);
+    }
+    
+    /** List multiple pages of owned resources until a condition is no longer met.
+     * 
+     * @param {function(object):boolean} shouldContinue A function which determines if further pages are requested.
+     * @param {SortOptions} sort An optional set of sort options.
+     * 
+     * @return {Array&lt;object>} An array of raw data objects.
+     */
+    async listOwnedUntil(shouldContinue, sort) {
+        return await this.#wrapper.http().listUntil("/resources/owned", shouldContinue, sort);
+    }
+    
+    /** List a page of collaborated resources.
+     * 
+     * @param {SortOptions} sort An optional set of sort options.
+     * @return {Array&lt;object>} An array of raw data objects.
+     */
+    async listCollaborated(sort) {
+        return await this.#wrapper.get("/resources/collaborated", sort);
+    }
+    
+    /** List all pages of collaborated resources.
+     * 
+     * @param {SortOptions} sort An optional set of sort options.
+     * @return {Array&lt;object>} An array of raw data objects.
+     */
+    async listCollaboratedAll(sort) {
+        return await this.#wrapper.http().listUntil("/resources/collaborated", () => true, sort);
+    }
+    
+    /** List multiple pages of collaborated resources until a condition is no longer met.
+     * 
+     * @param {function(object):boolean} shouldContinue A function which determines if further pages are requested.
+     * @param {SortOptions} sort An optional set of sort options.
+     * 
+     * @return {Array&lt;object>} An array of raw data objects.
+     */
+    async listCollaboratedUntil(shouldContinue, sort) {
+        return await this.#wrapper.http().listUntil("/resources/collaborated", shouldContinue, sort);
+    }
+    
+    /** Fetch detailed information about a resource.
+     * 
+     * @param {number} resourceId The identifier of the resource.
+     * @return {object} A raw data object.
+     */
+    async fetch(resourceId) {
+        return await this.#wrapper.http().get(`/resources/${resourceId}`);
+    }
+    
+    /** Edit resource fields for a resource you own or collaborate on.
+     * 
+     * @param {number} resourceId The identifier of the resource.
+     * @param {string} title The updated content of the title, or undefined.
+     * @param {string} description The updated content of the description, or undefined.
+     * @param {string} tagLine The updated content of the tag line, or undefined.
+     */
+    async modify(resourceId, title, description, tagLine) {
+        let body = {title: title, description: description, "tag_line": tagLine};
+        return await this.#wrapper.http().patch(`/resources/${resourceId}`, body);
+    }
+
+    /** Access download-related helper functions.
+     * 
+     * @return {DownloadsHelper} A newly-constructed download helper instance.
+     */
+    downloads() {
+        return new DownloadsHelper(this.#wrapper);
+    }
+
+    /** Access license-related helper functions.
+     * 
+     * @return {LicensesHelper} A newly-constructed license helper instance.
+     */
+    licenses() {
+        return new LicensesHelper(this.#wrapper);
+    }
+
+    /** Access purchase-related helper functions.
+     * 
+     * @return {PurchasesHelper} A newly-constructed purchase helper instance.
+     */
+    purchases() {
+        return new PurchasesHelper(this.#wrapper);
+    }
+
+    /** Access review-related helper functions.
+     * 
+     * @return {ReviewsHelper} A newly-constructed review helper instance.
+     */
+    reviews() {
+        return new ReviewsHelper(this.#wrapper);
+    }
+
+    /** Access update-related helper functions.
+     * 
+     * @return {UpdatesHelper} A newly-constructed update helper instance.
+     */
+    updates() {
+        return new UpdatesHelper(this.#wrapper);
+    }
+
+    /** Access version-related helper functions.
+     * 
+     * @return {VersionsHelper} A newly-constructed version helper instance.
+     */
+    versions() {
+        return new VersionsHelper(this.#wrapper);
+    }
+}
+
+exports.ResourcesHelper = ResourcesHelper;  </code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AlertsHelper.html">AlertsHelper</a></li><li><a href="ConversationsHelper.html">ConversationsHelper</a></li><li><a href="DownloadsHelper.html">DownloadsHelper</a></li><li><a href="Error.html">Error</a></li><li><a href="Http.html">Http</a></li><li><a href="LicensesHelper.html">LicensesHelper</a></li><li><a href="MembersHelper.html">MembersHelper</a></li><li><a href="ProfilePostsHelper.html">ProfilePostsHelper</a></li><li><a href="PurchasesHelper.html">PurchasesHelper</a></li><li><a href="ResourcesHelper.html">ResourcesHelper</a></li><li><a href="ReviewsHelper.html">ReviewsHelper</a></li><li><a href="SortOptions.html">SortOptions</a></li><li><a href="ThreadsHelper.html">ThreadsHelper</a></li><li><a href="Token.html">Token</a></li><li><a href="TokenType.html">TokenType</a></li><li><a href="UpdatesHelper.html">UpdatesHelper</a></li><li><a href="VersionsHelper.html">VersionsHelper</a></li><li><a href="Wrapper.html">Wrapper</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Thu Feb 17 2022 23:56:33 GMT+0000 (Greenwich Mean Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
