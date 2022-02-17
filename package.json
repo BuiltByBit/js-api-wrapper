@@ -5,6 +5,8 @@
   "main": "./src/index.js",
   "types": "./types/index.d.ts",
   "scripts": {
+    "doc": "jsdoc -c .jsdoc.json",
+    "lint": "npx eslint --fix ./src/",
     "test": "node ./tests/test.js && npx eslint ./src/"
   },
   "repository": {
