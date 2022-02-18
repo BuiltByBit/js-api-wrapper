@@ -15,8 +15,8 @@ let wrapper = new Wrapper();
 async function main() {
     await wrapper.init(token);
 
-    rl.question("What is the username of the user you'd like to lookup?", (username) => {
-        let userObj = JSON.parse(wrapper.members().fetchByUsername(username));
+    rl.question("What is the username of the user you'd like to lookup?", async (username) => {
+        let userObj = await wrapper.members().fetchByUsername(username);
         let memberId = userObj.member_id;
         let joinDate = userObj.join_date;
         let lastActivityDate = userObj.last_activity_date;
@@ -26,17 +26,18 @@ async function main() {
         let disabled = userObj.disabled;
         let postCount = userObj.post_count;
 
-        console.log(`${username} Statistics:\n
-            Member ID: ${memberId}\n
-            Join Date: new Date(${joinDate})\n
-            Last Activity: new Date(${lastActivityDate})\n
-            Banned: ${banned}\n
-            Suspended: ${suspended}\n
-            Restricted: ${restricted}\n
-            Disabled: ${disabled}\n
-            Post Count: ${postCount}`
+        console.log(`${username}'s Statistics:
+        Member ID: ${memberId}
+        Join Date: ${new Date(joinDate * 1000)}
+        Last Activity: ${new Date(lastActivityDate * 1000)}
+        Banned: ${banned}
+        Suspended: ${suspended}
+        Restricted: ${restricted}
+        Disabled: ${disabled}
+        Post Count: ${postCount}`
         );
     });
+    rl.close();
 }
 
 main().catch(error => console.error("ERROR: " + error));
