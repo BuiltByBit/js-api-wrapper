@@ -63,12 +63,13 @@ Whilst no contribution guidelines exist currently, please ensure you:
 - Develop with readability in mind.
 - Comment appropriately where non-obvious approaches or invariants are being enforced.
 - Include documentation comments where appropriate.
-- Don't regenerate hosted documentation - this will be done upon version release.
-- Regenerate TypeScript declarations if modifying class/function signatures.
-- Use `eslint` within your final commit.
+- Never regenerate live documentation - this is done upon each version release.
+- Regenerate latest documentation via `npm run doc-latest`.
+- Regenerate type declarations via `npm run type` if modifying class/function signatures.
+- Use `npm run lint` and correct any linting errors within your final commit.
 
 ## Issues & Support
 
-The [issues tracker](https://github.com/MC-Market-org/mcm-js-api-wrapper/issues) for this repository should only be used to report bugs or issues with this official JS wrapper.
+The [issues tracker](https://github.com/MC-Market-org/mcm-js-api-wrapper/issues) for this repository should only be used to report bugs or issues with this official Node.js wrapper.
 
 For bugs or issues related to the Ultimate API itself, please open a [support ticket](https://www.mc-market.org/tickets/new) or create a [bug report](https://www.mc-market.org/suggestions/create-thread) on our platform.
