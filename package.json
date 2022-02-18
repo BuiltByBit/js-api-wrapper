@@ -5,8 +5,8 @@
   "main": "./src/index.js",
   "types": "./types/index.d.ts",
   "scripts": {
-    "doc-live": "jsdoc -r ./src/ -d ./docs-live/",
-    "doc-latest": "jsdoc -r ./src/ -d ./docs-latest/",
+    "doc": "jsdoc -r ./src/ -d ./docs/",
+    "doc-staged": "jsdoc -r ./src/ -d ./docs-staged/",
     "lint": "npx eslint --fix ./src/",
     "type": "npx tsc",
     "test": "node ./tests/test.js && npx eslint ./src/"

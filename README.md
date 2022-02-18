@@ -64,7 +64,7 @@ Whilst no contribution guidelines exist currently, please ensure you:
 - Comment appropriately where non-obvious approaches or invariants are being enforced.
 - Include documentation comments where appropriate.
 - Never regenerate live documentation - this is done upon each version release.
-- Regenerate latest documentation via `npm run doc-latest`.
+- Regenerate staged documentation via `npm run doc-staged`.
 - Regenerate type declarations via `npm run type` if modifying class/function signatures.
 - Use `npm run lint` and correct any linting errors within your final commit.
 
