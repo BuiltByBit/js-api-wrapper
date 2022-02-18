@@ -3,7 +3,7 @@
 [![npm](https://img.shields.io/npm/v/mcm-js-api-wrapper)](https://www.npmjs.com/package/mcm-js-api-wrapper)
 [![npm type definitions](https://img.shields.io/npm/types/mcm-js-api-wrapper)](https://github.com/MC-Market-org/js-api-wrapper/tree/main/types)
 [![npm](https://img.shields.io/npm/dt/mcm-js-api-wrapper)](https://www.npmjs.com/package/mcm-js-api-wrapper)
-[![npm version](https://img.shields.io/badge/docs-passing-brightgreen)](https://mc-market-org.github.io/js-api-wrapper/)
+[![npm version](https://img.shields.io/badge/docs-passing-brightgreen)](https://mc-market-org.github.io/js-api-wrapper/live/)
 [![NPM](https://img.shields.io/npm/l/mcm-js-api-wrapper)](https://github.com/Majored/mcm-js-api-wrapper/blob/main/LICENSE)
 
 An official asynchronous Node.js wrapper for MC-Market's [Ultimate API](https://www.mc-market.org/wiki/ultimate-api/).
@@ -13,7 +13,7 @@ An official asynchronous Node.js wrapper for MC-Market's [Ultimate API](https://
 - Full coverage of the Ultimate API.
 - A comprehensive set of relevant usage examples.
 - Automatically generated TypeScript declarations.
-- Automatically generated and hosted [documentation](https://mc-market-org.github.io/js-api-wrapper/).
+- Automatically generated and hosted [documentation](https://mc-market-org.github.io/js-api-wrapper/live/).
 
 ## Installation & Basic Usage
 
