@@ -1,6 +1,8 @@
 // Copyright (c) 2021 MC-Market (Mick Capital Pty. Ltd.)
 // MIT License (https://github.com/MC-Market-org/js-api-wrapper/blob/main/LICENSE)
 
+const { Wrapper, Token, TokenType } = require("mcm-js-api-wrapper");
+
 let token = new Token(TokenType.PRIVATE, "Find @ https://www.mc-market.org/account/api");
 let wrapper = new Wrapper();
 
