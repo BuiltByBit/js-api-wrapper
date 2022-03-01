@@ -9,7 +9,7 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
-let token = new Token(TokenType.PRIVATE, "u6uU7RxNJB3cKZntMTfLXRv2byG+sxAb");
+let token = new Token(TokenType.PRIVATE, "Find @ https://www.mc-market.org/account/api");
 let wrapper = new Wrapper();
 
 async function main() {
