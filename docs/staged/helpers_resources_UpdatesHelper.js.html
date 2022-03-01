@@ -29,6 +29,14 @@
             <pre class="prettyprint source linenums"><code>// Copyright (c) 2021 MC-Market (Mick Capital Pty. Ltd.)
 // MIT License (https://github.com/MC-Market-org/js-api-wrapper/blob/main/LICENSE)
 
+/**
+ * @typedef {object} Update
+ * @property {number} update_id
+ * @property {string} title
+ * @property {string} message
+ * @property {number} update_date
+ */
+
 /** A helper type for resource update-related API endpoints. */
 class UpdatesHelper {
     #wrapper;
@@ -42,7 +50,7 @@ class UpdatesHelper {
      * @param {number} resourceId The identifier of the resource.
      * @param {SortOptions} sort An optional set of sort options.
      * 
-     * @return {Array&lt;object>} An array of raw data objects.
+     * @return {Array&lt;Update>} An array of raw data objects.
      */
     async list(resourceId, sort) {
         return await this.#wrapper.http().get(`/resources/${resourceId}/updates`, sort);
@@ -53,7 +61,7 @@ class UpdatesHelper {
      * @param {number} resourceId The identifier of the resource.
      * @param {SortOptions} sort An optional set of sort options.
      * 
-     * @return {Array&lt;object>} An array of raw data objects.
+     * @return {Array&lt;Update>} An array of raw data objects.
      */
     async listAll(resourceId, sort) {
         return await this.#wrapper.http().listUntil(`/resources/${resourceId}/updates`, () => true, sort);
@@ -62,10 +70,10 @@ class UpdatesHelper {
     /** List multiple pages of updates for a given resource until a condition is no longer met.
      * 
      * @param {number} resourceId The identifier of the resource.
-     * @param {function(object):boolean} shouldContinue A function which determines if further pages are requested.
+     * @param {function(Update):boolean} shouldContinue A function which determines if further pages are requested.
      * @param {SortOptions} sort An optional set of sort options.
      * 
-     * @return {Array&lt;object>} An array of raw data objects.
+     * @return {Array&lt;Update>} An array of raw data objects.
      */
     async listUntil(resourceId, shouldContinue, sort) {
         return await this.#wrapper.http().listUntil(`/resources/${resourceId}/updates`, shouldContinue, sort);
@@ -75,7 +83,7 @@ class UpdatesHelper {
      * 
      * @param {number} resourceId The identifier of the resource.
      * 
-     * @return {object} A raw data object.
+     * @return {Update} A raw data object.
      */
     async latest(resourceId) {
         return await this.#wrapper.http().get(`/resources/${resourceId}/updates/latest`);
@@ -86,7 +94,7 @@ class UpdatesHelper {
      * @param {number} resourceId The identifier of the resource.
      * @param {number} updateId The identifier of the update.
      * 
-     * @return {object} A raw data object.
+     * @return {Update} A raw data object.
      */
     async fetch(resourceId, updateId) {
         return await this.#wrapper.http().get(`/resources/${resourceId}/updates/${updateId}`);
@@ -112,13 +120,13 @@ exports.UpdatesHelper = UpdatesHelper;</code></pre>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AlertsHelper.html">AlertsHelper</a></li><li><a href="ConversationsHelper.html">ConversationsHelper</a></li><li><a href="DownloadsHelper.html">DownloadsHelper</a></li><li><a href="Error.html">Error</a></li><li><a href="Http.html">Http</a></li><li><a href="LicensesHelper.html">LicensesHelper</a></li><li><a href="MembersHelper.html">MembersHelper</a></li><li><a href="ProfilePostsHelper.html">ProfilePostsHelper</a></li><li><a href="PurchasesHelper.html">PurchasesHelper</a></li><li><a href="ResourcesHelper.html">ResourcesHelper</a></li><li><a href="ReviewsHelper.html">ReviewsHelper</a></li><li><a href="SortOptions.html">SortOptions</a></li><li><a href="ThreadsHelper.html">ThreadsHelper</a></li><li><a href="Token.html">Token</a></li><li><a href="TokenType.html">TokenType</a></li><li><a href="UpdatesHelper.html">UpdatesHelper</a></li><li><a href="VersionsHelper.html">VersionsHelper</a></li><li><a href="Wrapper.html">Wrapper</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AlertsHelper.html">AlertsHelper</a></li><li><a href="ConversationsHelper.html">ConversationsHelper</a></li><li><a href="DownloadsHelper.html">DownloadsHelper</a></li><li><a href="Error.html">Error</a></li><li><a href="Http.html">Http</a></li><li><a href="LicensesHelper.html">LicensesHelper</a></li><li><a href="MembersHelper.html">MembersHelper</a></li><li><a href="ProfilePostsHelper.html">ProfilePostsHelper</a></li><li><a href="PurchasesHelper.html">PurchasesHelper</a></li><li><a href="ResourcesHelper.html">ResourcesHelper</a></li><li><a href="ReviewsHelper.html">ReviewsHelper</a></li><li><a href="SortOptions.html">SortOptions</a></li><li><a href="ThreadsHelper.html">ThreadsHelper</a></li><li><a href="Token.html">Token</a></li><li><a href="TokenType.html">TokenType</a></li><li><a href="UpdatesHelper.html">UpdatesHelper</a></li><li><a href="VersionsHelper.html">VersionsHelper</a></li><li><a href="Wrapper.html">Wrapper</a></li></ul><h3><a href="global.html">Global</a></h3>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Thu Feb 17 2022 23:56:33 GMT+0000 (Greenwich Mean Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Tue Mar 01 2022 17:34:28 GMT+0000 (Greenwich Mean Time)
 </footer>
 
 <script> prettyPrint(); </script>

@@ -36,6 +36,35 @@ const { ReviewsHelper } = require("./ReviewsHelper.js");
 const { UpdatesHelper } = require("./UpdatesHelper.js");
 const { VersionsHelper } = require("./VersionsHelper.js");
 
+/**
+ * @typedef {object} BasicResource
+ * @property {number} resource_id
+ * @property {number} author_id
+ * @property {string} title
+ * @property {string} tag_line
+ * @property {number} price
+ * @property {string} currency
+ */
+
+/**
+ * @typedef {object} Resource
+ * @property {number} resource_id
+ * @property {number} author_id
+ * @property {string} title
+ * @property {string} tag_line
+ * @property {string} description
+ * @property {number} release_date
+ * @property {number} last_update_date
+ * @property {string} category_title
+ * @property {number} current_version_id
+ * @property {number} price
+ * @property {string} currency
+ * @property {number} purchase_count
+ * @property {number} download_count
+ * @property {number} review_count
+ * @property {number} review_average
+ */
+
 /** A helper type for resource-related API endpoints. */
 class ResourcesHelper {
     #wrapper;
@@ -47,7 +76,7 @@ class ResourcesHelper {
     /** List a page of public resources.
      * 
      * @param {SortOptions} sort An optional set of sort options.
-     * @return {Array&lt;object>} An array of raw data objects.
+     * @return {Array&lt;BasicResource>} An array of raw data objects.
      */
     async list(sort) {
         return await this.#wrapper.http().get("/resources", sort);
@@ -60,7 +89,7 @@ class ResourcesHelper {
     /** List a page of owned resources.
      * 
      * @param {SortOptions} sort An optional set of sort options.
-     * @return {Array&lt;object>} An array of raw data objects.
+     * @return {Array&lt;BasicResource>} An array of raw data objects.
      */
     async listOwned(sort) {
         return await this.#wrapper.http().get("/resources/owned", sort);
@@ -69,7 +98,7 @@ class ResourcesHelper {
     /** List all pages of owned resources.
      * 
      * @param {SortOptions} sort An optional set of sort options.
-     * @return {Array&lt;object>} An array of raw data objects.
+     * @return {Array&lt;BasicResource>} An array of raw data objects.
      */
     async listOwnedAll(sort) {
         return await this.#wrapper.http().listUntil("/resources/owned", () => true, sort);
@@ -77,10 +106,10 @@ class ResourcesHelper {
     
     /** List multiple pages of owned resources until a condition is no longer met.
      * 
-     * @param {function(object):boolean} shouldContinue A function which determines if further pages are requested.
+     * @param {function(BasicResource):boolean} shouldContinue A function which determines if further pages are requested.
      * @param {SortOptions} sort An optional set of sort options.
      * 
-     * @return {Array&lt;object>} An array of raw data objects.
+     * @return {Array&lt;BasicResource>} An array of raw data objects.
      */
     async listOwnedUntil(shouldContinue, sort) {
         return await this.#wrapper.http().listUntil("/resources/owned", shouldContinue, sort);
@@ -89,7 +118,7 @@ class ResourcesHelper {
     /** List a page of collaborated resources.
      * 
      * @param {SortOptions} sort An optional set of sort options.
-     * @return {Array&lt;object>} An array of raw data objects.
+     * @return {Array&lt;BasicResource>} An array of raw data objects.
      */
     async listCollaborated(sort) {
         return await this.#wrapper.get("/resources/collaborated", sort);
@@ -98,7 +127,7 @@ class ResourcesHelper {
     /** List all pages of collaborated resources.
      * 
      * @param {SortOptions} sort An optional set of sort options.
-     * @return {Array&lt;object>} An array of raw data objects.
+     * @return {Array&lt;BasicResource>} An array of raw data objects.
      */
     async listCollaboratedAll(sort) {
         return await this.#wrapper.http().listUntil("/resources/collaborated", () => true, sort);
@@ -106,10 +135,10 @@ class ResourcesHelper {
     
     /** List multiple pages of collaborated resources until a condition is no longer met.
      * 
-     * @param {function(object):boolean} shouldContinue A function which determines if further pages are requested.
+     * @param {function(BasicResource):boolean} shouldContinue A function which determines if further pages are requested.
      * @param {SortOptions} sort An optional set of sort options.
      * 
-     * @return {Array&lt;object>} An array of raw data objects.
+     * @return {Array&lt;BasicResource>} An array of raw data objects.
      */
     async listCollaboratedUntil(shouldContinue, sort) {
         return await this.#wrapper.http().listUntil("/resources/collaborated", shouldContinue, sort);
@@ -118,7 +147,7 @@ class ResourcesHelper {
     /** Fetch detailed information about a resource.
      * 
      * @param {number} resourceId The identifier of the resource.
-     * @return {object} A raw data object.
+     * @return {Resource} A raw data object.
      */
     async fetch(resourceId) {
         return await this.#wrapper.http().get(`/resources/${resourceId}`);
@@ -195,13 +224,13 @@ exports.ResourcesHelper = ResourcesHelper;  </code></pre>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AlertsHelper.html">AlertsHelper</a></li><li><a href="ConversationsHelper.html">ConversationsHelper</a></li><li><a href="DownloadsHelper.html">DownloadsHelper</a></li><li><a href="Error.html">Error</a></li><li><a href="Http.html">Http</a></li><li><a href="LicensesHelper.html">LicensesHelper</a></li><li><a href="MembersHelper.html">MembersHelper</a></li><li><a href="ProfilePostsHelper.html">ProfilePostsHelper</a></li><li><a href="PurchasesHelper.html">PurchasesHelper</a></li><li><a href="ResourcesHelper.html">ResourcesHelper</a></li><li><a href="ReviewsHelper.html">ReviewsHelper</a></li><li><a href="SortOptions.html">SortOptions</a></li><li><a href="ThreadsHelper.html">ThreadsHelper</a></li><li><a href="Token.html">Token</a></li><li><a href="TokenType.html">TokenType</a></li><li><a href="UpdatesHelper.html">UpdatesHelper</a></li><li><a href="VersionsHelper.html">VersionsHelper</a></li><li><a href="Wrapper.html">Wrapper</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AlertsHelper.html">AlertsHelper</a></li><li><a href="ConversationsHelper.html">ConversationsHelper</a></li><li><a href="DownloadsHelper.html">DownloadsHelper</a></li><li><a href="Error.html">Error</a></li><li><a href="Http.html">Http</a></li><li><a href="LicensesHelper.html">LicensesHelper</a></li><li><a href="MembersHelper.html">MembersHelper</a></li><li><a href="ProfilePostsHelper.html">ProfilePostsHelper</a></li><li><a href="PurchasesHelper.html">PurchasesHelper</a></li><li><a href="ResourcesHelper.html">ResourcesHelper</a></li><li><a href="ReviewsHelper.html">ReviewsHelper</a></li><li><a href="SortOptions.html">SortOptions</a></li><li><a href="ThreadsHelper.html">ThreadsHelper</a></li><li><a href="Token.html">Token</a></li><li><a href="TokenType.html">TokenType</a></li><li><a href="UpdatesHelper.html">UpdatesHelper</a></li><li><a href="VersionsHelper.html">VersionsHelper</a></li><li><a href="Wrapper.html">Wrapper</a></li></ul><h3><a href="global.html">Global</a></h3>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Thu Feb 17 2022 23:56:33 GMT+0000 (Greenwich Mean Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Tue Mar 01 2022 17:34:28 GMT+0000 (Greenwich Mean Time)
 </footer>
 
 <script> prettyPrint(); </script>
