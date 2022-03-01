@@ -1,6 +1,16 @@
 // Copyright (c) 2021 MC-Market (Mick Capital Pty. Ltd.)
 // MIT License (https://github.com/MC-Market-org/js-api-wrapper/blob/main/LICENSE)
 
+/**
+ * @typedef {object} Review
+ * @property {number} review_id
+ * @property {number} reviewer_id
+ * @property {number} review_date
+ * @property {number} rating
+ * @property {string} message
+ * @property {string} response
+ */
+
 /** A helper type for resource review-related API endpoints. */
 class ReviewsHelper {
     #wrapper;
@@ -14,7 +24,7 @@ class ReviewsHelper {
      * @param {number} resourceId The identifier of the resource.
      * @param {SortOptions} sort An optional set of sort options.
      * 
-     * @return {Array<object>} An array of raw data objects.
+     * @return {Array<Review>} An array of raw data objects.
      */
     async list(resourceId, sort) {
         return await this.#wrapper.http().get(`/resources/${resourceId}/reviews`, sort);
@@ -25,7 +35,7 @@ class ReviewsHelper {
      * @param {number} resourceId The identifier of the resource.
      * @param {SortOptions} sort An optional set of sort options.
      * 
-     * @return {Array<object>} An array of raw data objects.
+     * @return {Array<Review>} An array of raw data objects.
      */
     async listAll(resourceId, sort) {
         return await this.#wrapper.http().listUntil(`/resources/${resourceId}/reviews`, () => true, sort);
@@ -34,10 +44,10 @@ class ReviewsHelper {
     /** List multiple pages of reviews for a given resource until a condition is no longer met.
      * 
      * @param {number} resourceId The identifier of the resource.
-     * @param {function(object):boolean} shouldContinue A function which determines if further pages are requested.
+     * @param {function(Review):boolean} shouldContinue A function which determines if further pages are requested.
      * @param {SortOptions} sort An optional set of sort options.
      * 
-     * @return {Array<object>} An array of raw data objects.
+     * @return {Array<Review>} An array of raw data objects.
      */
     async listUntil(resourceId, shouldContinue, sort) {
         return await this.#wrapper.http().listUntil(`/resources/${resourceId}/reviews`, shouldContinue, sort);
@@ -48,7 +58,7 @@ class ReviewsHelper {
      * @param {number} resourceId The identifier of the resource.
      * @param {number} memberId The identifier of the member.
      * 
-     * @return {object} A raw data object.
+     * @return {Review} A raw data object.
      */
     async fetch(resourceId, memberId) {
         return await this.#wrapper.http().get(`/resources/${resourceId}/reviews/members/${memberId}`);

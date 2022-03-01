@@ -3,6 +3,32 @@
 
 const { ProfilePostsHelper } = require("./ProfilePostsHelper.js");
 
+/**
+ * @typedef {object} Member
+ * @property {number} member_id
+ * @property {string} username
+ * @property {number} join_date
+ * @property {number} [last_activity_date]
+ * @property {boolean} banned
+ * @property {boolean} suspended
+ * @property {boolean} restricted
+ * @property {boolean} disabled
+ * @property {number} post_count
+ * @property {number} resource_count
+ * @property {number} purchase_count
+ * @property {number} feedback_positive
+ * @property {number} feedback_neutral
+ * @property {number} feedback_negative
+ */
+
+/**
+ * @typedef {object} Ban
+ * @property {number} member_id
+ * @property {number} banned_by_id
+ * @property {number} ban_date
+ * @property {string} reason
+ */
+
 /** A helper type for member-related API endpoints. */
 class MembersHelper {
     #wrapper;
@@ -13,7 +39,7 @@ class MembersHelper {
     
     /** Fetch information about yourself.
      * 
-     * @return {object} A raw data object.
+     * @return {Member} A raw data object.
      */
     async self() {
         return await this.#wrapper.http().get("/members/self");
@@ -33,7 +59,7 @@ class MembersHelper {
     /** Fetch information about a member.
      * 
      * @param {number} memberId The identifier of the member.
-     * @return {object} A raw data object.
+     * @return {Member} A raw data object.
      */
     async fetch(memberId) {
         return await this.#wrapper.http().get(`/members/${memberId}`);
@@ -42,7 +68,7 @@ class MembersHelper {
     /** Fetch information about a member by username.
      * 
      * @param {string} username The username of the member.
-     * @return {object} A raw data object.
+     * @return {Member} A raw data object.
      */
     async fetchByUsername(username) {
         return await this.#wrapper.http().get(`/members/usernames/${username}`);
@@ -50,7 +76,7 @@ class MembersHelper {
     
     /** Fetch a list of recently issued bans.
      * 
-     * @return {Array<object>} An array of raw data objects.
+     * @return {Array<Ban>} An array of raw data objects.
      */
     async bans() {
         return await this.#wrapper.http().get("/members/bans");

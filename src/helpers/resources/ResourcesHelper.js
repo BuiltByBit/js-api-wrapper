@@ -8,6 +8,35 @@ const { ReviewsHelper } = require("./ReviewsHelper.js");
 const { UpdatesHelper } = require("./UpdatesHelper.js");
 const { VersionsHelper } = require("./VersionsHelper.js");
 
+/**
+ * @typedef {object} BasicResource
+ * @property {number} resource_id
+ * @property {number} author_id
+ * @property {string} title
+ * @property {string} tag_line
+ * @property {number} price
+ * @property {string} currency
+ */
+
+/**
+ * @typedef {object} Resource
+ * @property {number} resource_id
+ * @property {number} author_id
+ * @property {string} title
+ * @property {string} tag_line
+ * @property {string} description
+ * @property {number} release_date
+ * @property {number} last_update_date
+ * @property {string} category_title
+ * @property {number} current_version_id
+ * @property {number} price
+ * @property {string} currency
+ * @property {number} purchase_count
+ * @property {number} download_count
+ * @property {number} review_count
+ * @property {number} review_average
+ */
+
 /** A helper type for resource-related API endpoints. */
 class ResourcesHelper {
     #wrapper;
@@ -19,7 +48,7 @@ class ResourcesHelper {
     /** List a page of public resources.
      * 
      * @param {SortOptions} sort An optional set of sort options.
-     * @return {Array<object>} An array of raw data objects.
+     * @return {Array<BasicResource>} An array of raw data objects.
      */
     async list(sort) {
         return await this.#wrapper.http().get("/resources", sort);
@@ -32,7 +61,7 @@ class ResourcesHelper {
     /** List a page of owned resources.
      * 
      * @param {SortOptions} sort An optional set of sort options.
-     * @return {Array<object>} An array of raw data objects.
+     * @return {Array<BasicResource>} An array of raw data objects.
      */
     async listOwned(sort) {
         return await this.#wrapper.http().get("/resources/owned", sort);
@@ -41,7 +70,7 @@ class ResourcesHelper {
     /** List all pages of owned resources.
      * 
      * @param {SortOptions} sort An optional set of sort options.
-     * @return {Array<object>} An array of raw data objects.
+     * @return {Array<BasicResource>} An array of raw data objects.
      */
     async listOwnedAll(sort) {
         return await this.#wrapper.http().listUntil("/resources/owned", () => true, sort);
@@ -49,10 +78,10 @@ class ResourcesHelper {
     
     /** List multiple pages of owned resources until a condition is no longer met.
      * 
-     * @param {function(object):boolean} shouldContinue A function which determines if further pages are requested.
+     * @param {function(BasicResource):boolean} shouldContinue A function which determines if further pages are requested.
      * @param {SortOptions} sort An optional set of sort options.
      * 
-     * @return {Array<object>} An array of raw data objects.
+     * @return {Array<BasicResource>} An array of raw data objects.
      */
     async listOwnedUntil(shouldContinue, sort) {
         return await this.#wrapper.http().listUntil("/resources/owned", shouldContinue, sort);
@@ -61,7 +90,7 @@ class ResourcesHelper {
     /** List a page of collaborated resources.
      * 
      * @param {SortOptions} sort An optional set of sort options.
-     * @return {Array<object>} An array of raw data objects.
+     * @return {Array<BasicResource>} An array of raw data objects.
      */
     async listCollaborated(sort) {
         return await this.#wrapper.get("/resources/collaborated", sort);
@@ -70,7 +99,7 @@ class ResourcesHelper {
     /** List all pages of collaborated resources.
      * 
      * @param {SortOptions} sort An optional set of sort options.
-     * @return {Array<object>} An array of raw data objects.
+     * @return {Array<BasicResource>} An array of raw data objects.
      */
     async listCollaboratedAll(sort) {
         return await this.#wrapper.http().listUntil("/resources/collaborated", () => true, sort);
@@ -78,10 +107,10 @@ class ResourcesHelper {
     
     /** List multiple pages of collaborated resources until a condition is no longer met.
      * 
-     * @param {function(object):boolean} shouldContinue A function which determines if further pages are requested.
+     * @param {function(BasicResource):boolean} shouldContinue A function which determines if further pages are requested.
      * @param {SortOptions} sort An optional set of sort options.
      * 
-     * @return {Array<object>} An array of raw data objects.
+     * @return {Array<BasicResource>} An array of raw data objects.
      */
     async listCollaboratedUntil(shouldContinue, sort) {
         return await this.#wrapper.http().listUntil("/resources/collaborated", shouldContinue, sort);
@@ -90,7 +119,7 @@ class ResourcesHelper {
     /** Fetch detailed information about a resource.
      * 
      * @param {number} resourceId The identifier of the resource.
-     * @return {object} A raw data object.
+     * @return {Resource} A raw data object.
      */
     async fetch(resourceId) {
         return await this.#wrapper.http().get(`/resources/${resourceId}`);

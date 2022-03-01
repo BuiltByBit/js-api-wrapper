@@ -1,6 +1,18 @@
 // Copyright (c) 2021 MC-Market (Mick Capital Pty. Ltd.)
 // MIT License (https://github.com/MC-Market-org/js-api-wrapper/blob/main/LICENSE)
 
+/**
+ * @typedef {object} License
+ * @property {number} license_id
+ * @property {number} purchaser_id
+ * @property {boolean} validated
+ * @property {boolean} permanent
+ * @property {boolean} active
+ * @property {number} start_date
+ * @property {number} end_date
+ * @property {number} previous_end_date
+ */
+
 /** A helper type for resource license-related API endpoints. */
 class LicensesHelper {
     #wrapper;
@@ -14,7 +26,7 @@ class LicensesHelper {
      * @param {number} resourceId The identifier of the resource.
      * @param {SortOptions} sort An optional set of sort options.
      * 
-     * @return {object} A raw data object.
+     * @return {Array<License>} An array of raw data objects.
      */
     async list(resourceId, sort) {
         return await this.#wrapper.http().get(`/resources/${resourceId}/licenses`, sort);
@@ -25,7 +37,7 @@ class LicensesHelper {
      * @param {number} resourceId The identifier of the resource.
      * @param {SortOptions} sort An optional set of sort options.
      * 
-     * @return {object} A raw data object.
+     * @return {Array<License>} An array of raw data objects.
      */
     async listAll(resourceId, sort) {
         return await this.#wrapper.http().listUntil(`/resources/${resourceId}/licenses`, () => true, sort);
@@ -34,10 +46,10 @@ class LicensesHelper {
     /** List multiple pages of licenses for a given resource until a condition is no longer met.
      * 
      * @param {number} resourceId The identifier of the resource.
-     * @param {function(object):boolean} shouldContinue A function which determines if further pages are requested.
+     * @param {function(License):boolean} shouldContinue A function which determines if further pages are requested.
      * @param {SortOptions} sort An optional set of sort options.
      * 
-     * @return {object} A raw data object.
+     * @return {Array<License>} An array of raw data objects.
      */
     async listUntil(resourceId, shouldContinue, sort) {
         return await this.#wrapper.http().listUntil(`/resources/${resourceId}/licenses`, shouldContinue, sort);
@@ -60,7 +72,6 @@ class LicensesHelper {
      * 
      * @param {number} resourceId The identifier of the resource.
      * @param {number} purchaserId The identifier of the purchaser.
-     * @param {number} purchaserId The identifier of the purchaser.
      * @param {number} startDate The UNIX timestamp of when the license should start.
      * @param {number} endDate The UNIX timestamp of when the license should end.
      * 
@@ -82,7 +93,7 @@ class LicensesHelper {
      * @param {number} resourceId The identifier of the resource.
      * @param {number} licenseId The identifier of the license.
      * 
-     * @return {object} A raw data object.
+     * @return {License} A raw data object.
      */
     async fetch(resourceId, licenseId) {
         return await this.#wrapper.http().get(`/resources/${resourceId}/licenses/${licenseId}`);
@@ -95,7 +106,7 @@ class LicensesHelper {
      * @param {number} nonce The download's NONCE value, or undefined if using a Private token.
      * @param {number} timestamp The download's UNIX timestamp, or undefined if using a Private token.
      * 
-     * @return {object} A raw data object.
+     * @return {License} A raw data object.
      */
     async fetchMember(resourceId, memberId, nonce, timestamp) {
         let endpoint = `/resources/${resourceId}/licenses/members/${memberId}`;

@@ -1,6 +1,37 @@
 // Copyright (c) 2021 MC-Market (Mick Capital Pty. Ltd.)
 // MIT License (https://github.com/MC-Market-org/js-api-wrapper/blob/main/LICENSE)
 
+/**
+ * @typedef {object} BasicThread
+ * @property {number} thread_id
+ * @property {string} title
+ * @property {number} reply_count
+ * @property {number} view_count
+ * @property {number} creation_date
+ * @property {number} last_message_date
+ */
+
+/**
+ * @typedef {object} Thread
+ * @property {number} thread_id
+ * @property {string} forum_name
+ * @property {string} title
+ * @property {number} reply_count
+ * @property {number} view_count
+ * @property {number} post_date
+ * @property {string} thread_type
+ * @property {boolean} thread_open
+ * @property {number} last_post_date
+ */
+
+/**
+ * @typedef {object} Reply
+ * @property {number} reply_id
+ * @property {number} author_id
+ * @property {number} post_date
+ * @property {string} message
+ */
+
 /** A helper type for thread-related API endpoints. */
 class ThreadsHelper {
     #wrapper;
@@ -12,7 +43,7 @@ class ThreadsHelper {
     /** List a page of threads you own or collaborate on.
      * 
      * @param {SortOptions} sort An optional set of sort options.
-     * @return {Array<object>} An array of raw data objects.
+     * @return {Array<BasicThread>} An array of raw data objects.
      */
     async list(sort) {
         return await this.#wrapper.http().get("/threads", sort);
@@ -21,7 +52,7 @@ class ThreadsHelper {
     /** List all pages of threads you own or collaborate on.
      * 
      * @param {SortOptions} sort An optional set of sort options.
-     * @return {Array<object>} An array of raw data objects.
+     * @return {Array<BasicThread>} An array of raw data objects.
      */
     async listAll(sort) {
         return await this.#wrapper.http().listUntil("/threads", () => true, sort);
@@ -29,10 +60,10 @@ class ThreadsHelper {
     
     /** List multiple pages of threads you own or collaborate on until a condition is no longer met.
      * 
-     * @param {function(object):boolean} shouldContinue A function which determines if further pages are requested.
+     * @param {function(BasicThread):boolean} shouldContinue A function which determines if further pages are requested.
      * @param {SortOptions} sort An optional set of sort options.
      * 
-     * @return {Array<object>} An array of raw data objects.
+     * @return {Array<BasicThread>} An array of raw data objects.
      */
     async listUntil(shouldContinue, sort) {
         return await this.#wrapper.http().listUntil("/threads", shouldContinue, sort);
@@ -41,7 +72,7 @@ class ThreadsHelper {
     /** Fetch information about a thread you own or collaborate on.
      * 
      * @param {number} threadId The identifier of the thread.
-     * @return {object} A raw data object.
+     * @return {Thread} A raw data object.
      */
     async fetch(threadId) {
         return await this.#wrapper.http().get(`/threads/${threadId}`);
@@ -52,7 +83,7 @@ class ThreadsHelper {
      * @param {number} threadId The identifier of the thread.
      * @param {SortOptions} sort An optional set of sort options.
      * 
-     * @return {Array<object>} An array of raw data objects.
+     * @return {Array<Reply>} An array of raw data objects.
      */
     async listReplies(threadId, sort) {
         return await this.#wrapper.http().get(`/threads/${threadId}/replies`, sort);
@@ -63,7 +94,7 @@ class ThreadsHelper {
      * @param {number} threadId The identifier of the thread.
      * @param {SortOptions} sort An optional set of sort options.
      * 
-     * @return {Array<object>} An array of raw data objects.
+     * @return {Array<Reply>} An array of raw data objects.
      */
     async listRepliesAll(threadId, sort) {
         return await this.#wrapper.http().listUntil(`/threads/${threadId}/replies`, () => true, sort);
@@ -72,10 +103,10 @@ class ThreadsHelper {
     /** List multiple pages of replies for a thread you own or collaborate on until a condition is no longer met.
      * 
      * @param {number} threadId The identifier of the thread.
-     * @param {function(object):boolean} shouldContinue A function which determines if further pages are requested.
+     * @param {function(Reply):boolean} shouldContinue A function which determines if further pages are requested.
      * @param {SortOptions} sort An optional set of sort options.
      * 
-     * @return {Array<object>} An array of raw data objects.
+     * @return {Array<Reply>} An array of raw data objects.
      */
     async listRepliesUntil(threadId, shouldContinue, sort) {
         return await this.#wrapper.http().listUntil(`/threads/${threadId}/replies`, shouldContinue, sort);

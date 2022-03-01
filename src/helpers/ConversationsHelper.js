@@ -1,6 +1,27 @@
 // Copyright (c) 2021 MC-Market (Mick Capital Pty. Ltd.)
 // MIT License (https://github.com/MC-Market-org/js-api-wrapper/blob/main/LICENSE)
 
+/**
+ * @typedef {object} Conversation
+ * @property {number} conversation_id
+ * @property {string} title
+ * @property {number} creation_date
+ * @property {number} creator_id
+ * @property {number} last_message_date
+ * @property {number} last_read_date
+ * @property {bool} open
+ * @property {number} reply_count
+ * @property {Array<number>} recipient_ids
+ */
+
+/**
+ * @typedef {object} Reply
+ * @property {number} message_id
+ * @property {number} message_date
+ * @property {number} author_id
+ * @property {string} message
+ */
+
 /** A helper type for conversation-related API endpoints. */
 class ConversationsHelper {
     #wrapper;
@@ -12,7 +33,7 @@ class ConversationsHelper {
     /** List a page of unread conversations.
      * 
      * @param {SortOptions} sort An optional set of sort options.
-     * @return {Array<object>} An array of raw data objects.
+     * @return {Array<Conversation>} An array of raw data objects.
      */
     async list(sort) {
         return await this.#wrapper.http().get("/conversations", sort);
@@ -21,7 +42,7 @@ class ConversationsHelper {
     /** List all pages of unread conversations.
      * 
      * @param {SortOptions} sort An optional set of sort options.
-     * @return {Array<object>} An array of raw data objects.
+     * @return {Array<Conversation>} An array of raw data objects.
      */
     async listAll(sort) {
         return await this.#wrapper.http().listUntil("/conversations", () => true, sort);
@@ -29,10 +50,10 @@ class ConversationsHelper {
     
     /** List multiple pages of unread conversations until a condition is no longer met.
      * 
-     * @param {function(object):boolean} shouldContinue A function which determines if further pages are requested.
+     * @param {function(Conversation):boolean} shouldContinue A function which determines if further pages are requested.
      * @param {SortOptions} sort An optional set of sort options.
      * 
-     * @return {Array<object>} An array of raw data objects.
+     * @return {Array<Conversation>} An array of raw data objects.
      */
     async listUntil(shouldContinue, sort) {
         return await this.#wrapper.http().listUntil("/conversations", shouldContinue, sort);
@@ -56,7 +77,7 @@ class ConversationsHelper {
      * @param {number} conversationId The identifier of the unread conversation.
      * @param {SortOptions} sort An optional set of sort options.
      * 
-     * @return {Array<object>} An array of raw data objects.
+     * @return {Array<Reply>} An array of raw data objects.
      */
     async listReplies(conversationId, sort) {
         return await this.#wrapper.http().get(`/conversations/${conversationId}/replies`, sort);
@@ -67,7 +88,7 @@ class ConversationsHelper {
      * @param {number} conversationId The identifier of the unread conversation.
      * @param {SortOptions} sort An optional set of sort options.
      * 
-     * @return {Array<object>} An array of raw data objects.
+     * @return {Array<Reply>} An array of raw data objects.
      */
     async listRepliesAll(conversationId, sort) {
         return await this.#wrapper.http().listUntil(`/conversations/${conversationId}/replies`, () => true, sort);
@@ -76,10 +97,10 @@ class ConversationsHelper {
     /** List multiple pages of replies to an unread conversation until a condition is no longer met.
      * 
      * @param {number} conversationId The identifier of the unread conversation.
-     * @param {function(object):boolean} shouldContinue A function which determines if further pages are requested.
+     * @param {function(Reply):boolean} shouldContinue A function which determines if further pages are requested.
      * @param {SortOptions} sort An optional set of sort options.
      * 
-     * @return {Array<object>} An array of raw data objects.
+     * @return {Array<Reply>} An array of raw data objects.
      */
     async listRepliesUntil(conversationId, shouldContinue, sort) {
         return await this.#wrapper.list_until(`/conversations/${conversationId}/replies`, shouldContinue, sort);
