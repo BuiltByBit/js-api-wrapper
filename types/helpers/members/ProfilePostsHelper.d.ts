@@ -1,31 +1,46 @@
+export type ProfilePost = {
+    profile_post_id: number;
+    author_id: number;
+    post_date: number;
+    message: string;
+    comment_count: number;
+};
+/**
+ * @typedef {object} ProfilePost
+ * @property {number} profile_post_id
+ * @property {number} author_id
+ * @property {number} post_date
+ * @property {string} message
+ * @property {number} comment_count
+ */
 /** A helper type for profile post-related API endpoints. */
 export class ProfilePostsHelper {
     constructor(wrapper: any);
     /** List a page of profile posts on your profile.
      *
      * @param {SortOptions} sort An optional set of sort options.
-     * @return {object} A raw data object.
+     * @return {Array<ProfilePost>} An array of raw data objects.
      */
-    list(sort: SortOptions): object;
+    list(sort: SortOptions): Array<ProfilePost>;
     /** List all pages of profile posts on your profile.
      *
      * @param {SortOptions} sort An optional set of sort options.
-     * @return {object} A raw data object.
+     * @return {Array<ProfilePost>} An array of raw data objects.
      */
-    listAll(sort: SortOptions): object;
+    listAll(sort: SortOptions): Array<ProfilePost>;
     /** List multiple pages of profile posts on your profile until a condition is no longer met.
      *
-     * @param {function(object):boolean} shouldContinue A function which determines if further pages are requested.
+     * @param {function(ProfilePost):boolean} shouldContinue A function which determines if further pages are requested.
      * @param {SortOptions} sort An optional set of sort options.
-     * @return {object} A raw data object.
+     * @return {Array<ProfilePost>} An array of raw data objects.
      */
-    listUntil(shouldContinue: (arg0: object) => boolean, sort: SortOptions): object;
+    listUntil(shouldContinue: (arg0: ProfilePost) => boolean, sort: SortOptions): Array<ProfilePost>;
     /** Fetch information about a profile post on your profile.
      *
      * @param {number} profilePostId The identifier of the profile post to fetch.
-     * @return {object} A raw data object.
+     * @return {ProfilePost} A raw data object.
      */
-    fetch(profilePostId: number): object;
+    fetch(profilePostId: number): ProfilePost;
     /** Create a new profile post on your profile.
      *
      * @param {string} message The content of the message to modify to.

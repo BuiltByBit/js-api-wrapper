@@ -1,3 +1,16 @@
+export type Update = {
+    update_id: number;
+    title: string;
+    message: string;
+    update_date: number;
+};
+/**
+ * @typedef {object} Update
+ * @property {number} update_id
+ * @property {string} title
+ * @property {string} message
+ * @property {number} update_date
+ */
 /** A helper type for resource update-related API endpoints. */
 export class UpdatesHelper {
     constructor(wrapper: any);
@@ -6,41 +19,41 @@ export class UpdatesHelper {
      * @param {number} resourceId The identifier of the resource.
      * @param {SortOptions} sort An optional set of sort options.
      *
-     * @return {Array<object>} An array of raw data objects.
+     * @return {Array<Update>} An array of raw data objects.
      */
-    list(resourceId: number, sort: SortOptions): Array<object>;
+    list(resourceId: number, sort: SortOptions): Array<Update>;
     /** List all pages of updates for a given resource.
      *
      * @param {number} resourceId The identifier of the resource.
      * @param {SortOptions} sort An optional set of sort options.
      *
-     * @return {Array<object>} An array of raw data objects.
+     * @return {Array<Update>} An array of raw data objects.
      */
-    listAll(resourceId: number, sort: SortOptions): Array<object>;
+    listAll(resourceId: number, sort: SortOptions): Array<Update>;
     /** List multiple pages of updates for a given resource until a condition is no longer met.
      *
      * @param {number} resourceId The identifier of the resource.
-     * @param {function(object):boolean} shouldContinue A function which determines if further pages are requested.
+     * @param {function(Update):boolean} shouldContinue A function which determines if further pages are requested.
      * @param {SortOptions} sort An optional set of sort options.
      *
-     * @return {Array<object>} An array of raw data objects.
+     * @return {Array<Update>} An array of raw data objects.
      */
-    listUntil(resourceId: number, shouldContinue: (arg0: object) => boolean, sort: SortOptions): Array<object>;
+    listUntil(resourceId: number, shouldContinue: (arg0: Update) => boolean, sort: SortOptions): Array<Update>;
     /** Fetch the latest update for a given resource.
      *
      * @param {number} resourceId The identifier of the resource.
      *
-     * @return {object} A raw data object.
+     * @return {Update} A raw data object.
      */
-    latest(resourceId: number): object;
+    latest(resourceId: number): Update;
     /** Fetch an update for a given resource.
      *
      * @param {number} resourceId The identifier of the resource.
      * @param {number} updateId The identifier of the update.
      *
-     * @return {object} A raw data object.
+     * @return {Update} A raw data object.
      */
-    fetch(resourceId: number, updateId: number): object;
+    fetch(resourceId: number, updateId: number): Update;
     /** Delete an update for a given resource.
      *
      * @param {number} resourceId The identifier of the resource.

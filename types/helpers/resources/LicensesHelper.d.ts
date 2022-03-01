@@ -1,3 +1,24 @@
+export type License = {
+    license_id: number;
+    purchaser_id: number;
+    validated: boolean;
+    permanent: boolean;
+    active: boolean;
+    start_date: number;
+    end_date: number;
+    previous_end_date: number;
+};
+/**
+ * @typedef {object} License
+ * @property {number} license_id
+ * @property {number} purchaser_id
+ * @property {boolean} validated
+ * @property {boolean} permanent
+ * @property {boolean} active
+ * @property {number} start_date
+ * @property {number} end_date
+ * @property {number} previous_end_date
+ */
 /** A helper type for resource license-related API endpoints. */
 export class LicensesHelper {
     constructor(wrapper: any);
@@ -6,26 +27,26 @@ export class LicensesHelper {
      * @param {number} resourceId The identifier of the resource.
      * @param {SortOptions} sort An optional set of sort options.
      *
-     * @return {object} A raw data object.
+     * @return {Array<License>} An array of raw data objects.
      */
-    list(resourceId: number, sort: SortOptions): object;
+    list(resourceId: number, sort: SortOptions): Array<License>;
     /** List all pages of licenses for a given resource.
      *
      * @param {number} resourceId The identifier of the resource.
      * @param {SortOptions} sort An optional set of sort options.
      *
-     * @return {object} A raw data object.
+     * @return {Array<License>} An array of raw data objects.
      */
-    listAll(resourceId: number, sort: SortOptions): object;
+    listAll(resourceId: number, sort: SortOptions): Array<License>;
     /** List multiple pages of licenses for a given resource until a condition is no longer met.
      *
      * @param {number} resourceId The identifier of the resource.
-     * @param {function(object):boolean} shouldContinue A function which determines if further pages are requested.
+     * @param {function(License):boolean} shouldContinue A function which determines if further pages are requested.
      * @param {SortOptions} sort An optional set of sort options.
      *
-     * @return {object} A raw data object.
+     * @return {Array<License>} An array of raw data objects.
      */
-    listUntil(resourceId: number, shouldContinue: (arg0: object) => boolean, sort: SortOptions): object;
+    listUntil(resourceId: number, shouldContinue: (arg0: License) => boolean, sort: SortOptions): Array<License>;
     /** Issue a new permanent license for a given resource.
      *
      * @param {number} resourceId The identifier of the resource.
@@ -39,7 +60,6 @@ export class LicensesHelper {
      *
      * @param {number} resourceId The identifier of the resource.
      * @param {number} purchaserId The identifier of the purchaser.
-     * @param {number} purchaserId The identifier of the purchaser.
      * @param {number} startDate The UNIX timestamp of when the license should start.
      * @param {number} endDate The UNIX timestamp of when the license should end.
      *
@@ -51,9 +71,9 @@ export class LicensesHelper {
      * @param {number} resourceId The identifier of the resource.
      * @param {number} licenseId The identifier of the license.
      *
-     * @return {object} A raw data object.
+     * @return {License} A raw data object.
      */
-    fetch(resourceId: number, licenseId: number): object;
+    fetch(resourceId: number, licenseId: number): License;
     /** Fetch a member's license for a given resource.
      *
      * @param {number} resourceId The identifier of the resource.
@@ -61,9 +81,9 @@ export class LicensesHelper {
      * @param {number} nonce The download's NONCE value, or undefined if using a Private token.
      * @param {number} timestamp The download's UNIX timestamp, or undefined if using a Private token.
      *
-     * @return {object} A raw data object.
+     * @return {License} A raw data object.
      */
-    fetchMember(resourceId: number, memberId: number, nonce: number, timestamp: number): object;
+    fetchMember(resourceId: number, memberId: number, nonce: number, timestamp: number): License;
     /** Modify a permanent license (and convert to permanent if currently temporary).
      *
      * @param {number} resourceId The identifier of the resource.

@@ -1,58 +1,110 @@
+export type BasicResource = {
+    resource_id: number;
+    author_id: number;
+    title: string;
+    tag_line: string;
+    price: number;
+    currency: string;
+};
+export type Resource = {
+    resource_id: number;
+    author_id: number;
+    title: string;
+    tag_line: string;
+    description: string;
+    release_date: number;
+    last_update_date: number;
+    category_title: string;
+    current_version_id: number;
+    price: number;
+    currency: string;
+    purchase_count: number;
+    download_count: number;
+    review_count: number;
+    review_average: number;
+};
+/**
+ * @typedef {object} BasicResource
+ * @property {number} resource_id
+ * @property {number} author_id
+ * @property {string} title
+ * @property {string} tag_line
+ * @property {number} price
+ * @property {string} currency
+ */
+/**
+ * @typedef {object} Resource
+ * @property {number} resource_id
+ * @property {number} author_id
+ * @property {string} title
+ * @property {string} tag_line
+ * @property {string} description
+ * @property {number} release_date
+ * @property {number} last_update_date
+ * @property {string} category_title
+ * @property {number} current_version_id
+ * @property {number} price
+ * @property {string} currency
+ * @property {number} purchase_count
+ * @property {number} download_count
+ * @property {number} review_count
+ * @property {number} review_average
+ */
 /** A helper type for resource-related API endpoints. */
 export class ResourcesHelper {
     constructor(wrapper: any);
     /** List a page of public resources.
      *
      * @param {SortOptions} sort An optional set of sort options.
-     * @return {Array<object>} An array of raw data objects.
+     * @return {Array<BasicResource>} An array of raw data objects.
      */
-    list(sort: SortOptions): Array<object>;
+    list(sort: SortOptions): Array<BasicResource>;
     /** List a page of owned resources.
      *
      * @param {SortOptions} sort An optional set of sort options.
-     * @return {Array<object>} An array of raw data objects.
+     * @return {Array<BasicResource>} An array of raw data objects.
      */
-    listOwned(sort: SortOptions): Array<object>;
+    listOwned(sort: SortOptions): Array<BasicResource>;
     /** List all pages of owned resources.
      *
      * @param {SortOptions} sort An optional set of sort options.
-     * @return {Array<object>} An array of raw data objects.
+     * @return {Array<BasicResource>} An array of raw data objects.
      */
-    listOwnedAll(sort: SortOptions): Array<object>;
+    listOwnedAll(sort: SortOptions): Array<BasicResource>;
     /** List multiple pages of owned resources until a condition is no longer met.
      *
-     * @param {function(object):boolean} shouldContinue A function which determines if further pages are requested.
+     * @param {function(BasicResource):boolean} shouldContinue A function which determines if further pages are requested.
      * @param {SortOptions} sort An optional set of sort options.
      *
-     * @return {Array<object>} An array of raw data objects.
+     * @return {Array<BasicResource>} An array of raw data objects.
      */
-    listOwnedUntil(shouldContinue: (arg0: object) => boolean, sort: SortOptions): Array<object>;
+    listOwnedUntil(shouldContinue: (arg0: BasicResource) => boolean, sort: SortOptions): Array<BasicResource>;
     /** List a page of collaborated resources.
      *
      * @param {SortOptions} sort An optional set of sort options.
-     * @return {Array<object>} An array of raw data objects.
+     * @return {Array<BasicResource>} An array of raw data objects.
      */
-    listCollaborated(sort: SortOptions): Array<object>;
+    listCollaborated(sort: SortOptions): Array<BasicResource>;
     /** List all pages of collaborated resources.
      *
      * @param {SortOptions} sort An optional set of sort options.
-     * @return {Array<object>} An array of raw data objects.
+     * @return {Array<BasicResource>} An array of raw data objects.
      */
-    listCollaboratedAll(sort: SortOptions): Array<object>;
+    listCollaboratedAll(sort: SortOptions): Array<BasicResource>;
     /** List multiple pages of collaborated resources until a condition is no longer met.
      *
-     * @param {function(object):boolean} shouldContinue A function which determines if further pages are requested.
+     * @param {function(BasicResource):boolean} shouldContinue A function which determines if further pages are requested.
      * @param {SortOptions} sort An optional set of sort options.
      *
-     * @return {Array<object>} An array of raw data objects.
+     * @return {Array<BasicResource>} An array of raw data objects.
      */
-    listCollaboratedUntil(shouldContinue: (arg0: object) => boolean, sort: SortOptions): Array<object>;
+    listCollaboratedUntil(shouldContinue: (arg0: BasicResource) => boolean, sort: SortOptions): Array<BasicResource>;
     /** Fetch detailed information about a resource.
      *
      * @param {number} resourceId The identifier of the resource.
-     * @return {object} A raw data object.
+     * @return {Resource} A raw data object.
      */
-    fetch(resourceId: number): object;
+    fetch(resourceId: number): Resource;
     /** Edit resource fields for a resource you own or collaborate on.
      *
      * @param {number} resourceId The identifier of the resource.
