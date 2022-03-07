@@ -47,25 +47,6 @@ export class LicensesHelper {
      * @return {Array<License>} An array of raw data objects.
      */
     listUntil(resourceId: number, shouldContinue: (arg0: License) => boolean, sort: SortOptions): Array<License>;
-    /** Issue a new permanent license for a given resource.
-     *
-     * @param {number} resourceId The identifier of the resource.
-     * @param {number} purchaserId The identifier of the purchaser.
-     * @param {boolean} active Whether or not the license should be active.
-     *
-     * @return {number} The identifier of the newly-created license.
-     */
-    issuePermanent(resourceId: number, purchaserId: number, active: boolean): number;
-    /** Issue a new temporay license for a given resource.
-     *
-     * @param {number} resourceId The identifier of the resource.
-     * @param {number} purchaserId The identifier of the purchaser.
-     * @param {number} startDate The UNIX timestamp of when the license should start.
-     * @param {number} endDate The UNIX timestamp of when the license should end.
-     *
-     * @return {number} The identifier of the newly-created license.
-     */
-    issueTemporary(resourceId: number, purchaserId: number, startDate: number, endDate: number): number;
     /** Fetch a license for a given resource.
      *
      * @param {number} resourceId The identifier of the resource.

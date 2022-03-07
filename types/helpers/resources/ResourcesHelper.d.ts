@@ -73,7 +73,8 @@ export class ResourcesHelper {
     listOwnedAll(sort: SortOptions): Array<BasicResource>;
     /** List multiple pages of owned resources until a condition is no longer met.
      *
-     * @param {function(BasicResource):boolean} shouldContinue A function which determines if further pages are requested.
+     * @param {function(BasicResource):boolean} shouldContinue A function which determines if further pages are
+     * requested.
      * @param {SortOptions} sort An optional set of sort options.
      *
      * @return {Array<BasicResource>} An array of raw data objects.
@@ -93,7 +94,8 @@ export class ResourcesHelper {
     listCollaboratedAll(sort: SortOptions): Array<BasicResource>;
     /** List multiple pages of collaborated resources until a condition is no longer met.
      *
-     * @param {function(BasicResource):boolean} shouldContinue A function which determines if further pages are requested.
+     * @param {function(BasicResource):boolean} shouldContinue A function which determines if further pages are
+     * requested.
      * @param {SortOptions} sort An optional set of sort options.
      *
      * @return {Array<BasicResource>} An array of raw data objects.

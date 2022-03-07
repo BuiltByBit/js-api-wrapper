@@ -51,7 +51,8 @@ export class ConversationsHelper {
     listAll(sort: SortOptions): Array<Conversation>;
     /** List multiple pages of unread conversations until a condition is no longer met.
      *
-     * @param {function(Conversation):boolean} shouldContinue A function which determines if further pages are requested.
+     * @param {function(Conversation):boolean} shouldContinue A function which determines if further pages are
+     * requested.
      * @param {SortOptions} sort An optional set of sort options.
      *
      * @return {Array<Conversation>} An array of raw data objects.

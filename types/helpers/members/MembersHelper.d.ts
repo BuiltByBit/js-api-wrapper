@@ -7,6 +7,10 @@ export type Member = {
     suspended: boolean;
     restricted: boolean;
     disabled: boolean;
+    premium: boolean;
+    supreme: boolean;
+    ultimate: boolean;
+    discord_id?: number;
     post_count: number;
     resource_count: number;
     purchase_count: number;
@@ -30,6 +34,10 @@ export type Ban = {
  * @property {boolean} suspended
  * @property {boolean} restricted
  * @property {boolean} disabled
+ * @property {boolean} premium
+ * @property {boolean} supreme
+ * @property {boolean} ultimate
+ * @property {number} [discord_id]
  * @property {number} post_count
  * @property {number} resource_count
  * @property {number} purchase_count
@@ -71,6 +79,12 @@ export class MembersHelper {
      * @return {Member} A raw data object.
      */
     fetchByUsername(username: string): Member;
+    /** Fetch information about a member by Discord identifier.
+     *
+     * @param {number} discordId The identifier of the Discord account.
+     * @return {Member} A raw data object.
+     */
+    fetchByDiscord(discordId: number): Member;
     /** Fetch a list of recently issued bans.
      *
      * @return {Array<Ban>} An array of raw data objects.
