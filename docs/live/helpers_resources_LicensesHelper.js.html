@@ -29,6 +29,18 @@
             <pre class="prettyprint source linenums"><code>// Copyright (c) 2021 MC-Market (Mick Capital Pty. Ltd.)
 // MIT License (https://github.com/MC-Market-org/js-api-wrapper/blob/main/LICENSE)
 
+/**
+ * @typedef {object} License
+ * @property {number} license_id
+ * @property {number} purchaser_id
+ * @property {boolean} validated
+ * @property {boolean} permanent
+ * @property {boolean} active
+ * @property {number} start_date
+ * @property {number} end_date
+ * @property {number} previous_end_date
+ */
+
 /** A helper type for resource license-related API endpoints. */
 class LicensesHelper {
     #wrapper;
@@ -42,7 +54,7 @@ class LicensesHelper {
      * @param {number} resourceId The identifier of the resource.
      * @param {SortOptions} sort An optional set of sort options.
      * 
-     * @return {object} A raw data object.
+     * @return {Array&lt;License>} An array of raw data objects.
      */
     async list(resourceId, sort) {
         return await this.#wrapper.http().get(`/resources/${resourceId}/licenses`, sort);
@@ -53,7 +65,7 @@ class LicensesHelper {
      * @param {number} resourceId The identifier of the resource.
      * @param {SortOptions} sort An optional set of sort options.
      * 
-     * @return {object} A raw data object.
+     * @return {Array&lt;License>} An array of raw data objects.
      */
     async listAll(resourceId, sort) {
         return await this.#wrapper.http().listUntil(`/resources/${resourceId}/licenses`, () => true, sort);
@@ -62,47 +74,13 @@ class LicensesHelper {
     /** List multiple pages of licenses for a given resource until a condition is no longer met.
      * 
      * @param {number} resourceId The identifier of the resource.
-     * @param {function(object):boolean} shouldContinue A function which determines if further pages are requested.
+     * @param {function(License):boolean} shouldContinue A function which determines if further pages are requested.
      * @param {SortOptions} sort An optional set of sort options.
      * 
-     * @return {object} A raw data object.
+     * @return {Array&lt;License>} An array of raw data objects.
      */
     async listUntil(resourceId, shouldContinue, sort) {
         return await this.#wrapper.http().listUntil(`/resources/${resourceId}/licenses`, shouldContinue, sort);
-    }
-    
-    /** Issue a new permanent license for a given resource.
-     * 
-     * @param {number} resourceId The identifier of the resource.
-     * @param {number} purchaserId The identifier of the purchaser.
-     * @param {boolean} active Whether or not the license should be active.
-     * 
-     * @return {number} The identifier of the newly-created license.
-     */
-    async issuePermanent(resourceId, purchaserId, active) {
-        let body = {permanent: true, "purchaser_id": purchaserId, active};
-        return await this.#wrapper.http().post(`/resources/${resourceId}/licenses`, body);
-    }
-    
-    /** Issue a new temporay license for a given resource.
-     * 
-     * @param {number} resourceId The identifier of the resource.
-     * @param {number} purchaserId The identifier of the purchaser.
-     * @param {number} purchaserId The identifier of the purchaser.
-     * @param {number} startDate The UNIX timestamp of when the license should start.
-     * @param {number} endDate The UNIX timestamp of when the license should end.
-     * 
-     * @return {number} The identifier of the newly-created license.
-     */
-    async issueTemporary(resourceId, purchaserId, startDate, endDate) {
-        let body = {
-            permanent: false,
-            "purchaser_id": purchaserId,
-            "start_date": startDate,
-            "end_date": endDate
-        };
-
-        return await this.#wrapper.http().post(`/resources/${resourceId}/licenses`, body);
     }
     
     /** Fetch a license for a given resource.
@@ -110,7 +88,7 @@ class LicensesHelper {
      * @param {number} resourceId The identifier of the resource.
      * @param {number} licenseId The identifier of the license.
      * 
-     * @return {object} A raw data object.
+     * @return {License} A raw data object.
      */
     async fetch(resourceId, licenseId) {
         return await this.#wrapper.http().get(`/resources/${resourceId}/licenses/${licenseId}`);
@@ -123,7 +101,7 @@ class LicensesHelper {
      * @param {number} nonce The download's NONCE value, or undefined if using a Private token.
      * @param {number} timestamp The download's UNIX timestamp, or undefined if using a Private token.
      * 
-     * @return {object} A raw data object.
+     * @return {License} A raw data object.
      */
     async fetchMember(resourceId, memberId, nonce, timestamp) {
         let endpoint = `/resources/${resourceId}/licenses/members/${memberId}`;
@@ -166,13 +144,13 @@ exports.LicensesHelper = LicensesHelper;</code></pre>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AlertsHelper.html">AlertsHelper</a></li><li><a href="ConversationsHelper.html">ConversationsHelper</a></li><li><a href="DownloadsHelper.html">DownloadsHelper</a></li><li><a href="Error.html">Error</a></li><li><a href="Http.html">Http</a></li><li><a href="LicensesHelper.html">LicensesHelper</a></li><li><a href="MembersHelper.html">MembersHelper</a></li><li><a href="ProfilePostsHelper.html">ProfilePostsHelper</a></li><li><a href="PurchasesHelper.html">PurchasesHelper</a></li><li><a href="ResourcesHelper.html">ResourcesHelper</a></li><li><a href="ReviewsHelper.html">ReviewsHelper</a></li><li><a href="SortOptions.html">SortOptions</a></li><li><a href="ThreadsHelper.html">ThreadsHelper</a></li><li><a href="Token.html">Token</a></li><li><a href="TokenType.html">TokenType</a></li><li><a href="UpdatesHelper.html">UpdatesHelper</a></li><li><a href="VersionsHelper.html">VersionsHelper</a></li><li><a href="Wrapper.html">Wrapper</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AlertsHelper.html">AlertsHelper</a></li><li><a href="ConversationsHelper.html">ConversationsHelper</a></li><li><a href="DownloadsHelper.html">DownloadsHelper</a></li><li><a href="Error.html">Error</a></li><li><a href="Http.html">Http</a></li><li><a href="LicensesHelper.html">LicensesHelper</a></li><li><a href="MembersHelper.html">MembersHelper</a></li><li><a href="ProfilePostsHelper.html">ProfilePostsHelper</a></li><li><a href="PurchasesHelper.html">PurchasesHelper</a></li><li><a href="ResourcesHelper.html">ResourcesHelper</a></li><li><a href="ReviewsHelper.html">ReviewsHelper</a></li><li><a href="SortOptions.html">SortOptions</a></li><li><a href="ThreadsHelper.html">ThreadsHelper</a></li><li><a href="Token.html">Token</a></li><li><a href="TokenType.html">TokenType</a></li><li><a href="UpdatesHelper.html">UpdatesHelper</a></li><li><a href="VersionsHelper.html">VersionsHelper</a></li><li><a href="Wrapper.html">Wrapper</a></li></ul><h3><a href="global.html">Global</a></h3>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sat Jan 15 2022 23:23:21 GMT+0000 (Greenwich Mean Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Mon Mar 07 2022 17:36:03 GMT+0000 (Greenwich Mean Time)
 </footer>
 
 <script> prettyPrint(); </script>
