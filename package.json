@@ -1,6 +1,6 @@
 {
   "name": "mcm-js-api-wrapper",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "An official asynchronous JavaScript (Node.js) wrapper for MC-Market's Ultimate REST API.",
   "main": "./src/index.js",
   "types": "./types/index.d.ts",
