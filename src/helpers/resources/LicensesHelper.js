@@ -55,39 +55,6 @@ class LicensesHelper {
         return await this.#wrapper.http().listUntil(`/resources/${resourceId}/licenses`, shouldContinue, sort);
     }
     
-    /** Issue a new permanent license for a given resource.
-     * 
-     * @param {number} resourceId The identifier of the resource.
-     * @param {number} purchaserId The identifier of the purchaser.
-     * @param {boolean} active Whether or not the license should be active.
-     * 
-     * @return {number} The identifier of the newly-created license.
-     */
-    async issuePermanent(resourceId, purchaserId, active) {
-        let body = {permanent: true, "purchaser_id": purchaserId, active};
-        return await this.#wrapper.http().post(`/resources/${resourceId}/licenses`, body);
-    }
-    
-    /** Issue a new temporay license for a given resource.
-     * 
-     * @param {number} resourceId The identifier of the resource.
-     * @param {number} purchaserId The identifier of the purchaser.
-     * @param {number} startDate The UNIX timestamp of when the license should start.
-     * @param {number} endDate The UNIX timestamp of when the license should end.
-     * 
-     * @return {number} The identifier of the newly-created license.
-     */
-    async issueTemporary(resourceId, purchaserId, startDate, endDate) {
-        let body = {
-            permanent: false,
-            "purchaser_id": purchaserId,
-            "start_date": startDate,
-            "end_date": endDate
-        };
-
-        return await this.#wrapper.http().post(`/resources/${resourceId}/licenses`, body);
-    }
-    
     /** Fetch a license for a given resource.
      * 
      * @param {number} resourceId The identifier of the resource.
