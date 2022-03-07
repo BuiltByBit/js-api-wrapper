@@ -13,6 +13,10 @@ const { ProfilePostsHelper } = require("./ProfilePostsHelper.js");
  * @property {boolean} suspended
  * @property {boolean} restricted
  * @property {boolean} disabled
+ * @property {boolean} premium
+ * @property {boolean} supreme
+ * @property {boolean} ultimate
+ * @property {number} [discord_id]
  * @property {number} post_count
  * @property {number} resource_count
  * @property {number} purchase_count
@@ -72,6 +76,15 @@ class MembersHelper {
      */
     async fetchByUsername(username) {
         return await this.#wrapper.http().get(`/members/usernames/${username}`);
+    }
+
+    /** Fetch information about a member by Discord identifier.
+     * 
+     * @param {number} discordId The identifier of the Discord account.
+     * @return {Member} A raw data object.
+     */
+    async fetchByDiscord(discordId) {
+        return await this.#wrapper.http().get(`/members/discords/${discordId}`);
     }
     
     /** Fetch a list of recently issued bans.
