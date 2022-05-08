@@ -7,8 +7,8 @@ class Error {
     #message;
 
     constructor(json) {
-        this.#code = json.code;
-        this.#message = json.message;
+        this.#code = json?.code;
+        this.#message = json?.message;
     }
 
     /** Converts this error into a human-readable string.
