@@ -62,7 +62,7 @@ class Http {
         await this.#throttler.stallIfRequired(true);
 
         try {
-            let response = await this.#client.post(endpoint, body, Http.#WRITE_HEADERS).data;
+            let response = await this.#client.post(endpoint, body, Http.#WRITE_HEADERS);
             this.#throttler.resetWrite();
             return response.data.data;
         } catch (error) {
