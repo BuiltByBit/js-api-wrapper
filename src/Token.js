@@ -14,11 +14,8 @@ class Token {
      * @param {string} value The value of this token.
      */
     constructor(type, value) {
-        if (!(type instanceof TokenType)) {
-            throw Error.internal("The 'type' parameter was not of type TokenType.");
-        } else if (typeof value !== "string") {
-            throw Error.internal("The 'value' parameter was not a string.");
-        }
+        if (!(type instanceof TokenType)) throw Error.internal("The 'type' parameter was not of type TokenType.");
+        if (typeof value !== "string") throw Error.internal("The 'value' parameter was not a string.");
 
         this.#type = type;
         this.#value = value;

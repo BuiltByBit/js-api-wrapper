@@ -34,17 +34,13 @@ class Wrapper {
      * @param {boolean} health Whether or not to execute a health check during initialisation.
      */
     async init(token, health = true) {
-        if (!(token instanceof Token)) {
-            throw Error.internal("The 'token' parameter was not of type Token.");
-        } else if (typeof health !== "boolean") {
-            throw Error.internal("The 'health' parameter was not a boolean.");
-        }
+        if (!(token instanceof Token)) throw Error.internal("The 'token' parameter was not of type Token.");
+        if (typeof health !== "boolean") throw Error.internal("The 'health' parameter was not a boolean.");
 
         let client = axios.create({baseURL: Wrapper.#BASE_URL, headers: token.asHeader()});
         this.#http = new Http(client, new Throttler());
 
         if (health) await this.health();
-        return;
     }
 
     /** Schedule an empty request which we expect to always succeed under nominal conditions. */
