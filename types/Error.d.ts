@@ -7,11 +7,21 @@ export class Error {
      */
     static internal(message: string): Error;
     constructor(json: any);
-    /** Converts this error into a human-readable string.
+    /** Returns a string representation of this error including both the machine and human-readable parts.
      *
      * @returns {string} A string representation of this error.
      */
     toString(): string;
+    /** Returns the machine-readable code of the error.
+     *
+     * @returns {string} The machine-readable error code.
+     */
+    code(): string;
+    /** Returns the human-readable message of the error.
+     *
+     * @returns {string} The human-readable error message.
+     */
+    message(): string;
     #private;
 }
 //# sourceMappingURL=Error.d.ts.map
