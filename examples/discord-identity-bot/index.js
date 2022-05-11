@@ -9,9 +9,11 @@ const botToken = "Find @ https://discord.com/developers/applications";
 
 const GUILD_ID = 0;
 const ROLE_ID = 0;
+const CHANNEL_ID = 0;
 
 let guild = undefined;
 let role = undefined;
+let channel = undefined;
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 const wrapper = new Wrapper();
@@ -22,6 +24,7 @@ async function main() {
 
     guild = await client.guilds.fetch(GUILD_ID);
     role = await guild.roles.fetch(ROLE_ID);
+    channel = await guild.channels.fetch(CHANNEL_ID);
 
     client.on("guildMemberAdd", join);
 }
@@ -33,10 +36,14 @@ async function join(user) {
     try {
         member = await wrapper.members().fetchByDiscord(Number(user.user.id));
     } catch (error) {
-        if (error instanceof Error && error.code() === "MemberNotFound") return;
+        if (error instanceof Error && error.code() === "MemberNotFound") {
+            await channel.send(`[MC-Market] No member found for ${user}.`);
+        }
+
         throw error;
     }
 
+    await channel.send(`[MC-Market] A member was found for ${user}: '${member.username}' (${member.member_id}).`);
     await user.roles.add(role);
 }
 
