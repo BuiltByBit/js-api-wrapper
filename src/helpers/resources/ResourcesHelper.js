@@ -118,6 +118,41 @@ class ResourcesHelper {
         return await this.#wrapper.http().listUntil("/resources/collaborated", shouldContinue, sort);
     }
     
+    /** List a page of resources by an author.
+     * 
+     * @param {number} authorId The identifier of the resource author.
+     * @param {SortOptions} sort An optional set of sort options.
+     * 
+     * @return {Array<BasicResource>} An array of raw data objects.
+     */
+    async listByAuthor(authorId, sort) {
+        return await this.#wrapper.get(`/resources/authors/${authorId}`, sort);
+    }
+    
+    /** List all pages of resources by an author.
+     * 
+     * @param {number} authorId The identifier of the resource author.
+     * @param {SortOptions} sort An optional set of sort options.
+     * 
+     * @return {Array<BasicResource>} An array of raw data objects.
+     */
+    async listByAuthorAll(authorId, sort) {
+        return await this.#wrapper.http().listUntil(`/resources/authors/${authorId}`, () => true, sort);
+    }
+    
+    /** List multiple pages of resources by an author until a condition is no longer met.
+     * 
+     * @param {number} authorId The identifier of the resource author.
+     * @param {function(BasicResource):boolean} shouldContinue A function which determines if further pages are
+     * requested.
+     * @param {SortOptions} sort An optional set of sort options.
+     * 
+     * @return {Array<BasicResource>} An array of raw data objects.
+     */
+    async listByAuthorUntil(authorId, shouldContinue, sort) {
+        return await this.#wrapper.http().listUntil(`/resources/authors/${authorId}`, shouldContinue, sort);
+    }
+
     /** Fetch detailed information about a resource.
      * 
      * @param {number} resourceId The identifier of the resource.

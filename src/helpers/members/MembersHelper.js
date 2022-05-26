@@ -17,6 +17,7 @@ const { ProfilePostsHelper } = require("./ProfilePostsHelper.js");
  * @property {boolean} supreme
  * @property {boolean} ultimate
  * @property {number} [discord_id]
+ * @property {string} avatar_url
  * @property {number} post_count
  * @property {number} resource_count
  * @property {number} purchase_count
