@@ -11,6 +11,7 @@ export type Member = {
     supreme: boolean;
     ultimate: boolean;
     discord_id?: number;
+    avatar_url: string;
     post_count: number;
     resource_count: number;
     purchase_count: number;
@@ -38,6 +39,7 @@ export type Ban = {
  * @property {boolean} supreme
  * @property {boolean} ultimate
  * @property {number} [discord_id]
+ * @property {string} avatar_url
  * @property {number} post_count
  * @property {number} resource_count
  * @property {number} purchase_count
