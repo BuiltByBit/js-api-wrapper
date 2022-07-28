@@ -81,7 +81,7 @@ class MembersHelper {
 
     /** Fetch information about a member by Discord identifier.
      * 
-     * @param {number} discordId The identifier of the Discord account.
+     * @param {string} discordId The identifier of the Discord account.
      * @return {Member} A raw data object.
      */
     async fetchByDiscord(discordId) {

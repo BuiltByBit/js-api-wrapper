@@ -83,10 +83,10 @@ export class MembersHelper {
     fetchByUsername(username: string): Member;
     /** Fetch information about a member by Discord identifier.
      *
-     * @param {number} discordId The identifier of the Discord account.
+     * @param {string} discordId The identifier of the Discord account.
      * @return {Member} A raw data object.
      */
-    fetchByDiscord(discordId: number): Member;
+    fetchByDiscord(discordId: string): Member;
     /** Fetch a list of recently issued bans.
      *
      * @return {Array<Ban>} An array of raw data objects.
