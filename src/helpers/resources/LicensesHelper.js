@@ -70,8 +70,8 @@ class LicensesHelper {
      * 
      * @param {number} resourceId The identifier of the resource.
      * @param {number} memberId The identifier of the member.
-     * @param {number} nonce The download's NONCE value, or undefined if using a Private token.
-     * @param {number} timestamp The download's UNIX timestamp, or undefined if using a Private token.
+     * @param {number | undefined} nonce The download's NONCE value, or undefined if using a Private token.
+     * @param {number | undefined} timestamp The download's UNIX timestamp, or undefined if using a Private token.
      * 
      * @return {License} A raw data object.
      */
