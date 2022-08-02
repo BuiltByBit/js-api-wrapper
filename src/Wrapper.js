@@ -1,5 +1,5 @@
-// Copyright (c) 2021 MC-Market (Mick Capital Pty. Ltd.)
-// MIT License (https://github.com/MC-Market-org/js-api-wrapper/blob/main/LICENSE)
+// Copyright (c) 2021-2022 BuiltByBit (Mick Capital Pty. Ltd.)
+// MIT License (https://github.com/BuiltByBit/js-api-wrapper/blob/main/LICENSE)
 
 const axios = require("axios");
 
@@ -17,7 +17,7 @@ const { ResourcesHelper } = require("./helpers/resources/ResourcesHelper.js");
 /** The primary wrapping type for interactions with MC-Market's API. */
 class Wrapper {
     /** The base API URL and version which will be prepended to non-absolute paths by axios. */
-    static #BASE_URL = "https://api.mc-market.org/v1";
+    static #BASE_URL = "https://api.builtbybit.com/v1";
 
     #http;
 
