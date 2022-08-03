@@ -1,4 +1,4 @@
-/** The primary wrapping type for interactions with MC-Market's API. */
+/** The primary wrapping type for interactions with BuiltByBit's API. */
 export class Wrapper {
     /** The base API URL and version which will be prepended to non-absolute paths by axios. */
     static "__#18@#BASE_URL": string;
