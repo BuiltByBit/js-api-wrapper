@@ -14,7 +14,7 @@ const { ThreadsHelper } = require("./helpers/ThreadsHelper.js");
 const { MembersHelper } = require("./helpers/members/MembersHelper.js");
 const { ResourcesHelper } = require("./helpers/resources/ResourcesHelper.js");
 
-/** The primary wrapping type for interactions with MC-Market's API. */
+/** The primary wrapping type for interactions with BuiltByBit's API. */
 class Wrapper {
     /** The base API URL and version which will be prepended to non-absolute paths by axios. */
     static #BASE_URL = "https://api.builtbybit.com/v1";

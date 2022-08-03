@@ -1,10 +1,10 @@
 // Copyright (c) 2021-2022 BuiltByBit (Mick Capital Pty. Ltd.)
 // MIT License (https://github.com/BuiltByBit/js-api-wrapper/blob/main/LICENSE)
 
-const { Wrapper, Token, TokenType, Error } = require("mcm-js-api-wrapper");
+const { Wrapper, Token, TokenType, Error } = require("@builtbybit/js-api-wrapper");
 const { Client, Intents } = require('discord.js');
 
-const mcmToken = new Token(TokenType.PRIVATE, "Find @ https://www.mc-market.org/account/api");
+const mcmToken = new Token(TokenType.PRIVATE, "Find @ https://builtbybit.com/account/api");
 const botToken = "Find @ https://discord.com/developers/applications";
 
 const GUILD_ID = "0";
@@ -37,14 +37,14 @@ async function join(user) {
         member = await wrapper.members().fetchByDiscord(Number(user.user.id));
     } catch (error) {
         if (error instanceof Error && error.code() === "MemberNotFound") {
-            await channel.send(`[MC-Market] No member found for ${user}.`);
+            await channel.send(`[BuiltByBit] No member found for ${user}.`);
         }
 
         throw error;
     }
 
-    let member_url = `https://wwww.mc-market.org/members/${member.member_id}/`;
-    await channel.send(`[MC-Market] A member was found for ${user}: '${member.username}' (${member_url}).`);
+    let member_url = `https://wbuiltbybit.com/members/${member.member_id}/`;
+    await channel.send(`[BuiltByBit] A member was found for ${user}: '${member.username}' (${member_url}).`);
 
     await user.roles.add(role);
 }

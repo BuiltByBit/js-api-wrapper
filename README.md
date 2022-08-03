@@ -1,34 +1,34 @@
-# MC-Market's Official Node.js API Wrapper
+# BuiltByBit's Official Node.js API Wrapper
 
-[![npm](https://img.shields.io/npm/v/mcm-js-api-wrapper)](https://www.npmjs.com/package/mcm-js-api-wrapper)
-[![npm type definitions](https://img.shields.io/npm/types/mcm-js-api-wrapper)](https://github.com/MC-Market-org/js-api-wrapper/tree/main/types)
-[![npm](https://img.shields.io/npm/dt/mcm-js-api-wrapper)](https://www.npmjs.com/package/mcm-js-api-wrapper)
-[![npm version](https://img.shields.io/badge/docs-passing-brightgreen)](https://mc-market-org.github.io/js-api-wrapper/live/)
-[![NPM](https://img.shields.io/npm/l/mcm-js-api-wrapper)](https://github.com/Majored/mcm-js-api-wrapper/blob/main/LICENSE)
+[![npm](https://img.shields.io/npm/v/@builtbybit/js-api-wrapper)](https://www.npmjs.com/package/@builtbybit/js-api-wrapper)
+[![npm type definitions](https://img.shields.io/npm/types/@builtbybit/js-api-wrapper)](https://github.com/BuiltByBit/js-api-wrapper/tree/main/types)
+[![npm](https://img.shields.io/npm/dt/@builtbybit/js-api-wrapper)](https://www.npmjs.com/package/@builtbybit/js-api-wrapper)
+[![npm version](https://img.shields.io/badge/docs-passing-brightgreen)](https://builtbybit.github.io/js-api-wrapper/live/)
+[![NPM](https://img.shields.io/npm/l/@builtbybit/js-api-wrapper)](https://github.com/Majored/@builtbybit/js-api-wrapper/blob/main/LICENSE)
 
-An official asynchronous Node.js wrapper for MC-Market's [Ultimate API](https://www.mc-market.org/wiki/ultimate-api/).
+An official asynchronous Node.js wrapper for BuiltByBit's [Ultimate API](https://builtbybit.com/wiki/ultimate-api/).
 
 - A Promise-based design built upon [`axios`](https://www.npmjs.com/package/axios).
 - Stalls requests when a dynamic rate limiting error is encountered.
 - Full coverage of the Ultimate API.
 - A comprehensive set of relevant usage examples.
 - Automatically generated TypeScript declarations.
-- Automatically generated and hosted [documentation](https://mc-market-org.github.io/js-api-wrapper/live/).
+- Automatically generated and hosted [documentation](https://builtbybit.github.io/js-api-wrapper/live/).
 
 ## Installation & Basic Usage
 
 Install via `npm`:
 
 ```
-npm i mcm-js-api-wrapper
+npm i @builtbybit/js-api-wrapper
 ```
 
 Initialise wrapper and fetch information about yourself via Promise's .then() notation:
 
 ```JS
-const { Wrapper, Token, TokenType } = require("mcm-js-api-wrapper");
+const { Wrapper, Token, TokenType } = require("@builtbybit/js-api-wrapper");
 
-let token = new Token(TokenType.PRIVATE, "Find @ https://www.mc-market.org/account/api");
+let token = new Token(TokenType.PRIVATE, "Find @ https://builtbybit.com/account/api");
 let wrapper = new Wrapper();
 
 // We catch any Promise rejections ourselves.
@@ -42,9 +42,9 @@ wrapper.init(token).then(wrapper.members().self().then(self => {
 Initialise wrapper and fetch information about yourself via async/await:
 
 ```JS
-const { Wrapper, Token, TokenType } = require("mcm-js-api-wrapper");
+const { Wrapper, Token, TokenType } = require("@builtbybit/js-api-wrapper");
 
-let token = new Token(TokenType.PRIVATE, "Find @ https://www.mc-market.org/account/api");
+let token = new Token(TokenType.PRIVATE, "Find @ https://builtbybit.com/account/api");
 let wrapper = new Wrapper();
 ...
 
@@ -53,7 +53,7 @@ await wrapper.init(token);
 console.log(await wrapper.members().self());
 ```
 
-An comprehensive set of [examples](https://github.com/MC-Market-org/js-api-wrapper/tree/main/examples) can be found under the `/examples` directory.
+An comprehensive set of [examples](https://github.com/BuiltByBit/js-api-wrapper/tree/main/examples) can be found under the `/examples` directory.
 
 ## Contributions
 
@@ -70,6 +70,6 @@ Whilst no contribution guidelines exist currently, please ensure you:
 
 ## Issues & Support
 
-The [issues tracker](https://github.com/MC-Market-org/mcm-js-api-wrapper/issues) for this repository should only be used to report bugs or issues with this official Node.js wrapper.
+The [issues tracker](https://github.com/BuiltByBit/js-api-wrapper/issues) for this repository should only be used to report bugs or issues with this official Node.js wrapper.
 
-For bugs or issues related to the Ultimate API itself, please open a [support ticket](https://www.mc-market.org/tickets/new) or create a [bug report](https://www.mc-market.org/suggestions/create-thread) on our platform.
+For bugs or issues related to the Ultimate API itself, please open a [support ticket](https://builtbybit.com/tickets/new) or create a [bug report](https://builtbybit.com/suggestions/create-thread) on our platform.

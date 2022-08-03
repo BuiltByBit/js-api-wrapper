@@ -1,9 +1,9 @@
 // Copyright (c) 2021-2022 BuiltByBit (Mick Capital Pty. Ltd.)
 // MIT License (https://github.com/BuiltByBit/js-api-wrapper/blob/main/LICENSE)
 
-const { Wrapper, Token, TokenType } = require("mcm-js-api-wrapper");
+const { Wrapper, Token, TokenType } = require("@builtbybit/js-api-wrapper");
 
-let token = new Token(TokenType.PRIVATE, "Find @ https://www.mc-market.org/account/api");
+let token = new Token(TokenType.PRIVATE, "Find @ https://builtbybit.com/account/api");
 let wrapper = new Wrapper();
 
 let resourceId = 0;

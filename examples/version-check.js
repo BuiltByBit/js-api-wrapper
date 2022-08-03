@@ -1,9 +1,9 @@
 // Copyright (c) 2021-2022 BuiltByBit (Mick Capital Pty. Ltd.)
 // MIT License (https://github.com/BuiltByBit/js-api-wrapper/blob/main/LICENSE)
 
-const { Wrapper, Token, TokenType } = require("mcm-js-api-wrapper");
+const { Wrapper, Token, TokenType } = require("@builtbybit/js-api-wrapper");
 
-let token = new Token(TokenType.SHARED, "Find @ https://www.mc-market.org/account/api");
+let token = new Token(TokenType.SHARED, "Find @ https://builtbybit.com/account/api");
 let wrapper = new Wrapper();
 
 // Injected placeholders.
@@ -18,7 +18,7 @@ async function main() {
     if (Number(versionId) === latest["version_id"]) {
         console.log("Up to date.");
     } else {
-        console.log(`A new version exists. https://www.mc-market.org/resources/${resourceId}/`);
+        console.log(`A new version exists. https://builtbybit.com/resources/${resourceId}/`);
     }
 }
 
