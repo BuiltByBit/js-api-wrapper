@@ -21,13 +21,13 @@ export class AlertsHelper {
      * @param {SortOptions | undefined} sort An optional set of sort options.
      * @return {Array<Alert>} An array of raw data objects.
      */
-    list(sort: SortOptions): Array<Alert>;
+    list(sort: SortOptions | undefined): Array<Alert>;
     /** List all pages of unread alerts.
      *
      * @param {SortOptions | undefined} sort An optional set of sort options.
      * @return {Array<Alert>} An array of raw data objects.
      */
-    listAll(sort: SortOptions): Array<Alert>;
+    listAll(sort: SortOptions | undefined): Array<Alert>;
     /** List multiple pages of unread alerts until a condition is no longer met.
      *
      * @param {function(Alert):boolean} shouldContinue A function which determines if further pages are requested.
@@ -35,7 +35,7 @@ export class AlertsHelper {
      *
      * @return {Array<Alert>} An array of raw data objects.
      */
-    listUntil(shouldContinue: (arg0: Alert) => boolean, sort: SortOptions): Array<Alert>;
+    listUntil(shouldContinue: (arg0: Alert) => boolean, sort: SortOptions | undefined): Array<Alert>;
     /** Mark unread alerts as read. */
     markAsRead(): Promise<any>;
     #private;

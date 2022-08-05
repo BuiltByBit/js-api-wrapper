@@ -59,13 +59,13 @@ export class ThreadsHelper {
      * @param {SortOptions | undefined} sort An optional set of sort options.
      * @return {Array<BasicThread>} An array of raw data objects.
      */
-    list(sort: SortOptions): Array<BasicThread>;
+    list(sort: SortOptions | undefined): Array<BasicThread>;
     /** List all pages of threads you own or collaborate on.
      *
      * @param {SortOptions | undefined} sort An optional set of sort options.
      * @return {Array<BasicThread>} An array of raw data objects.
      */
-    listAll(sort: SortOptions): Array<BasicThread>;
+    listAll(sort: SortOptions | undefined): Array<BasicThread>;
     /** List multiple pages of threads you own or collaborate on until a condition is no longer met.
      *
      * @param {function(BasicThread):boolean} shouldContinue A function which determines if further pages are requested.
@@ -73,7 +73,7 @@ export class ThreadsHelper {
      *
      * @return {Array<BasicThread>} An array of raw data objects.
      */
-    listUntil(shouldContinue: (arg0: BasicThread) => boolean, sort: SortOptions): Array<BasicThread>;
+    listUntil(shouldContinue: (arg0: BasicThread) => boolean, sort: SortOptions | undefined): Array<BasicThread>;
     /** Fetch information about a thread you own or collaborate on.
      *
      * @param {number} threadId The identifier of the thread.
@@ -87,7 +87,7 @@ export class ThreadsHelper {
      *
      * @return {Array<Reply>} An array of raw data objects.
      */
-    listReplies(threadId: number, sort: SortOptions): Array<Reply>;
+    listReplies(threadId: number, sort: SortOptions | undefined): Array<Reply>;
     /** List all pages of replies for a thread you own or collaborate on.
      *
      * @param {number} threadId The identifier of the thread.
@@ -95,7 +95,7 @@ export class ThreadsHelper {
      *
      * @return {Array<Reply>} An array of raw data objects.
      */
-    listRepliesAll(threadId: number, sort: SortOptions): Array<Reply>;
+    listRepliesAll(threadId: number, sort: SortOptions | undefined): Array<Reply>;
     /** List multiple pages of replies for a thread you own or collaborate on until a condition is no longer met.
      *
      * @param {number} threadId The identifier of the thread.
@@ -104,7 +104,7 @@ export class ThreadsHelper {
      *
      * @return {Array<Reply>} An array of raw data objects.
      */
-    listRepliesUntil(threadId: number, shouldContinue: (arg0: Reply) => boolean, sort: SortOptions): Array<Reply>;
+    listRepliesUntil(threadId: number, shouldContinue: (arg0: Reply) => boolean, sort: SortOptions | undefined): Array<Reply>;
     /** Reply to a thread you own or collaborate on.
      *
      * @param {number} threadId The identifier of the thread.

@@ -29,7 +29,7 @@ export class LicensesHelper {
      *
      * @return {Array<License>} An array of raw data objects.
      */
-    list(resourceId: number, sort: SortOptions): Array<License>;
+    list(resourceId: number, sort: SortOptions | undefined): Array<License>;
     /** List all pages of licenses for a given resource.
      *
      * @param {number} resourceId The identifier of the resource.
@@ -37,7 +37,7 @@ export class LicensesHelper {
      *
      * @return {Array<License>} An array of raw data objects.
      */
-    listAll(resourceId: number, sort: SortOptions): Array<License>;
+    listAll(resourceId: number, sort: SortOptions | undefined): Array<License>;
     /** List multiple pages of licenses for a given resource until a condition is no longer met.
      *
      * @param {number} resourceId The identifier of the resource.
@@ -46,7 +46,7 @@ export class LicensesHelper {
      *
      * @return {Array<License>} An array of raw data objects.
      */
-    listUntil(resourceId: number, shouldContinue: (arg0: License) => boolean, sort: SortOptions): Array<License>;
+    listUntil(resourceId: number, shouldContinue: (arg0: License) => boolean, sort: SortOptions | undefined): Array<License>;
     /** Fetch a license for a given resource.
      *
      * @param {number} resourceId The identifier of the resource.

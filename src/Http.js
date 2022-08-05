@@ -23,7 +23,7 @@ class Http {
     /** Schedules a GET request for a specific endpoint.
      * 
      * @param {string} endpoint The path of the endpoint (incl. any path parameters).
-     * @param {SortOption | undefined} sort The optional set of sort options.
+     * @param {SortOptions | undefined} sort The optional set of sort options.
      * 
      * @return {*} The response data on success.
      */

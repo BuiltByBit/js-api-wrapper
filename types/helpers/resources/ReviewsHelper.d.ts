@@ -25,7 +25,7 @@ export class ReviewsHelper {
      *
      * @return {Array<Review>} An array of raw data objects.
      */
-    list(resourceId: number, sort: SortOptions): Array<Review>;
+    list(resourceId: number, sort: SortOptions | undefined): Array<Review>;
     /** List all pages of reviews for a given resource.
      *
      * @param {number} resourceId The identifier of the resource.
@@ -33,7 +33,7 @@ export class ReviewsHelper {
      *
      * @return {Array<Review>} An array of raw data objects.
      */
-    listAll(resourceId: number, sort: SortOptions): Array<Review>;
+    listAll(resourceId: number, sort: SortOptions | undefined): Array<Review>;
     /** List multiple pages of reviews for a given resource until a condition is no longer met.
      *
      * @param {number} resourceId The identifier of the resource.
@@ -42,7 +42,7 @@ export class ReviewsHelper {
      *
      * @return {Array<Review>} An array of raw data objects.
      */
-    listUntil(resourceId: number, shouldContinue: (arg0: Review) => boolean, sort: SortOptions): Array<Review>;
+    listUntil(resourceId: number, shouldContinue: (arg0: Review) => boolean, sort: SortOptions | undefined): Array<Review>;
     /** Fetch a resource review by a member for a given resource.
      *
      * @param {number} resourceId The identifier of the resource.

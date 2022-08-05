@@ -23,7 +23,7 @@ export class VersionsHelper {
      *
      * @return {Array<Version>} An array of raw data objects.
      */
-    list(resourceId: number, sort: SortOptions): Array<Version>;
+    list(resourceId: number, sort: SortOptions | undefined): Array<Version>;
     /** List all pages of versions for a given resource.
      *
      * @param {number} resourceId The identifier of the resource.
@@ -31,7 +31,7 @@ export class VersionsHelper {
      *
      * @return {Array<Version>} An array of raw data objects.
      */
-    listAll(resourceId: number, sort: SortOptions): Array<Version>;
+    listAll(resourceId: number, sort: SortOptions | undefined): Array<Version>;
     /** List multiple pages of versions for a given resource until a condition is no longer met.
      *
      * @param {number} resourceId The identifier of the resource.
@@ -40,7 +40,7 @@ export class VersionsHelper {
      *
      * @return {Array<Version>} An array of raw data objects.
      */
-    listUntil(resourceId: number, shouldContinue: (arg0: Version) => boolean, sort: SortOptions): Array<Version>;
+    listUntil(resourceId: number, shouldContinue: (arg0: Version) => boolean, sort: SortOptions | undefined): Array<Version>;
     /** Fetch the latest version for a given resource.
      *
      * @param {number} resourceId The identifier of the resource.

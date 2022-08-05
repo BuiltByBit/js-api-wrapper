@@ -58,19 +58,19 @@ export class ResourcesHelper {
      * @param {SortOptions | undefined} sort An optional set of sort options.
      * @return {Array<BasicResource>} An array of raw data objects.
      */
-    list(sort: SortOptions): Array<BasicResource>;
+    list(sort: SortOptions | undefined): Array<BasicResource>;
     /** List a page of owned resources.
      *
      * @param {SortOptions | undefined} sort An optional set of sort options.
      * @return {Array<BasicResource>} An array of raw data objects.
      */
-    listOwned(sort: SortOptions): Array<BasicResource>;
+    listOwned(sort: SortOptions | undefined): Array<BasicResource>;
     /** List all pages of owned resources.
      *
      * @param {SortOptions | undefined} sort An optional set of sort options.
      * @return {Array<BasicResource>} An array of raw data objects.
      */
-    listOwnedAll(sort: SortOptions): Array<BasicResource>;
+    listOwnedAll(sort: SortOptions | undefined): Array<BasicResource>;
     /** List multiple pages of owned resources until a condition is no longer met.
      *
      * @param {function(BasicResource):boolean} shouldContinue A function which determines if further pages are
@@ -79,19 +79,19 @@ export class ResourcesHelper {
      *
      * @return {Array<BasicResource>} An array of raw data objects.
      */
-    listOwnedUntil(shouldContinue: (arg0: BasicResource) => boolean, sort: SortOptions): Array<BasicResource>;
+    listOwnedUntil(shouldContinue: (arg0: BasicResource) => boolean, sort: SortOptions | undefined): Array<BasicResource>;
     /** List a page of collaborated resources.
      *
      * @param {SortOptions | undefined} sort An optional set of sort options.
      * @return {Array<BasicResource>} An array of raw data objects.
      */
-    listCollaborated(sort: SortOptions): Array<BasicResource>;
+    listCollaborated(sort: SortOptions | undefined): Array<BasicResource>;
     /** List all pages of collaborated resources.
      *
      * @param {SortOptions | undefined} sort An optional set of sort options.
      * @return {Array<BasicResource>} An array of raw data objects.
      */
-    listCollaboratedAll(sort: SortOptions): Array<BasicResource>;
+    listCollaboratedAll(sort: SortOptions | undefined): Array<BasicResource>;
     /** List multiple pages of collaborated resources until a condition is no longer met.
      *
      * @param {function(BasicResource):boolean} shouldContinue A function which determines if further pages are
@@ -100,7 +100,7 @@ export class ResourcesHelper {
      *
      * @return {Array<BasicResource>} An array of raw data objects.
      */
-    listCollaboratedUntil(shouldContinue: (arg0: BasicResource) => boolean, sort: SortOptions): Array<BasicResource>;
+    listCollaboratedUntil(shouldContinue: (arg0: BasicResource) => boolean, sort: SortOptions | undefined): Array<BasicResource>;
     /** List a page of resources by an author.
      *
      * @param {number} authorId The identifier of the resource author.
@@ -108,7 +108,7 @@ export class ResourcesHelper {
      *
      * @return {Array<BasicResource>} An array of raw data objects.
      */
-    listByAuthor(authorId: number, sort: SortOptions): Array<BasicResource>;
+    listByAuthor(authorId: number, sort: SortOptions | undefined): Array<BasicResource>;
     /** List all pages of resources by an author.
      *
      * @param {number} authorId The identifier of the resource author.
@@ -116,7 +116,7 @@ export class ResourcesHelper {
      *
      * @return {Array<BasicResource>} An array of raw data objects.
      */
-    listByAuthorAll(authorId: number, sort: SortOptions): Array<BasicResource>;
+    listByAuthorAll(authorId: number, sort: SortOptions | undefined): Array<BasicResource>;
     /** List multiple pages of resources by an author until a condition is no longer met.
      *
      * @param {number} authorId The identifier of the resource author.
@@ -126,7 +126,7 @@ export class ResourcesHelper {
      *
      * @return {Array<BasicResource>} An array of raw data objects.
      */
-    listByAuthorUntil(authorId: number, shouldContinue: (arg0: BasicResource) => boolean, sort: SortOptions): Array<BasicResource>;
+    listByAuthorUntil(authorId: number, shouldContinue: (arg0: BasicResource) => boolean, sort: SortOptions | undefined): Array<BasicResource>;
     /** Fetch detailed information about a resource.
      *
      * @param {number} resourceId The identifier of the resource.

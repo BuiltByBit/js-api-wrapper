@@ -31,7 +31,7 @@ export class PurchasesHelper {
      *
      * @return {Array<Purchase>} An array of raw data objects.
      */
-    list(resourceId: number, sort: SortOptions): Array<Purchase>;
+    list(resourceId: number, sort: SortOptions | undefined): Array<Purchase>;
     /** List all pages of purchases for a given resource.
      *
      * @param {number} resourceId The identifier of the resource.
@@ -39,7 +39,7 @@ export class PurchasesHelper {
      *
      * @return {Array<Purchase>} An array of raw data objects.
      */
-    listAll(resourceId: number, sort: SortOptions): Array<Purchase>;
+    listAll(resourceId: number, sort: SortOptions | undefined): Array<Purchase>;
     /** List multiple pages of purchases for a given resource until a condition is no longer met.
      *
      * @param {number} resourceId The identifier of the resource.
@@ -48,7 +48,7 @@ export class PurchasesHelper {
      *
      * @return {Array<Purchase>} An array of raw data objects.
      */
-    listUntil(resourceId: number, shouldContinue: (arg0: Purchase) => boolean, sort: SortOptions): Array<Purchase>;
+    listUntil(resourceId: number, shouldContinue: (arg0: Purchase) => boolean, sort: SortOptions | undefined): Array<Purchase>;
     /** Fetch a purchase for a given resource.
      *
      * @param {number} resourceId The identifier of the resource.

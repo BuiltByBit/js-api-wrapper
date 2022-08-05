@@ -42,13 +42,13 @@ export class ConversationsHelper {
      * @param {SortOptions | undefined} sort An optional set of sort options.
      * @return {Array<Conversation>} An array of raw data objects.
      */
-    list(sort: SortOptions): Array<Conversation>;
+    list(sort: SortOptions | undefined): Array<Conversation>;
     /** List all pages of unread conversations.
      *
      * @param {SortOptions | undefined} sort An optional set of sort options.
      * @return {Array<Conversation>} An array of raw data objects.
      */
-    listAll(sort: SortOptions): Array<Conversation>;
+    listAll(sort: SortOptions | undefined): Array<Conversation>;
     /** List multiple pages of unread conversations until a condition is no longer met.
      *
      * @param {function(Conversation):boolean} shouldContinue A function which determines if further pages are
@@ -57,7 +57,7 @@ export class ConversationsHelper {
      *
      * @return {Array<Conversation>} An array of raw data objects.
      */
-    listUntil(shouldContinue: (arg0: Conversation) => boolean, sort: SortOptions): Array<Conversation>;
+    listUntil(shouldContinue: (arg0: Conversation) => boolean, sort: SortOptions | undefined): Array<Conversation>;
     /** Start a new conversation.
      *
      * @param {string} title The title of the conversation.
@@ -74,7 +74,7 @@ export class ConversationsHelper {
      *
      * @return {Array<Reply>} An array of raw data objects.
      */
-    listReplies(conversationId: number, sort: SortOptions): Array<Reply>;
+    listReplies(conversationId: number, sort: SortOptions | undefined): Array<Reply>;
     /** List all pages of replies to an unread conversation.
      *
      * @param {number} conversationId The identifier of the unread conversation.
@@ -82,7 +82,7 @@ export class ConversationsHelper {
      *
      * @return {Array<Reply>} An array of raw data objects.
      */
-    listRepliesAll(conversationId: number, sort: SortOptions): Array<Reply>;
+    listRepliesAll(conversationId: number, sort: SortOptions | undefined): Array<Reply>;
     /** List multiple pages of replies to an unread conversation until a condition is no longer met.
      *
      * @param {number} conversationId The identifier of the unread conversation.
@@ -91,7 +91,7 @@ export class ConversationsHelper {
      *
      * @return {Array<Reply>} An array of raw data objects.
      */
-    listRepliesUntil(conversationId: number, shouldContinue: (arg0: Reply) => boolean, sort: SortOptions): Array<Reply>;
+    listRepliesUntil(conversationId: number, shouldContinue: (arg0: Reply) => boolean, sort: SortOptions | undefined): Array<Reply>;
     /** Reply to an unread conversation
      *
      * @param {number} conversationId The identifier of the unread conversation.

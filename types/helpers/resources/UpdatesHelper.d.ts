@@ -21,7 +21,7 @@ export class UpdatesHelper {
      *
      * @return {Array<Update>} An array of raw data objects.
      */
-    list(resourceId: number, sort: SortOptions): Array<Update>;
+    list(resourceId: number, sort: SortOptions | undefined): Array<Update>;
     /** List all pages of updates for a given resource.
      *
      * @param {number} resourceId The identifier of the resource.
@@ -29,7 +29,7 @@ export class UpdatesHelper {
      *
      * @return {Array<Update>} An array of raw data objects.
      */
-    listAll(resourceId: number, sort: SortOptions): Array<Update>;
+    listAll(resourceId: number, sort: SortOptions | undefined): Array<Update>;
     /** List multiple pages of updates for a given resource until a condition is no longer met.
      *
      * @param {number} resourceId The identifier of the resource.
@@ -38,7 +38,7 @@ export class UpdatesHelper {
      *
      * @return {Array<Update>} An array of raw data objects.
      */
-    listUntil(resourceId: number, shouldContinue: (arg0: Update) => boolean, sort: SortOptions): Array<Update>;
+    listUntil(resourceId: number, shouldContinue: (arg0: Update) => boolean, sort: SortOptions | undefined): Array<Update>;
     /** Fetch the latest update for a given resource.
      *
      * @param {number} resourceId The identifier of the resource.

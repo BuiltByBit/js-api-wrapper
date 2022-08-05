@@ -12,11 +12,11 @@ export class Http {
     /** Schedules a GET request for a specific endpoint.
      *
      * @param {string} endpoint The path of the endpoint (incl. any path parameters).
-     * @param {SortOptions} sort The optional set of sort options.
+     * @param {SortOptions | undefined} sort The optional set of sort options.
      *
      * @return {*} The response data on success.
      */
-    get(endpoint: string, sort?: SortOptions): any;
+    get(endpoint: string, sort?: SortOptions | undefined): any;
     /** Schedules a POST request for a specific endpoint.
      *
      * @param {string} endpoint The path of the endpoint (incl. any path parameters).
@@ -56,7 +56,7 @@ export class Http {
      *
      * @return {Array<object>} An array of raw objects.
      */
-    listUntil(endpoint: string, shouldContinue: (arg0: object) => boolean, sort?: SortOptions): Array<object>;
+    listUntil(endpoint: string, shouldContinue: (arg0: object) => boolean, sort?: SortOptions | undefined): Array<object>;
     #private;
 }
 import { SortOptions } from "./SortOptions.js";
