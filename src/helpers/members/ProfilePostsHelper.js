@@ -20,7 +20,7 @@ class ProfilePostsHelper {
     
     /** List a page of profile posts on your profile.
      * 
-     * @param {SortOptions} sort An optional set of sort options.
+     * @param {SortOptions | undefined} sort An optional set of sort options.
      * @return {Array<ProfilePost>} An array of raw data objects.
      */
     async list(sort) {
@@ -29,7 +29,7 @@ class ProfilePostsHelper {
     
     /** List all pages of profile posts on your profile.
      * 
-     * @param {SortOptions} sort An optional set of sort options.
+     * @param {SortOptions | undefined} sort An optional set of sort options.
      * @return {Array<ProfilePost>} An array of raw data objects.
      */
     async listAll(sort) {
@@ -39,7 +39,7 @@ class ProfilePostsHelper {
     /** List multiple pages of profile posts on your profile until a condition is no longer met.
      * 
      * @param {function(ProfilePost):boolean} shouldContinue A function which determines if further pages are requested.
-     * @param {SortOptions} sort An optional set of sort options.
+     * @param {SortOptions | undefined} sort An optional set of sort options.
      * @return {Array<ProfilePost>} An array of raw data objects.
      */
     async listUntil(shouldContinue, sort) {

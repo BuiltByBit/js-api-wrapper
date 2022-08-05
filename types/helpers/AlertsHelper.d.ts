@@ -18,20 +18,20 @@ export class AlertsHelper {
     constructor(wrapper: any);
     /** List a single page of unread alerts.
      *
-     * @param {SortOptions} sort An optional set of sort options.
+     * @param {SortOptions | undefined} sort An optional set of sort options.
      * @return {Array<Alert>} An array of raw data objects.
      */
     list(sort: SortOptions): Array<Alert>;
     /** List all pages of unread alerts.
      *
-     * @param {SortOptions} sort An optional set of sort options.
+     * @param {SortOptions | undefined} sort An optional set of sort options.
      * @return {Array<Alert>} An array of raw data objects.
      */
     listAll(sort: SortOptions): Array<Alert>;
     /** List multiple pages of unread alerts until a condition is no longer met.
      *
      * @param {function(Alert):boolean} shouldContinue A function which determines if further pages are requested.
-     * @param {SortOptions} sort An optional set of sort options.
+     * @param {SortOptions | undefined} sort An optional set of sort options.
      *
      * @return {Array<Alert>} An array of raw data objects.
      */

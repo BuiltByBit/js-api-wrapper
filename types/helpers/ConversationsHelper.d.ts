@@ -39,13 +39,13 @@ export class ConversationsHelper {
     constructor(wrapper: any);
     /** List a page of unread conversations.
      *
-     * @param {SortOptions} sort An optional set of sort options.
+     * @param {SortOptions | undefined} sort An optional set of sort options.
      * @return {Array<Conversation>} An array of raw data objects.
      */
     list(sort: SortOptions): Array<Conversation>;
     /** List all pages of unread conversations.
      *
-     * @param {SortOptions} sort An optional set of sort options.
+     * @param {SortOptions | undefined} sort An optional set of sort options.
      * @return {Array<Conversation>} An array of raw data objects.
      */
     listAll(sort: SortOptions): Array<Conversation>;
@@ -53,7 +53,7 @@ export class ConversationsHelper {
      *
      * @param {function(Conversation):boolean} shouldContinue A function which determines if further pages are
      * requested.
-     * @param {SortOptions} sort An optional set of sort options.
+     * @param {SortOptions | undefined} sort An optional set of sort options.
      *
      * @return {Array<Conversation>} An array of raw data objects.
      */
@@ -70,7 +70,7 @@ export class ConversationsHelper {
     /** List a page of replies to an unread conversation.
      *
      * @param {number} conversationId The identifier of the unread conversation.
-     * @param {SortOptions} sort An optional set of sort options.
+     * @param {SortOptions | undefined} sort An optional set of sort options.
      *
      * @return {Array<Reply>} An array of raw data objects.
      */
@@ -78,7 +78,7 @@ export class ConversationsHelper {
     /** List all pages of replies to an unread conversation.
      *
      * @param {number} conversationId The identifier of the unread conversation.
-     * @param {SortOptions} sort An optional set of sort options.
+     * @param {SortOptions | undefined} sort An optional set of sort options.
      *
      * @return {Array<Reply>} An array of raw data objects.
      */
@@ -87,7 +87,7 @@ export class ConversationsHelper {
      *
      * @param {number} conversationId The identifier of the unread conversation.
      * @param {function(Reply):boolean} shouldContinue A function which determines if further pages are requested.
-     * @param {SortOptions} sort An optional set of sort options.
+     * @param {SortOptions | undefined} sort An optional set of sort options.
      *
      * @return {Array<Reply>} An array of raw data objects.
      */

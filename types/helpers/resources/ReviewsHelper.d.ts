@@ -21,7 +21,7 @@ export class ReviewsHelper {
     /** List a page of reviews for a given resource.
      *
      * @param {number} resourceId The identifier of the resource.
-     * @param {SortOptions} sort An optional set of sort options.
+     * @param {SortOptions | undefined} sort An optional set of sort options.
      *
      * @return {Array<Review>} An array of raw data objects.
      */
@@ -29,7 +29,7 @@ export class ReviewsHelper {
     /** List all pages of reviews for a given resource.
      *
      * @param {number} resourceId The identifier of the resource.
-     * @param {SortOptions} sort An optional set of sort options.
+     * @param {SortOptions | undefined} sort An optional set of sort options.
      *
      * @return {Array<Review>} An array of raw data objects.
      */
@@ -38,7 +38,7 @@ export class ReviewsHelper {
      *
      * @param {number} resourceId The identifier of the resource.
      * @param {function(Review):boolean} shouldContinue A function which determines if further pages are requested.
-     * @param {SortOptions} sort An optional set of sort options.
+     * @param {SortOptions | undefined} sort An optional set of sort options.
      *
      * @return {Array<Review>} An array of raw data objects.
      */

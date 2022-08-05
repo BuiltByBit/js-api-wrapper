@@ -17,7 +17,7 @@ export class DownloadsHelper {
     /** List a page of downloads for a given resource.
      *
      * @param {number} resourceId The identifier of the resource.
-     * @param {SortOptions} sort An optional set of sort options.
+     * @param {SortOptions | undefined} sort An optional set of sort options.
      *
      * @return {Array<Download>} An array of raw data objects.
      */
@@ -25,7 +25,7 @@ export class DownloadsHelper {
     /** List all pages of downloads for a given resource.
      *
      * @param {number} resourceId The identifier of the resource.
-     * @param {SortOptions} sort An optional set of sort options.
+     * @param {SortOptions | undefined} sort An optional set of sort options.
      *
      * @return {Array<Download>} An array of raw data objects.
      */
@@ -34,7 +34,7 @@ export class DownloadsHelper {
      *
      * @param {number} resourceId The identifier of the resource.
      * @param {function(Download):boolean} shouldContinue A function which determines if further pages are requested.
-     * @param {SortOptions} sort An optional set of sort options.
+     * @param {SortOptions | undefined} sort An optional set of sort options.
      *
      * @return {Array<Download>} An array of raw data objects.
      */
@@ -43,7 +43,7 @@ export class DownloadsHelper {
      *
      * @param {number} resourceId The identifier of the resource.
      * @param {number} memberId The identifier of the member.
-     * @param {SortOptions} sort An optional set of sort options.
+     * @param {SortOptions | undefined} sort An optional set of sort options.
      *
      * @return {Array<Download>} An array of raw data objects.
      */
@@ -52,7 +52,7 @@ export class DownloadsHelper {
      *
      * @param {number} resourceId The identifier of the resource.
      * @param {number} memberId The identifier of the member.
-     * @param {SortOptions} sort An optional set of sort options.
+     * @param {SortOptions | undefined} sort An optional set of sort options.
      *
      * @return {Array<Download>} An array of raw data objects.
      */
@@ -62,7 +62,7 @@ export class DownloadsHelper {
      * @param {number} resourceId The identifier of the resource.
      * @param {number} memberId The identifier of the member.
      * @param {function(Download):boolean} shouldContinue A function which determines if further pages are requested.
-     * @param {SortOptions} sort An optional set of sort options.
+     * @param {SortOptions | undefined} sort An optional set of sort options.
      *
      * @return {Array<Download>} An array of raw data objects.
      */
@@ -71,7 +71,7 @@ export class DownloadsHelper {
      *
      * @param {number} resourceId The identifier of the resource.
      * @param {number} versionId The identifier of the version.
-     * @param {SortOptions} sort An optional set of sort options.
+     * @param {SortOptions | undefined} sort An optional set of sort options.
      *
      * @return {Array<Download>} An array of raw data objects.
      */
@@ -80,7 +80,7 @@ export class DownloadsHelper {
      *
      * @param {number} resourceId The identifier of the resource.
      * @param {number} versionId The identifier of the version.
-     * @param {SortOptions} sort An optional set of sort options.
+     * @param {SortOptions | undefined} sort An optional set of sort options.
      *
      * @return {Array<Download>} An array of raw data objects.
      */
@@ -90,7 +90,7 @@ export class DownloadsHelper {
      * @param {number} resourceId The identifier of the resource.
      * @param {number} versionId The identifier of the version.
      * @param {function(Download):boolean} shouldContinue A function which determines if further pages are requested.
-     * @param {SortOptions} sort An optional set of sort options.
+     * @param {SortOptions | undefined} sort An optional set of sort options.
      *
      * @return {Array<Download>} An array of raw data objects.
      */

@@ -21,7 +21,7 @@ class VersionsHelper {
     /** List a page of versions for a given resource.
      * 
      * @param {number} resourceId The identifier of the resource.
-     * @param {SortOptions} sort An optional set of sort options.
+     * @param {SortOptions | undefined} sort An optional set of sort options.
      * 
      * @return {Array<Version>} An array of raw data objects.
      */
@@ -32,7 +32,7 @@ class VersionsHelper {
     /** List all pages of versions for a given resource.
      * 
      * @param {number} resourceId The identifier of the resource.
-     * @param {SortOptions} sort An optional set of sort options.
+     * @param {SortOptions | undefined} sort An optional set of sort options.
      * 
      * @return {Array<Version>} An array of raw data objects.
      */
@@ -44,7 +44,7 @@ class VersionsHelper {
      * 
      * @param {number} resourceId The identifier of the resource.
      * @param {function(Version):boolean} shouldContinue A function which determines if further pages are requested.
-     * @param {SortOptions} sort An optional set of sort options.
+     * @param {SortOptions | undefined} sort An optional set of sort options.
      * 
      * @return {Array<Version>} An array of raw data objects.
      */

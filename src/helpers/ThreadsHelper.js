@@ -42,7 +42,7 @@ class ThreadsHelper {
     
     /** List a page of threads you own or collaborate on.
      * 
-     * @param {SortOptions} sort An optional set of sort options.
+     * @param {SortOptions | undefined} sort An optional set of sort options.
      * @return {Array<BasicThread>} An array of raw data objects.
      */
     async list(sort) {
@@ -51,7 +51,7 @@ class ThreadsHelper {
     
     /** List all pages of threads you own or collaborate on.
      * 
-     * @param {SortOptions} sort An optional set of sort options.
+     * @param {SortOptions | undefined} sort An optional set of sort options.
      * @return {Array<BasicThread>} An array of raw data objects.
      */
     async listAll(sort) {
@@ -61,7 +61,7 @@ class ThreadsHelper {
     /** List multiple pages of threads you own or collaborate on until a condition is no longer met.
      * 
      * @param {function(BasicThread):boolean} shouldContinue A function which determines if further pages are requested.
-     * @param {SortOptions} sort An optional set of sort options.
+     * @param {SortOptions | undefined} sort An optional set of sort options.
      * 
      * @return {Array<BasicThread>} An array of raw data objects.
      */
@@ -81,7 +81,7 @@ class ThreadsHelper {
     /** List a page of replies for a thread you own or collaborate on.
      * 
      * @param {number} threadId The identifier of the thread.
-     * @param {SortOptions} sort An optional set of sort options.
+     * @param {SortOptions | undefined} sort An optional set of sort options.
      * 
      * @return {Array<Reply>} An array of raw data objects.
      */
@@ -92,7 +92,7 @@ class ThreadsHelper {
     /** List all pages of replies for a thread you own or collaborate on.
      * 
      * @param {number} threadId The identifier of the thread.
-     * @param {SortOptions} sort An optional set of sort options.
+     * @param {SortOptions | undefined} sort An optional set of sort options.
      * 
      * @return {Array<Reply>} An array of raw data objects.
      */
@@ -104,7 +104,7 @@ class ThreadsHelper {
      * 
      * @param {number} threadId The identifier of the thread.
      * @param {function(Reply):boolean} shouldContinue A function which determines if further pages are requested.
-     * @param {SortOptions} sort An optional set of sort options.
+     * @param {SortOptions | undefined} sort An optional set of sort options.
      * 
      * @return {Array<Reply>} An array of raw data objects.
      */

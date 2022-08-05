@@ -17,7 +17,7 @@ export class UpdatesHelper {
     /** List a page of updates for a given resource.
      *
      * @param {number} resourceId The identifier of the resource.
-     * @param {SortOptions} sort An optional set of sort options.
+     * @param {SortOptions | undefined} sort An optional set of sort options.
      *
      * @return {Array<Update>} An array of raw data objects.
      */
@@ -25,7 +25,7 @@ export class UpdatesHelper {
     /** List all pages of updates for a given resource.
      *
      * @param {number} resourceId The identifier of the resource.
-     * @param {SortOptions} sort An optional set of sort options.
+     * @param {SortOptions | undefined} sort An optional set of sort options.
      *
      * @return {Array<Update>} An array of raw data objects.
      */
@@ -34,7 +34,7 @@ export class UpdatesHelper {
      *
      * @param {number} resourceId The identifier of the resource.
      * @param {function(Update):boolean} shouldContinue A function which determines if further pages are requested.
-     * @param {SortOptions} sort An optional set of sort options.
+     * @param {SortOptions | undefined} sort An optional set of sort options.
      *
      * @return {Array<Update>} An array of raw data objects.
      */

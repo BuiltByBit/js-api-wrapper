@@ -47,7 +47,7 @@ class ResourcesHelper {
     
     /** List a page of public resources.
      * 
-     * @param {SortOptions} sort An optional set of sort options.
+     * @param {SortOptions | undefined} sort An optional set of sort options.
      * @return {Array<BasicResource>} An array of raw data objects.
      */
     async list(sort) {
@@ -60,7 +60,7 @@ class ResourcesHelper {
     
     /** List a page of owned resources.
      * 
-     * @param {SortOptions} sort An optional set of sort options.
+     * @param {SortOptions | undefined} sort An optional set of sort options.
      * @return {Array<BasicResource>} An array of raw data objects.
      */
     async listOwned(sort) {
@@ -69,7 +69,7 @@ class ResourcesHelper {
     
     /** List all pages of owned resources.
      * 
-     * @param {SortOptions} sort An optional set of sort options.
+     * @param {SortOptions | undefined} sort An optional set of sort options.
      * @return {Array<BasicResource>} An array of raw data objects.
      */
     async listOwnedAll(sort) {
@@ -80,7 +80,7 @@ class ResourcesHelper {
      * 
      * @param {function(BasicResource):boolean} shouldContinue A function which determines if further pages are
      * requested.
-     * @param {SortOptions} sort An optional set of sort options.
+     * @param {SortOptions | undefined} sort An optional set of sort options.
      * 
      * @return {Array<BasicResource>} An array of raw data objects.
      */
@@ -90,7 +90,7 @@ class ResourcesHelper {
     
     /** List a page of collaborated resources.
      * 
-     * @param {SortOptions} sort An optional set of sort options.
+     * @param {SortOptions | undefined} sort An optional set of sort options.
      * @return {Array<BasicResource>} An array of raw data objects.
      */
     async listCollaborated(sort) {
@@ -99,7 +99,7 @@ class ResourcesHelper {
     
     /** List all pages of collaborated resources.
      * 
-     * @param {SortOptions} sort An optional set of sort options.
+     * @param {SortOptions | undefined} sort An optional set of sort options.
      * @return {Array<BasicResource>} An array of raw data objects.
      */
     async listCollaboratedAll(sort) {
@@ -110,7 +110,7 @@ class ResourcesHelper {
      * 
      * @param {function(BasicResource):boolean} shouldContinue A function which determines if further pages are
      * requested.
-     * @param {SortOptions} sort An optional set of sort options.
+     * @param {SortOptions | undefined} sort An optional set of sort options.
      * 
      * @return {Array<BasicResource>} An array of raw data objects.
      */
@@ -121,7 +121,7 @@ class ResourcesHelper {
     /** List a page of resources by an author.
      * 
      * @param {number} authorId The identifier of the resource author.
-     * @param {SortOptions} sort An optional set of sort options.
+     * @param {SortOptions | undefined} sort An optional set of sort options.
      * 
      * @return {Array<BasicResource>} An array of raw data objects.
      */
@@ -132,7 +132,7 @@ class ResourcesHelper {
     /** List all pages of resources by an author.
      * 
      * @param {number} authorId The identifier of the resource author.
-     * @param {SortOptions} sort An optional set of sort options.
+     * @param {SortOptions | undefined} sort An optional set of sort options.
      * 
      * @return {Array<BasicResource>} An array of raw data objects.
      */
@@ -145,7 +145,7 @@ class ResourcesHelper {
      * @param {number} authorId The identifier of the resource author.
      * @param {function(BasicResource):boolean} shouldContinue A function which determines if further pages are
      * requested.
-     * @param {SortOptions} sort An optional set of sort options.
+     * @param {SortOptions | undefined} sort An optional set of sort options.
      * 
      * @return {Array<BasicResource>} An array of raw data objects.
      */

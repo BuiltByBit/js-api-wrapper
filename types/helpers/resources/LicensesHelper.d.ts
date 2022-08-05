@@ -25,7 +25,7 @@ export class LicensesHelper {
     /** List a page of licenses for a given resource.
      *
      * @param {number} resourceId The identifier of the resource.
-     * @param {SortOptions} sort An optional set of sort options.
+     * @param {SortOptions | undefined} sort An optional set of sort options.
      *
      * @return {Array<License>} An array of raw data objects.
      */
@@ -33,7 +33,7 @@ export class LicensesHelper {
     /** List all pages of licenses for a given resource.
      *
      * @param {number} resourceId The identifier of the resource.
-     * @param {SortOptions} sort An optional set of sort options.
+     * @param {SortOptions | undefined} sort An optional set of sort options.
      *
      * @return {Array<License>} An array of raw data objects.
      */
@@ -42,7 +42,7 @@ export class LicensesHelper {
      *
      * @param {number} resourceId The identifier of the resource.
      * @param {function(License):boolean} shouldContinue A function which determines if further pages are requested.
-     * @param {SortOptions} sort An optional set of sort options.
+     * @param {SortOptions | undefined} sort An optional set of sort options.
      *
      * @return {Array<License>} An array of raw data objects.
      */
