@@ -4,7 +4,7 @@
 const { Wrapper, Token, TokenType, Error } = require("@builtbybit/api-wrapper");
 const { Client, Intents } = require('discord.js');
 
-const mcmToken = new Token(TokenType.PRIVATE, "Find @ https://builtbybit.com/account/api");
+const bbbToken = new Token(TokenType.PRIVATE, "Find @ https://builtbybit.com/account/api");
 const botToken = "Find @ https://discord.com/developers/applications";
 
 const GUILD_ID = "0";
@@ -20,7 +20,7 @@ const wrapper = new Wrapper();
 
 async function main() {
     await client.login(botToken);
-    await wrapper.init(mcmToken);
+    await wrapper.init(bbbToken);
 
     guild = await client.guilds.fetch(GUILD_ID);
     channel = await client.channels.fetch(CHANNEL_ID);
