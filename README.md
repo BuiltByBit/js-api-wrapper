@@ -4,7 +4,7 @@
 [![npm type definitions](https://img.shields.io/npm/types/@builtbybit/api-wrapper)](https://github.com/BuiltByBit/js-api-wrapper/tree/main/types)
 [![npm](https://img.shields.io/npm/dt/@builtbybit/api-wrapper)](https://www.npmjs.com/package/@builtbybit/api-wrapper)
 [![npm version](https://img.shields.io/badge/docs-passing-brightgreen)](https://builtbybit.github.io/js-api-wrapper/live/)
-[![NPM](https://img.shields.io/npm/l/@builtbybit/api-wrapper)](https://github.com/Majored/@builtbybit/api-wrapper/blob/main/LICENSE)
+[![NPM](https://img.shields.io/npm/l/@builtbybit/api-wrapper)](https://github.com/BuiltByBit/js-api-wrapper/blob/main/LICENSE)
 
 An official asynchronous Node.js wrapper for BuiltByBit's [Ultimate API](https://builtbybit.com/wiki/ultimate-api/).
 
