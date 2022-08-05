@@ -10,6 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "discord.js": "^13.6.0",
-    "@builtbybit/js-api-wrapper": "^1.1.4"
+    "@builtbybit/api-wrapper": "^1.1.4"
   }
 }

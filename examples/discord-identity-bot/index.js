@@ -1,7 +1,7 @@
 // Copyright (c) 2021-2022 BuiltByBit (Mick Capital Pty. Ltd.)
 // MIT License (https://github.com/BuiltByBit/js-api-wrapper/blob/main/LICENSE)
 
-const { Wrapper, Token, TokenType, Error } = require("@builtbybit/js-api-wrapper");
+const { Wrapper, Token, TokenType, Error } = require("@builtbybit/api-wrapper");
 const { Client, Intents } = require('discord.js');
 
 const mcmToken = new Token(TokenType.PRIVATE, "Find @ https://builtbybit.com/account/api");

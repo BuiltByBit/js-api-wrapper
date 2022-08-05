@@ -1,10 +1,10 @@
 # BuiltByBit's Official Node.js API Wrapper
 
-[![npm](https://img.shields.io/npm/v/@builtbybit/js-api-wrapper)](https://www.npmjs.com/package/@builtbybit/js-api-wrapper)
-[![npm type definitions](https://img.shields.io/npm/types/@builtbybit/js-api-wrapper)](https://github.com/BuiltByBit/js-api-wrapper/tree/main/types)
-[![npm](https://img.shields.io/npm/dt/@builtbybit/js-api-wrapper)](https://www.npmjs.com/package/@builtbybit/js-api-wrapper)
+[![npm](https://img.shields.io/npm/v/@builtbybit/api-wrapper)](https://www.npmjs.com/package/@builtbybit/api-wrapper)
+[![npm type definitions](https://img.shields.io/npm/types/@builtbybit/api-wrapper)](https://github.com/BuiltByBit/js-api-wrapper/tree/main/types)
+[![npm](https://img.shields.io/npm/dt/@builtbybit/api-wrapper)](https://www.npmjs.com/package/@builtbybit/api-wrapper)
 [![npm version](https://img.shields.io/badge/docs-passing-brightgreen)](https://builtbybit.github.io/js-api-wrapper/live/)
-[![NPM](https://img.shields.io/npm/l/@builtbybit/js-api-wrapper)](https://github.com/Majored/@builtbybit/js-api-wrapper/blob/main/LICENSE)
+[![NPM](https://img.shields.io/npm/l/@builtbybit/api-wrapper)](https://github.com/Majored/@builtbybit/api-wrapper/blob/main/LICENSE)
 
 An official asynchronous Node.js wrapper for BuiltByBit's [Ultimate API](https://builtbybit.com/wiki/ultimate-api/).
 
@@ -20,13 +20,13 @@ An official asynchronous Node.js wrapper for BuiltByBit's [Ultimate API](https:/
 Install via `npm`:
 
 ```
-npm i @builtbybit/js-api-wrapper
+npm i @builtbybit/api-wrapper
 ```
 
 Initialise wrapper and fetch information about yourself via Promise's .then() notation:
 
 ```JS
-const { Wrapper, Token, TokenType } = require("@builtbybit/js-api-wrapper");
+const { Wrapper, Token, TokenType } = require("@builtbybit/api-wrapper");
 
 let token = new Token(TokenType.PRIVATE, "Find @ https://builtbybit.com/account/api");
 let wrapper = new Wrapper();
@@ -42,7 +42,7 @@ wrapper.init(token).then(wrapper.members().self().then(self => {
 Initialise wrapper and fetch information about yourself via async/await:
 
 ```JS
-const { Wrapper, Token, TokenType } = require("@builtbybit/js-api-wrapper");
+const { Wrapper, Token, TokenType } = require("@builtbybit/api-wrapper");
 
 let token = new Token(TokenType.PRIVATE, "Find @ https://builtbybit.com/account/api");
 let wrapper = new Wrapper();
