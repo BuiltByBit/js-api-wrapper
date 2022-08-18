@@ -4,7 +4,7 @@
 const axios = require("axios");
 
 const { Http } = require("./Http.js");
-const { Error } = require("./Error.js");
+const { APIError } = require("./APIError.js");
 const { Token } = require("./Token.js");
 const { Throttler } = require("./Throttler.js");
 
@@ -34,8 +34,8 @@ class Wrapper {
      * @param {boolean} health Whether or not to execute a health check during initialisation.
      */
     async init(token, health = true) {
-        if (!(token instanceof Token)) throw Error.internal("The 'token' parameter was not of type Token.");
-        if (typeof health !== "boolean") throw Error.internal("The 'health' parameter was not a boolean.");
+        if (!(token instanceof Token)) throw APIError.internal("The 'token' parameter was not of type Token.");
+        if (typeof health !== "boolean") throw APIError.internal("The 'health' parameter was not a boolean.");
 
         let client = axios.create({baseURL: Wrapper.#BASE_URL, headers: token.asHeader()});
         this.#http = new Http(client, new Throttler());
@@ -46,7 +46,7 @@ class Wrapper {
     /** Schedule an empty request which we expect to always succeed under nominal conditions. */
     async health() {
         if (await this.#http.get("/health") !== "ok") {
-            throw Error.internal("The health response contained unexpected data.");
+            throw APIError.internal("The health response contained unexpected data.");
         }
     }
 

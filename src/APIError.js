@@ -2,21 +2,15 @@
 // MIT License (https://github.com/BuiltByBit/js-api-wrapper/blob/main/LICENSE)
 
 /** A type which represents a parsed error from the API, or an internal wrapper error. */
-class Error {
+class APIError extends Error {
     #code;
     #message;
 
     constructor(json) {
+        super(`${json.code} - ${json.message}`);
+
         this.#code = json.code;
         this.#message = json.message;
-    }
-
-    /** Returns a string representation of this error including both the machine and human-readable parts.
-     * 
-     * @returns {string} A string representation of this error.
-     */
-    toString() {
-        return `${this.#code}: ${this.#message}`;
     }
 
     /** Returns the machine-readable code of the error.
@@ -38,11 +32,11 @@ class Error {
     /** Constructs a new Error which originated within the wrapper.
      * 
      * @param {string} message The internal error message.
-     * @returns {Error} The newly-constructed error.
+     * @returns {APIError} The newly-constructed error.
      */
     static internal(message) {
-        return new Error({code: "InternalWrapperError", message});
+        return new APIError({code: "InternalWrapperError", message});
     }
 }
 
-exports.Error = Error;
+exports.APIError = APIError;

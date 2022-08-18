@@ -2,6 +2,7 @@
 // MIT License (https://github.com/BuiltByBit/js-api-wrapper/blob/main/LICENSE)
 
 const { TokenType } = require("./TokenType.js");
+const { APIError } = require("./APIError.js");
 
 /** A type representing an API authentication token. */
 class Token {
@@ -14,8 +15,8 @@ class Token {
      * @param {string} value The value of this token.
      */
     constructor(type, value) {
-        if (!(type instanceof TokenType)) throw Error.internal("The 'type' parameter was not of type TokenType.");
-        if (typeof value !== "string") throw Error.internal("The 'value' parameter was not a string.");
+        if (!(type instanceof TokenType)) throw APIError.internal("The 'type' parameter was not of type TokenType.");
+        if (typeof value !== "string") throw APIError.internal("The 'value' parameter was not a string.");
 
         this.#type = type;
         this.#value = value;
