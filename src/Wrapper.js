@@ -34,9 +34,6 @@ class Wrapper {
      * @param {boolean} health Whether or not to execute a health check during initialisation.
      */
     async init(token, health = true) {
-        if (!(token instanceof Token)) throw APIError.internal("The 'token' parameter was not of type Token.");
-        if (typeof health !== "boolean") throw APIError.internal("The 'health' parameter was not a boolean.");
-
         let client = axios.create({baseURL: Wrapper.#BASE_URL, headers: token.asHeader()});
         this.#http = new Http(client, new Throttler());
 

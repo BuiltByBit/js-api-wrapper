@@ -28,9 +28,6 @@ class Http {
      * @return {*} The response data on success.
      */
     async get(endpoint, sort = new SortOptions()) {
-        if (typeof endpoint !== "string") throw APIError.internal("The 'endpoint' parameter was not a string.");
-        if (!(sort instanceof SortOptions)) throw APIError.internal("The 'sort' parameter was not of type SortOptions.");
-
         if (sort.isSet()) endpoint += sort.toQueryString();
         await this.#throttler.stallIfRequired(false);
 
@@ -52,8 +49,6 @@ class Http {
      * @return {number} The response data on success (ie. a content identifier).
      */
     async post(endpoint, body) {
-        if (typeof endpoint !== "string") throw APIError.internal("The 'endpoint' parameter was not a string.");
-
         await this.#throttler.stallIfRequired(true);
 
         try {
@@ -72,8 +67,6 @@ class Http {
      * @param {object} body The request body options.
      */
     async patch(endpoint, body) {
-        if (typeof endpoint !== "string") throw APIError.internal("The 'endpoint' parameter was not a string.");
-
         await this.#throttler.stallIfRequired(true);
 
         try {
@@ -91,8 +84,6 @@ class Http {
      * @param {string} endpoint The path of the endpoint (incl. any path parameters).
      */
     async delete(endpoint) {
-        if (typeof endpoint !== "string") throw APIError.internal("The 'endpoint' parameter was not a string.");
-
         await this.#throttler.stallIfRequired(true);
 
         try {
@@ -126,9 +117,6 @@ class Http {
      * @return {Array<object>} An array of raw objects.
      */
     async listUntil(endpoint, shouldContinue, sort = new SortOptions()) {
-        if (typeof endpoint !== "string") throw APIError.internal("The 'endpoint' parameter was not a string.");
-        if (!(sort instanceof SortOptions)) throw APIError.internal("The 'sort' parameter was not of type SortOptions.");
-
         sort.page = 1;
 
         let allData = [];
