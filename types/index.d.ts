@@ -2,7 +2,7 @@ export const Token: typeof import("./Token.js").Token;
 export const TokenType: typeof import("./TokenType.js").TokenType;
 export const SortOptions: typeof import("./SortOptions.js").SortOptions;
 export const Http: typeof import("./Http.js").Http;
-export const Error: typeof import("./Error.js").Error;
+export const APIError: typeof import("./APIError.js").APIError;
 export const Wrapper: typeof import("./Wrapper.js").Wrapper;
 export const AlertsHelper: typeof import("./helpers/AlertsHelper.js").AlertsHelper;
 export const ConversationsHelper: typeof import("./helpers/ConversationsHelper.js").ConversationsHelper;

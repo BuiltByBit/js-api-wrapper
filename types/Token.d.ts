@@ -15,5 +15,4 @@ export class Token {
     };
     #private;
 }
-import { TokenType } from "./TokenType.js";
 //# sourceMappingURL=Token.d.ts.map
