@@ -30,7 +30,7 @@
 // MIT License (https://github.com/BuiltByBit/js-api-wrapper/blob/main/LICENSE)
 
 const { SortOptions } = require("./SortOptions.js");
-const { Error } = require("./Error.js");
+const { APIError } = require("./APIError.js");
 
 /** A type that handles raw HTTP requests to the API. */
 class Http {
@@ -56,9 +56,6 @@ class Http {
      * @return {*} The response data on success.
      */
     async get(endpoint, sort = new SortOptions()) {
-        if (typeof endpoint !== "string") throw Error.internal("The 'endpoint' parameter was not a string.");
-        if (!(sort instanceof SortOptions)) throw Error.internal("The 'sort' parameter was not of type SortOptions.");
-
         if (sort.isSet()) endpoint += sort.toQueryString();
         await this.#throttler.stallIfRequired(false);
 
@@ -80,8 +77,6 @@ class Http {
      * @return {number} The response data on success (ie. a content identifier).
      */
     async post(endpoint, body) {
-        if (typeof endpoint !== "string") throw Error.internal("The 'endpoint' parameter was not a string.");
-
         await this.#throttler.stallIfRequired(true);
 
         try {
@@ -100,8 +95,6 @@ class Http {
      * @param {object} body The request body options.
      */
     async patch(endpoint, body) {
-        if (typeof endpoint !== "string") throw Error.internal("The 'endpoint' parameter was not a string.");
-
         await this.#throttler.stallIfRequired(true);
 
         try {
@@ -119,8 +112,6 @@ class Http {
      * @param {string} endpoint The path of the endpoint (incl. any path parameters).
      */
     async delete(endpoint) {
-        if (typeof endpoint !== "string") throw Error.internal("The 'endpoint' parameter was not a string.");
-
         await this.#throttler.stallIfRequired(true);
 
         try {
@@ -154,9 +145,6 @@ class Http {
      * @return {Array&lt;object>} An array of raw objects.
      */
     async listUntil(endpoint, shouldContinue, sort = new SortOptions()) {
-        if (typeof endpoint !== "string") throw Error.internal("The 'endpoint' parameter was not a string.");
-        if (!(sort instanceof SortOptions)) throw Error.internal("The 'sort' parameter was not of type SortOptions.");
-
         sort.page = 1;
 
         let allData = [];
@@ -189,7 +177,7 @@ class Http {
      */
     async #handleError(error, write) {
         if (!error.response) {
-            throw Error.internal(error.message);
+            throw APIError.internal(error.message);
         }
         
         if (error.response.status === 429) {
@@ -204,7 +192,7 @@ class Http {
             return;
         }
 
-        throw new Error(error.response.data.error);
+        throw new APIError(error.response.data.error);
     }
 }
 
@@ -218,13 +206,13 @@ exports.Http = Http;</code></pre>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AlertsHelper.html">AlertsHelper</a></li><li><a href="ConversationsHelper.html">ConversationsHelper</a></li><li><a href="DownloadsHelper.html">DownloadsHelper</a></li><li><a href="Error.html">Error</a></li><li><a href="Http.html">Http</a></li><li><a href="LicensesHelper.html">LicensesHelper</a></li><li><a href="MembersHelper.html">MembersHelper</a></li><li><a href="ProfilePostsHelper.html">ProfilePostsHelper</a></li><li><a href="PurchasesHelper.html">PurchasesHelper</a></li><li><a href="ResourcesHelper.html">ResourcesHelper</a></li><li><a href="ReviewsHelper.html">ReviewsHelper</a></li><li><a href="SortOptions.html">SortOptions</a></li><li><a href="ThreadsHelper.html">ThreadsHelper</a></li><li><a href="Token.html">Token</a></li><li><a href="TokenType.html">TokenType</a></li><li><a href="UpdatesHelper.html">UpdatesHelper</a></li><li><a href="VersionsHelper.html">VersionsHelper</a></li><li><a href="Wrapper.html">Wrapper</a></li></ul><h3><a href="global.html">Global</a></h3>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AlertsHelper.html">AlertsHelper</a></li><li><a href="APIError.html">APIError</a></li><li><a href="ConversationsHelper.html">ConversationsHelper</a></li><li><a href="DownloadsHelper.html">DownloadsHelper</a></li><li><a href="Http.html">Http</a></li><li><a href="LicensesHelper.html">LicensesHelper</a></li><li><a href="MembersHelper.html">MembersHelper</a></li><li><a href="ProfilePostsHelper.html">ProfilePostsHelper</a></li><li><a href="PurchasesHelper.html">PurchasesHelper</a></li><li><a href="ResourcesHelper.html">ResourcesHelper</a></li><li><a href="ReviewsHelper.html">ReviewsHelper</a></li><li><a href="SortOptions.html">SortOptions</a></li><li><a href="ThreadsHelper.html">ThreadsHelper</a></li><li><a href="Token.html">Token</a></li><li><a href="TokenType.html">TokenType</a></li><li><a href="UpdatesHelper.html">UpdatesHelper</a></li><li><a href="VersionsHelper.html">VersionsHelper</a></li><li><a href="Wrapper.html">Wrapper</a></li></ul><h3><a href="global.html">Global</a></h3>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.11</a> on Fri Aug 05 2022 10:37:18 GMT+0100 (British Summer Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.11</a> on Wed Aug 31 2022 10:53:36 GMT+0100 (British Summer Time)
 </footer>
 
 <script> prettyPrint(); </script>
