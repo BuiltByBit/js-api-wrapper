@@ -5,7 +5,6 @@ const axios = require("axios");
 
 const { Http } = require("./Http.js");
 const { APIError } = require("./APIError.js");
-const { Token } = require("./Token.js");
 const { Throttler } = require("./Throttler.js");
 
 const { AlertsHelper } = require("./helpers/AlertsHelper.js");
