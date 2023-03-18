@@ -94,7 +94,7 @@ class ResourcesHelper {
      * @return {Array<BasicResource>} An array of raw data objects.
      */
     async listCollaborated(sort) {
-        return await this.#wrapper.get("/resources/collaborated", sort);
+        return await this.#wrapper.http().get("/resources/collaborated", sort);
     }
     
     /** List all pages of collaborated resources.
@@ -126,7 +126,7 @@ class ResourcesHelper {
      * @return {Array<BasicResource>} An array of raw data objects.
      */
     async listByAuthor(authorId, sort) {
-        return await this.#wrapper.get(`/resources/authors/${authorId}`, sort);
+        return await this.#wrapper.http().get(`/resources/authors/${authorId}`, sort);
     }
     
     /** List all pages of resources by an author.

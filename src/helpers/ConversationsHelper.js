@@ -104,7 +104,7 @@ class ConversationsHelper {
      * @return {Array<Reply>} An array of raw data objects.
      */
     async listRepliesUntil(conversationId, shouldContinue, sort) {
-        return await this.#wrapper.list_until(`/conversations/${conversationId}/replies`, shouldContinue, sort);
+        return await this.#wrapper.http().listUntil(`/conversations/${conversationId}/replies`, shouldContinue, sort);
     }
     
     /** Reply to an unread conversation
