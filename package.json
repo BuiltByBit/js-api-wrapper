@@ -1,6 +1,6 @@
 {
   "name": "@builtbybit/api-wrapper",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "description": "An official asynchronous Node.js wrapper for BuiltByBit's Ultimate API.",
   "keywords": [
     "builtbybit",
