@@ -3,6 +3,7 @@
 
 const axios = require("axios");
 
+const { Token } = require("./Token");
 const { Http } = require("./Http.js");
 const { APIError } = require("./APIError.js");
 const { Throttler } = require("./Throttler.js");

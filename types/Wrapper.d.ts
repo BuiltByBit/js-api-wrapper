@@ -60,6 +60,7 @@ export class Wrapper {
     http(): Http;
     #private;
 }
+import { Token } from "./Token";
 import { AlertsHelper } from "./helpers/AlertsHelper.js";
 import { ConversationsHelper } from "./helpers/ConversationsHelper.js";
 import { ThreadsHelper } from "./helpers/ThreadsHelper.js";

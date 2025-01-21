@@ -1,1 +1,1 @@
-{"version":3,"file":"SortOptions.d.ts","sourceRoot":"","sources":["../src/SortOptions.js"],"names":[],"mappings":"AAGA,qFAAqF;AACrF;IACI,UAAK;IACL,WAAM;IACN,UAAK;IAEL;;;OAGG;IACH,iBAFa,MAAM,CAgBlB;IAED;;;OAGG;IACH,cAEC;CACJ"}
+{"version":3,"file":"SortOptions.d.ts","sourceRoot":"","sources":["../src/SortOptions.js"],"names":[],"mappings":"AAGA,qFAAqF;AACrF;IACI,UAAK;IACL,WAAM;IACN,UAAK;IAEL;;;OAGG;IACH,iBAFa,MAAM,CAgBlB;IAED;;;OAGG;IACH,SAFa,OAAO,CAInB;CACJ"}

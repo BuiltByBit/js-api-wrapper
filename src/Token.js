@@ -1,6 +1,8 @@
 // Copyright (c) 2021-2022 BuiltByBit (Mick Capital Pty. Ltd.)
 // MIT License (https://github.com/BuiltByBit/js-api-wrapper/blob/main/LICENSE)
 
+const { TokenType } = require("./TokenType");
+
 /** A type representing an API authentication token. */
 class Token {
     #type;

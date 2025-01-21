@@ -59,4 +59,5 @@ export class PurchasesHelper {
     fetch(resourceId: number, purchaseId: number): Purchase;
     #private;
 }
+import { SortOptions } from "../../SortOptions";
 //# sourceMappingURL=PurchasesHelper.d.ts.map

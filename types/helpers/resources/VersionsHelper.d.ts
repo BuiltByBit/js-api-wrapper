@@ -64,4 +64,5 @@ export class VersionsHelper {
     delete(resourceId: number, versionId: number): Promise<any>;
     #private;
 }
+import { SortOptions } from "../../SortOptions";
 //# sourceMappingURL=VersionsHelper.d.ts.map

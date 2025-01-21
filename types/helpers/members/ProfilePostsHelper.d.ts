@@ -60,4 +60,5 @@ export class ProfilePostsHelper {
     delete(profilePostId: number): Promise<any>;
     #private;
 }
+import { SortOptions } from "../../SortOptions";
 //# sourceMappingURL=ProfilePostsHelper.d.ts.map

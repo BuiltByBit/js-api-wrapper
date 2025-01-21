@@ -60,4 +60,5 @@ export class ReviewsHelper {
     respond(resourceId: number, reviewId: number, response: string): Promise<any>;
     #private;
 }
+import { SortOptions } from "../../SortOptions";
 //# sourceMappingURL=ReviewsHelper.d.ts.map
