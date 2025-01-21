@@ -115,4 +115,5 @@ export class ThreadsHelper {
     reply(threadId: number, message: string): number;
     #private;
 }
+import { SortOptions } from "../SortOptions";
 //# sourceMappingURL=ThreadsHelper.d.ts.map

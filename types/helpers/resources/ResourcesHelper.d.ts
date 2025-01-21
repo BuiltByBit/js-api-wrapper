@@ -173,6 +173,7 @@ export class ResourcesHelper {
     versions(): VersionsHelper;
     #private;
 }
+import { SortOptions } from "../../SortOptions";
 import { DownloadsHelper } from "./DownloadsHelper.js";
 import { LicensesHelper } from "./LicensesHelper.js";
 import { PurchasesHelper } from "./PurchasesHelper.js";

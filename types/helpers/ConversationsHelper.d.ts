@@ -5,7 +5,7 @@ export type Conversation = {
     creator_id: number;
     last_message_date: number;
     last_read_date: number;
-    open: bool;
+    open: boolean;
     reply_count: number;
     recipient_ids: Array<number>;
 };
@@ -23,7 +23,7 @@ export type Reply = {
  * @property {number} creator_id
  * @property {number} last_message_date
  * @property {number} last_read_date
- * @property {bool} open
+ * @property {boolean} open
  * @property {number} reply_count
  * @property {Array<number>} recipient_ids
  */
@@ -102,4 +102,5 @@ export class ConversationsHelper {
     reply(conversationId: number, message: string): number;
     #private;
 }
+import { SortOptions } from "../SortOptions";
 //# sourceMappingURL=ConversationsHelper.d.ts.map

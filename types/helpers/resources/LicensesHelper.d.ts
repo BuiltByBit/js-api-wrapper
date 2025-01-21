@@ -82,4 +82,5 @@ export class LicensesHelper {
     modifyTemporary(resourceId: number, licenseId: number, startDate: number, endDate: number): Promise<any>;
     #private;
 }
+import { SortOptions } from "../../SortOptions";
 //# sourceMappingURL=LicensesHelper.d.ts.map

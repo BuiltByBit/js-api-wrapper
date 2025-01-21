@@ -1,6 +1,8 @@
 // Copyright (c) 2021-2022 BuiltByBit (Mick Capital Pty. Ltd.)
 // MIT License (https://github.com/BuiltByBit/js-api-wrapper/blob/main/LICENSE)
 
+const { SortOptions } = require("../SortOptions");
+
 /**
  * @typedef {object} Conversation
  * @property {number} conversation_id
@@ -9,7 +11,7 @@
  * @property {number} creator_id
  * @property {number} last_message_date
  * @property {number} last_read_date
- * @property {bool} open
+ * @property {boolean} open
  * @property {number} reply_count
  * @property {Array<number>} recipient_ids
  */

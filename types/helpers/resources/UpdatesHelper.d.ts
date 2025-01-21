@@ -62,4 +62,5 @@ export class UpdatesHelper {
     delete(resourceId: number, updateId: number): Promise<any>;
     #private;
 }
+import { SortOptions } from "../../SortOptions";
 //# sourceMappingURL=UpdatesHelper.d.ts.map

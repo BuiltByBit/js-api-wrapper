@@ -97,4 +97,5 @@ export class DownloadsHelper {
     listByVersionUntil(resourceId: number, versionId: number, shouldContinue: (arg0: Download) => boolean, sort: SortOptions | undefined): Array<Download>;
     #private;
 }
+import { SortOptions } from "../../SortOptions";
 //# sourceMappingURL=DownloadsHelper.d.ts.map

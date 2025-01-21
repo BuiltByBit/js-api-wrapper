@@ -40,4 +40,5 @@ export class AlertsHelper {
     markAsRead(): Promise<any>;
     #private;
 }
+import { SortOptions } from "../SortOptions";
 //# sourceMappingURL=AlertsHelper.d.ts.map

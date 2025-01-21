@@ -9,14 +9,14 @@ export class APIError extends Error {
     constructor(json: any);
     /** Returns the machine-readable code of the error.
      *
-     * @returns {string} The machine-readable error code.
+     * @type {string} The machine-readable error code.
      */
-    code(): string;
+    get code(): string;
     /** Returns the human-readable message of the error.
      *
-     * @returns {string} The human-readable error message.
+     * @type {string} The human-readable error message.
      */
-    message(): string;
+    get message(): string;
     #private;
 }
 //# sourceMappingURL=APIError.d.ts.map

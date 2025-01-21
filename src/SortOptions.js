@@ -29,7 +29,7 @@ class SortOptions {
 
     /** Returns whether or not any sort options have been set.
      * 
-     * @returns {bool} Whether or not any sort options have been set.
+     * @returns {boolean} Whether or not any sort options have been set.
      */
     isSet() {
         return this.sort || this.order || this.page;

@@ -15,4 +15,5 @@ export class Token {
     };
     #private;
 }
+import { TokenType } from "./TokenType";
 //# sourceMappingURL=Token.d.ts.map

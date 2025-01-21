@@ -10,8 +10,8 @@ export class SortOptions {
     toQueryString(): string;
     /** Returns whether or not any sort options have been set.
      *
-     * @returns {bool} Whether or not any sort options have been set.
+     * @returns {boolean} Whether or not any sort options have been set.
      */
-    isSet(): bool;
+    isSet(): boolean;
 }
 //# sourceMappingURL=SortOptions.d.ts.map

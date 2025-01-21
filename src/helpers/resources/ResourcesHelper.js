@@ -8,6 +8,8 @@ const { ReviewsHelper } = require("./ReviewsHelper.js");
 const { UpdatesHelper } = require("./UpdatesHelper.js");
 const { VersionsHelper } = require("./VersionsHelper.js");
 
+const { SortOptions } = require("../../SortOptions");
+
 /**
  * @typedef {object} BasicResource
  * @property {number} resource_id
