@@ -1,6 +1,8 @@
 // Copyright (c) 2021-2022 BuiltByBit (Mick Capital Pty. Ltd.)
 // MIT License (https://github.com/BuiltByBit/js-api-wrapper/blob/main/LICENSE)
 
+const { SortOptions } = require("../SortOptions");
+
 /**
  * @typedef {object} Alert
  * @property {number} caused_member_id
