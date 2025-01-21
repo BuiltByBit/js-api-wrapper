@@ -15,17 +15,17 @@ class APIError extends Error {
 
     /** Returns the machine-readable code of the error.
      * 
-     * @returns {string} The machine-readable error code.
+     * @type {string} The machine-readable error code.
      */
-    code() {
+    get code() {
         return this.#code;
     }
 
     /** Returns the human-readable message of the error.
      * 
-     * @returns {string} The human-readable error message.
+     * @type {string} The human-readable error message.
      */
-    message() {
+    get message() {
         return this.#message;
     }
 
