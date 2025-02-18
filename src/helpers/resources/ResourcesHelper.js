@@ -39,6 +39,22 @@ const { SortOptions } = require("../../SortOptions");
  * @property {number} review_average
  */
 
+/**
+ * @typedef {object} BatchChange
+ * @property {string} field
+ * @property {string} type
+ * @property {string} value
+ * @property {string|undefined} search
+ */
+
+/**
+ * @typedef {object} BatchEdit
+ * @property {number} batch_id
+ * @property {number} created_at
+ * @property {number} completed_at
+ * @property {Map<string, Array<string>>} errors
+ */
+
 /** A helper type for resource-related API endpoints. */
 class ResourcesHelper {
     #wrapper;
@@ -174,6 +190,27 @@ class ResourcesHelper {
     async modify(resourceId, title, description, tagLine) {
         let body = {title: title, description: description, "tag_line": tagLine};
         return await this.#wrapper.http().patch(`/resources/${resourceId}`, body);
+    }
+
+    /** Batch edit resource fields for resources you own.
+     * 
+     * @param {Array<number>} resourceIds The identifiers of the resources.
+     * @param {Array<BatchChange>} changes A list of changes to make.
+     * 
+     * @return {number} A batch edit identifier.
+     */
+    async batchModify(resourceIds, changes) {
+        let body = {"resources": resourceIds, changes};
+        return await this.#wrapper.http().post("/resources/batch/", body);
+    }
+
+    /** Fetch the status of a batch edit.
+     * 
+     * @param {number} batchId The identifier of the batch edit.
+     * @return {BatchEdit} A raw data object.
+     */
+    async batchStatus(batchId) {
+        return await this.#wrapper.http().get(`/resources/batch/${batchId}`);
     }
 
     /** Access download-related helper functions.

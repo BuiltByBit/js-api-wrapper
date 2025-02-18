@@ -23,6 +23,18 @@ export type Resource = {
     review_count: number;
     review_average: number;
 };
+export type BatchChange = {
+    field: string;
+    type: string;
+    value: string;
+    search: string | undefined;
+};
+export type BatchEdit = {
+    batch_id: number;
+    created_at: number;
+    completed_at: number;
+    errors: Map<string, string[]>;
+};
 /**
  * @typedef {object} BasicResource
  * @property {number} resource_id
@@ -49,6 +61,20 @@ export type Resource = {
  * @property {number} download_count
  * @property {number} review_count
  * @property {number} review_average
+ */
+/**
+ * @typedef {object} BatchChange
+ * @property {string} field
+ * @property {string} type
+ * @property {string} value
+ * @property {string|undefined} search
+ */
+/**
+ * @typedef {object} BatchEdit
+ * @property {number} batch_id
+ * @property {number} created_at
+ * @property {number} completed_at
+ * @property {Map<string, Array<string>>} errors
  */
 /** A helper type for resource-related API endpoints. */
 export class ResourcesHelper {
@@ -141,6 +167,20 @@ export class ResourcesHelper {
      * @param {string} tagLine The updated content of the tag line, or undefined.
      */
     modify(resourceId: number, title: string, description: string, tagLine: string): Promise<any>;
+    /** Batch edit resource fields for resources you own.
+     *
+     * @param {Array<number>} resourceIds The identifiers of the resources.
+     * @param {Array<BatchChange>} changes A list of changes to make.
+     *
+     * @return {number} A batch edit identifier.
+     */
+    batchModify(resourceIds: Array<number>, changes: Array<BatchChange>): number;
+    /** Fetch the status of a batch edit.
+     *
+     * @param {number} batchId The identifier of the batch edit.
+     * @return {BatchEdit} A raw data object.
+     */
+    batchStatus(batchId: number): BatchEdit;
     /** Access download-related helper functions.
      *
      * @return {DownloadsHelper} A newly-constructed download helper instance.
