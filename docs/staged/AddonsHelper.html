@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: ConversationsHelper</title>
+    <title>JSDoc: Class: AddonsHelper</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: ConversationsHelper</h1>
+    <h1 class="page-title">Class: AddonsHelper</h1>
 
     
 
@@ -28,9 +28,9 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>ConversationsHelper<span class="signature">()</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>AddonsHelper<span class="signature">()</span><span class="type-signature"></span></h2>
         
-            <div class="class-description">A helper type for conversation-related API endpoints.</div>
+            <div class="class-description">A helper type for resource addon-related API endpoints.</div>
         
     
 </header>
@@ -45,7 +45,7 @@
     
 
     
-    <h4 class="name" id="ConversationsHelper"><span class="type-signature"></span>new ConversationsHelper<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="AddonsHelper"><span class="type-signature"></span>new AddonsHelper<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
     
@@ -93,7 +93,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="helpers_ConversationsHelper.js.html">helpers/ConversationsHelper.js</a>, <a href="helpers_ConversationsHelper.js.html#line28">line 28</a>
+        <a href="helpers_resources_AddonsHelper.js.html">helpers/resources/AddonsHelper.js</a>, <a href="helpers_resources_AddonsHelper.js.html#line29">line 29</a>
     </li></ul></dd>
     
 
@@ -149,7 +149,7 @@
     
 
     
-    <h4 class="name" id="list"><span class="type-signature">(async) </span>list<span class="signature">(sort)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="global.html#Conversation">Conversation</a>>}</span></h4>
+    <h4 class="name" id="listAllLicenses"><span class="type-signature">(async) </span>listAllLicenses<span class="signature">(addonId, sort)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="global.html#AddonLicense">AddonLicense</a>>}</span></h4>
     
 
     
@@ -157,7 +157,7 @@
 
 
 <div class="description">
-    List a page of unread conversations.
+    List all pages of licenses for a given addon.
 </div>
 
 
@@ -193,331 +193,7 @@
 
         <tr>
             
-                <td class="name"><code>sort</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="SortOptions.html">SortOptions</a></span>
-|
-
-<span class="param-type">undefined</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">An optional set of sort options.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="helpers_ConversationsHelper.js.html">helpers/ConversationsHelper.js</a>, <a href="helpers_ConversationsHelper.js.html#line40">line 40</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    An array of raw data objects.
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Array.&lt;<a href="global.html#Conversation">Conversation</a>></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="listAll"><span class="type-signature">(async) </span>listAll<span class="signature">(sort)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="global.html#Conversation">Conversation</a>>}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    List all pages of unread conversations.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>sort</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="SortOptions.html">SortOptions</a></span>
-|
-
-<span class="param-type">undefined</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">An optional set of sort options.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="helpers_ConversationsHelper.js.html">helpers/ConversationsHelper.js</a>, <a href="helpers_ConversationsHelper.js.html#line49">line 49</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    An array of raw data objects.
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Array.&lt;<a href="global.html#Conversation">Conversation</a>></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="listReplies"><span class="type-signature">(async) </span>listReplies<span class="signature">(conversationId, sort)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="global.html#Reply">Reply</a>>}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    List a page of replies to an unread conversation.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>conversationId</code></td>
+                <td class="name"><code>addonId</code></td>
             
 
             <td class="type">
@@ -533,7 +209,7 @@
 
             
 
-            <td class="description last">The identifier of the unread conversation.</td>
+            <td class="description last">The identifier of the addon.</td>
         </tr>
 
     
@@ -600,7 +276,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="helpers_ConversationsHelper.js.html">helpers/ConversationsHelper.js</a>, <a href="helpers_ConversationsHelper.js.html#line85">line 85</a>
+        <a href="helpers_resources_AddonsHelper.js.html">helpers/resources/AddonsHelper.js</a>, <a href="helpers_resources_AddonsHelper.js.html#line100">line 100</a>
     </li></ul></dd>
     
 
@@ -640,7 +316,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Array.&lt;<a href="global.html#Reply">Reply</a>></span>
+<span class="param-type">Array.&lt;<a href="global.html#AddonLicense">AddonLicense</a>></span>
 
 
     </dd>
@@ -658,7 +334,7 @@
     
 
     
-    <h4 class="name" id="listRepliesAll"><span class="type-signature">(async) </span>listRepliesAll<span class="signature">(conversationId, sort)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="global.html#Reply">Reply</a>>}</span></h4>
+    <h4 class="name" id="listAllPurchases"><span class="type-signature">(async) </span>listAllPurchases<span class="signature">(addonId, sort)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="global.html#AddonPurchase">AddonPurchase</a>>}</span></h4>
     
 
     
@@ -666,7 +342,7 @@
 
 
 <div class="description">
-    List all pages of replies to an unread conversation.
+    List all pages of purchases for a given addon.
 </div>
 
 
@@ -702,7 +378,7 @@
 
         <tr>
             
-                <td class="name"><code>conversationId</code></td>
+                <td class="name"><code>addonId</code></td>
             
 
             <td class="type">
@@ -718,7 +394,7 @@
 
             
 
-            <td class="description last">The identifier of the unread conversation.</td>
+            <td class="description last">The identifier of the addon.</td>
         </tr>
 
     
@@ -785,7 +461,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="helpers_ConversationsHelper.js.html">helpers/ConversationsHelper.js</a>, <a href="helpers_ConversationsHelper.js.html#line96">line 96</a>
+        <a href="helpers_resources_AddonsHelper.js.html">helpers/resources/AddonsHelper.js</a>, <a href="helpers_resources_AddonsHelper.js.html#line54">line 54</a>
     </li></ul></dd>
     
 
@@ -825,7 +501,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Array.&lt;<a href="global.html#Reply">Reply</a>></span>
+<span class="param-type">Array.&lt;<a href="global.html#AddonPurchase">AddonPurchase</a>></span>
 
 
     </dd>
@@ -843,7 +519,7 @@
     
 
     
-    <h4 class="name" id="listRepliesUntil"><span class="type-signature">(async) </span>listRepliesUntil<span class="signature">(conversationId, shouldContinue, sort)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="global.html#Reply">Reply</a>>}</span></h4>
+    <h4 class="name" id="listLicenses"><span class="type-signature">(async) </span>listLicenses<span class="signature">(addonId, sort)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="global.html#AddonLicense">AddonLicense</a>>}</span></h4>
     
 
     
@@ -851,7 +527,7 @@
 
 
 <div class="description">
-    List multiple pages of replies to an unread conversation until a condition is no longer met.
+    List a page of licenses for a given addon.
 </div>
 
 
@@ -887,7 +563,7 @@
 
         <tr>
             
-                <td class="name"><code>conversationId</code></td>
+                <td class="name"><code>addonId</code></td>
             
 
             <td class="type">
@@ -903,7 +579,400 @@
 
             
 
-            <td class="description last">The identifier of the unread conversation.</td>
+            <td class="description last">The identifier of the addon.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>sort</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="SortOptions.html">SortOptions</a></span>
+|
+
+<span class="param-type">undefined</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">An optional set of sort options.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="helpers_resources_AddonsHelper.js.html">helpers/resources/AddonsHelper.js</a>, <a href="helpers_resources_AddonsHelper.js.html#line89">line 89</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    An array of raw data objects.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;<a href="global.html#AddonLicense">AddonLicense</a>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="listLicensesByMember"><span class="type-signature">(async) </span>listLicensesByMember<span class="signature">(addonId, memberId, sort)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="global.html#AddonLicense">AddonLicense</a>>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    List a page of licenses by member for a given addon.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>addonId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The identifier of the addon.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>memberId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The identifier of the member.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>sort</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="SortOptions.html">SortOptions</a></span>
+|
+
+<span class="param-type">undefined</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">An optional set of sort options.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="helpers_resources_AddonsHelper.js.html">helpers/resources/AddonsHelper.js</a>, <a href="helpers_resources_AddonsHelper.js.html#line124">line 124</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    An array of raw data objects.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;<a href="global.html#AddonLicense">AddonLicense</a>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="listLicensesUntil"><span class="type-signature">(async) </span>listLicensesUntil<span class="signature">(addonId, shouldContinue, sort)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="global.html#AddonLicense">AddonLicense</a>>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    List multiple pages of licenses for a given addon until a condition is no longer met.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>addonId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The identifier of the addon.</td>
         </tr>
 
     
@@ -926,7 +995,7 @@
 
             
 
-            <td class="description last">A function which determines if further pages are requested.</td>
+            <td class="description last">A fn which determines if further pages are requested.</td>
         </tr>
 
     
@@ -993,7 +1062,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="helpers_ConversationsHelper.js.html">helpers/ConversationsHelper.js</a>, <a href="helpers_ConversationsHelper.js.html#line108">line 108</a>
+        <a href="helpers_resources_AddonsHelper.js.html">helpers/resources/AddonsHelper.js</a>, <a href="helpers_resources_AddonsHelper.js.html#line112">line 112</a>
     </li></ul></dd>
     
 
@@ -1033,7 +1102,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Array.&lt;<a href="global.html#Reply">Reply</a>></span>
+<span class="param-type">Array.&lt;<a href="global.html#AddonLicense">AddonLicense</a>></span>
 
 
     </dd>
@@ -1051,7 +1120,7 @@
     
 
     
-    <h4 class="name" id="listUntil"><span class="type-signature">(async) </span>listUntil<span class="signature">(shouldContinue, sort)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="global.html#Conversation">Conversation</a>>}</span></h4>
+    <h4 class="name" id="listPurchases"><span class="type-signature">(async) </span>listPurchases<span class="signature">(addonId, sort)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="global.html#AddonPurchase">AddonPurchase</a>>}</span></h4>
     
 
     
@@ -1059,7 +1128,7 @@
 
 
 <div class="description">
-    List multiple pages of unread conversations until a condition is no longer met.
+    List a page of purchases for a given addon.
 </div>
 
 
@@ -1091,6 +1160,422 @@
     </thead>
 
     <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>addonId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The identifier of the addon.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>sort</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="SortOptions.html">SortOptions</a></span>
+|
+
+<span class="param-type">undefined</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">An optional set of sort options.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="helpers_resources_AddonsHelper.js.html">helpers/resources/AddonsHelper.js</a>, <a href="helpers_resources_AddonsHelper.js.html#line43">line 43</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    An array of raw data objects.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;<a href="global.html#AddonPurchase">AddonPurchase</a>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="listPurchasesByMember"><span class="type-signature">(async) </span>listPurchasesByMember<span class="signature">(addonId, memberId, sort)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="global.html#AddonPurchase">AddonPurchase</a>>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    List a page of purchases by member for a given addon.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>addonId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The identifier of the addon.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>memberId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The identifier of the member.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>sort</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="SortOptions.html">SortOptions</a></span>
+|
+
+<span class="param-type">undefined</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">An optional set of sort options.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="helpers_resources_AddonsHelper.js.html">helpers/resources/AddonsHelper.js</a>, <a href="helpers_resources_AddonsHelper.js.html#line78">line 78</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    An array of raw data objects.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;<a href="global.html#AddonPurchase">AddonPurchase</a>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="listPurchasesUntil"><span class="type-signature">(async) </span>listPurchasesUntil<span class="signature">(addonId, shouldContinue, sort)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="global.html#AddonPurchase">AddonPurchase</a>>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    List multiple pages of purchases for a given addon until a condition is no longer met.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>addonId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The identifier of the addon.</td>
+        </tr>
+
     
 
         <tr>
@@ -1111,8 +1596,7 @@
 
             
 
-            <td class="description last">A function which determines if further pages are
-requested.</td>
+            <td class="description last">A fn which determines if further pages are requested.</td>
         </tr>
 
     
@@ -1179,7 +1663,7 @@ requested.</td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="helpers_ConversationsHelper.js.html">helpers/ConversationsHelper.js</a>, <a href="helpers_ConversationsHelper.js.html#line61">line 61</a>
+        <a href="helpers_resources_AddonsHelper.js.html">helpers/resources/AddonsHelper.js</a>, <a href="helpers_resources_AddonsHelper.js.html#line66">line 66</a>
     </li></ul></dd>
     
 
@@ -1219,394 +1703,7 @@ requested.</td>
     </dt>
     <dd>
         
-<span class="param-type">Array.&lt;<a href="global.html#Conversation">Conversation</a>></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="reply"><span class="type-signature">(async) </span>reply<span class="signature">(conversationId, message)</span><span class="type-signature"> &rarr; {number}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Reply to an unread conversation
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>conversationId</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The identifier of the unread conversation.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>message</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The content of the new reply.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="helpers_ConversationsHelper.js.html">helpers/ConversationsHelper.js</a>, <a href="helpers_ConversationsHelper.js.html#line119">line 119</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    The identifier of the newly-created conversation message.
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">number</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="start"><span class="type-signature">(async) </span>start<span class="signature">(title, message, recipientIds)</span><span class="type-signature"> &rarr; {number}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Start a new conversation.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>title</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The title of the conversation.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>message</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The content of the first message in the conversation.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>recipientIds</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;number></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">An array of recipient identifiers.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="helpers_ConversationsHelper.js.html">helpers/ConversationsHelper.js</a>, <a href="helpers_ConversationsHelper.js.html#line73">line 73</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    The newly-created conversation identifier.
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">number</span>
+<span class="param-type">Array.&lt;<a href="global.html#AddonPurchase">AddonPurchase</a>></span>
 
 
     </dd>
@@ -1640,7 +1737,7 @@ requested.</td>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon Sep 22 2025 14:38:11 GMT+0100 (British Summer Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon Sep 22 2025 14:38:08 GMT+0100 (British Summer Time)
 </footer>
 
 <script> prettyPrint(); </script>
