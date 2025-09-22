@@ -211,6 +211,11 @@ export class ResourcesHelper {
      * @return {VersionsHelper} A newly-constructed version helper instance.
      */
     versions(): VersionsHelper;
+    /** Access addon-related helper functions.
+     *
+     * @return {AddonsHelper} A newly-constructed addon helper instance.
+     */
+    addons(): AddonsHelper;
     #private;
 }
 import { SortOptions } from "../../SortOptions";
@@ -220,4 +225,5 @@ import { PurchasesHelper } from "./PurchasesHelper.js";
 import { ReviewsHelper } from "./ReviewsHelper.js";
 import { UpdatesHelper } from "./UpdatesHelper.js";
 import { VersionsHelper } from "./VersionsHelper.js";
+import { AddonsHelper } from "./AddonsHelper.js";
 //# sourceMappingURL=ResourcesHelper.d.ts.map

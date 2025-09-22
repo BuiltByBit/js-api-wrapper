@@ -7,6 +7,7 @@ const { PurchasesHelper } = require("./PurchasesHelper.js");
 const { ReviewsHelper } = require("./ReviewsHelper.js");
 const { UpdatesHelper } = require("./UpdatesHelper.js");
 const { VersionsHelper } = require("./VersionsHelper.js");
+const { AddonsHelper } = require("./AddonsHelper.js");
 
 const { SortOptions } = require("../../SortOptions");
 
@@ -259,6 +260,14 @@ class ResourcesHelper {
      */
     versions() {
         return new VersionsHelper(this.#wrapper);
+    }
+
+    /** Access addon-related helper functions.
+     * 
+     * @return {AddonsHelper} A newly-constructed addon helper instance.
+     */
+    addons() {
+        return new AddonsHelper(this.#wrapper);
     }
 }
 
