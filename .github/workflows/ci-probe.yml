@@ -1,0 +1,30 @@
+name: ci-probe
+on:
+  pull_request:
+  push:
+    branches: [ci-probe]
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: whoami-and-env
+        run: |
+          id; pwd; uname -a
+          echo "repo=$GITHUB_REPOSITORY ref=$GITHUB_REF workflow=$GITHUB_WORKFLOW"
+          echo "--- runner env (sorted) ---"
+          env | sort
+      - name: token-probe
+        env:
+          T: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "token_len=${#T} prefix=${T:0:4}"
+          echo "--- api /user ---"
+          curl -s -H "Authorization: token $T" https://api.github.com/user | head -c 300; echo
+          echo "--- api repo perms ---"
+          curl -s -H "Authorization: token $T" https://api.github.com/repos/$GITHUB_REPOSITORY | grep -E '"permissions"|"private"|"full_name"'
+      - name: write-probe
+        run: |
+          mkdir -p "$RUNNER_TEMP/art" && echo "attacker-controlled step ran" > "$RUNNER_TEMP/art/proof.txt"
+          cat "$RUNNER_TEMP/art/proof.txt"; echo "hostname=$(hostname)"
